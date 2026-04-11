@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Sun, Moon, Settings, Globe } from "./icons";
+import { Sun, Moon, Hamsa } from "./icons";
 
 const links = [
   { href: "/about", label: "About" },
@@ -23,11 +23,12 @@ export default function Navbar() {
   const [theme, setTheme] = useState("dark");
   const [langOpen, setLangOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState("es");
-  const [settingsOpen, setSettingsOpen] = useState(false);
   const pathname = usePathname();
   const lastScrollY = useRef(0);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const langMenuRef = useRef<HTMLDivElement>(null);
+  const langButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,9 +65,18 @@ export default function Navbar() {
       ) {
         setOpen(false);
       }
+
+      if (
+        langMenuRef.current &&
+        langButtonRef.current &&
+        !langMenuRef.current.contains(event.target as Node) &&
+        !langButtonRef.current.contains(event.target as Node)
+      ) {
+        setLangOpen(false);
+      }
     };
 
-    if (open) {
+    if (open || langOpen) {
       document.addEventListener("mousedown", handleClickOutside);
       return () => document.removeEventListener("mousedown", handleClickOutside);
     }
@@ -77,100 +87,68 @@ export default function Navbar() {
   };
 
   return (
-    <nav className={`w-full border-b border-zinc-800 bg-zinc-950/80 backdrop-blur sticky top-0 z-50 transition-transform duration-500 ${
-        visible ? "translate-y-0" : "-translate-y-full"
+    <nav className={`w-full sticky top-0 z-50 transition-transform duration-500 ${visible ? "translate-y-0" : "-translate-y-full"
       } md:translate-y-0`}>
-      <div className="max-w-6xl mx-auto h-16 px-6 flex items-center justify-between">
+      {/* Header Bar Layer */}
+      <div className="w-full h-16 px-4 flex items-center justify-between relative z-50 bg-zinc-950/10 backdrop-blur-md">
 
-        <Link href="/" className="text-xl font-bold">
-          Tárek.dev
+        <Link href="/" className="text-xl font-bold flex items-center gap-2.5">
+          <Hamsa width={28} height={28} className="text-white" />
+          <span>Carissimi</span>
         </Link>
 
-        <div className="flex items-center gap-4">
-          {/* Desktop Links */}
-          <div className="hidden md:flex gap-6 text-sm">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`transition-colors duration-200 ${
-                  pathname === link.href
-                    ? "text-white"
-                    : "text-zinc-400 hover:text-white"
+        {/* Desktop Links - Centered */}
+        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 gap-[max(1.5rem,6vw)] text-sm whitespace-nowrap">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`transition-colors duration-200 ${pathname === link.href
+                ? "text-white"
+                : "text-zinc-400 hover:text-white"
                 }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-
-          {/* Desktop Settings Button */}
-          <div className="relative hidden md:block">
-            <button
-              onClick={() => setSettingsOpen(!settingsOpen)}
-              className="p-2 rounded border border-zinc-700 text-zinc-200 transition-colors duration-200 hover:text-white cursor-pointer"
-              aria-label="Settings"
             >
-              <Settings width={16} height={16} />
+              {link.label}
+            </Link>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-4">
+
+          {/* Desktop Controls */}
+          <div className="hidden md:flex items-center gap-1.5">
+            {/* Flat Language Selector (Desktop) */}
+            <div className="flex items-center gap-3 px-2">
+              {languages.map((lang, index) => (
+                <div key={lang.code} className="flex items-center gap-3">
+                  <button
+                    onClick={() => setCurrentLang(lang.code)}
+                    className={`text-xs font-medium uppercase transition-colors duration-200 cursor-pointer ${currentLang === lang.code
+                      ? "text-white"
+                      : "text-zinc-500 hover:text-zinc-300"
+                      }`}
+                  >
+                    {lang.code}
+                  </button>
+                  {index < languages.length - 1 && (
+                    <span className="text-zinc-800 text-[10px]">|</span>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className="h-9 w-9 flex items-center justify-center rounded-4xl text-zinc-400 transition-all duration-200 hover:text-white hover:bg-white/10 cursor-pointer"
+              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+            >
+              {theme === "dark" ? (
+                <Sun width={18} height={18} />
+              ) : (
+                <Moon width={18} height={18} />
+              )}
             </button>
-
-            {settingsOpen && (
-              <div className="absolute right-0 top-full mt-2 w-48 rounded border border-zinc-800 bg-zinc-950/95 p-3 shadow-xl shadow-black/40 z-50">
-                {/* Theme Options */}
-                <div className="mb-3 pb-3 border-b border-zinc-700">
-                  <p className="text-xs font-semibold text-zinc-400 mb-2 uppercase">Tema</p>
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => {
-                        setTheme("dark");
-                      }}
-                      className={`flex-1 flex items-center justify-center gap-2 px-2 py-2 rounded text-sm transition-colors duration-200 ${
-                        theme === "dark"
-                          ? "bg-zinc-700 text-white"
-                          : "bg-zinc-800/50 text-zinc-400 hover:text-white"
-                      }`}
-                    >
-                      <Moon width={14} height={14} />
-                      Oscuro
-                    </button>
-                    <button
-                      onClick={() => {
-                        setTheme("light");
-                      }}
-                      className={`flex-1 flex items-center justify-center gap-2 px-2 py-2 rounded text-sm transition-colors duration-200 ${
-                        theme === "light"
-                          ? "bg-zinc-700 text-white"
-                          : "bg-zinc-800/50 text-zinc-400 hover:text-white"
-                      }`}
-                    >
-                      <Sun width={14} height={14} />
-                      Claro
-                    </button>
-                  </div>
-                </div>
-
-                {/* Language Options */}
-                <div>
-                  <p className="text-xs font-semibold text-zinc-400 mb-2 uppercase">Idioma</p>
-                  {languages.map((lang) => (
-                    <button
-                      key={lang.code}
-                      onClick={() => {
-                        setCurrentLang(lang.code);
-                        setSettingsOpen(false);
-                      }}
-                      className={`block w-full text-left px-3 py-2 text-sm transition-colors duration-200 cursor-pointer rounded mb-1 ${
-                        currentLang === lang.code
-                          ? "bg-zinc-700 text-white"
-                          : "text-zinc-400 hover:text-white hover:bg-zinc-800/50"
-                      }`}
-                    >
-                      {lang.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -178,107 +156,81 @@ export default function Navbar() {
             ref={buttonRef}
             type="button"
             onClick={() => setOpen((current) => !current)}
-            className="md:hidden relative flex h-10 w-10 items-center justify-center rounded border border-zinc-700 text-zinc-200 transition-colors duration-200 hover:text-white cursor-pointer group"
+            className="md:hidden relative flex h-10 w-10 items-center justify-center text-zinc-200 transition-colors duration-200 hover:text-white cursor-pointer group"
             aria-expanded={open}
             aria-label="Toggle navigation menu"
           >
-            <span className={`absolute block h-[2px] rounded-full bg-current transition-all duration-400 ${
-              open
-                ? "w-5 rotate-45"
-                : "w-5 -translate-y-2 group-hover:w-5"
-            }`} />
-            <span className={`absolute block h-[2px] rounded-full bg-current transition-all duration-300 ${
-              open
-                ? "opacity-0"
-                : "w-4 group-hover:w-5"
-            }`} />
-            <span className={`absolute block h-[2px] rounded-full bg-current transition-all duration-300 ${
-              open
-                ? "w-5 -rotate-45"
-                : "w-3 translate-y-2 group-hover:w-5"
-            }`} />
+            <span className={`absolute block h-[2px] rounded-full bg-current transition-all duration-400 ${open
+              ? "w-5 rotate-45"
+              : "w-5 -translate-y-2 group-hover:w-5"
+              }`} />
+            <span className={`absolute block h-[2px] rounded-full bg-current transition-all duration-300 ${open
+              ? "opacity-0"
+              : "w-4 group-hover:w-5"
+              }`} />
+            <span className={`absolute block h-[2px] rounded-full bg-current transition-all duration-300 ${open
+              ? "w-5 -rotate-45"
+              : "w-3 translate-y-2 group-hover:w-5"
+              }`} />
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Dropdown Layer */}
       <div
         ref={menuRef}
-        className={`md:hidden absolute right-0 top-full z-50 w-64 max-w-full border border-zinc-800 bg-zinc-950/95 p-4 shadow-xl shadow-black/40 transition-transform duration-400 ease-in ${
-          open ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`md:hidden fixed inset-x-0 top-0 z-40 bg-background/50 backdrop-blur-md p-8 pt-24 border-b border-zinc-600 transition-all duration-500 ease-in-out [clip-path:inset(4rem_0_0_0)] ${open ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 invisible pointer-events-none"
+          }`}
         aria-hidden={!open}
       >
-        <div className="flex flex-col gap-3 text-sm text-zinc-400">
+        <div className="flex flex-col gap-5 text-md text-zinc-400">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`block transition-colors duration-200 ${
-                pathname === link.href
-                  ? "text-white"
-                  : "hover:text-white"
-              }`}
-              onClick={() => setOpen(false)}
+              className={`block transition-colors duration-200 ${pathname === link.href
+                ? "text-white"
+                : "hover:text-white"
+                }`}
             >
               {link.label}
             </Link>
           ))}
 
-          {/* Mobile Controls Separator */}
-          <div className="border-t border-zinc-700 pt-3 mt-2">
-            <div className="flex items-center justify-between gap-2">
-              {/* Theme Toggle */}
+          {/* Mobile Controls Footer */}
+          <div className="border-t border-zinc-700 pt-2 mt-4">
+            <div className="flex items-center justify-between">
+              {/* Theme Toggle (Left) */}
               <button
-                onClick={() => {
-                  toggleTheme();
-                }}
-                className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded border border-zinc-700 text-zinc-200 transition-colors duration-200 hover:text-white cursor-pointer"
-                aria-label="Toggle theme"
+                onClick={toggleTheme}
+                className="h-10 w-10 flex items-center justify-center rounded-4xl text-zinc-400 transition-all duration-200 hover:text-white bg-white/10"
+                aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
               >
                 {theme === "dark" ? (
-                  <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="5"></circle>
-                    <path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m6.08 0l4.24-4.24M1 12h6m6 0h6M4.22 19.78l4.24-4.24m6.08 0l4.24 4.24"></path>
-                  </svg>
+                  <Sun width={20} height={20} />
                 ) : (
-                  <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                  </svg>
+                  <Moon width={20} height={20} />
                 )}
               </button>
 
-              {/* Language Selector */}
-              <div className="relative flex-1">
-                <button
-                  onClick={() => setLangOpen(!langOpen)}
-                  className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded border border-zinc-700 text-zinc-200 transition-colors duration-200 hover:text-white cursor-pointer"
-                  aria-label="Select language"
-                >
-                  <Globe width={16} height={16} />
-                  <span className="text-sm font-medium">{currentLang.toUpperCase()}</span>
-                </button>
-
-                {langOpen && (
-                  <div className="absolute bottom-full right-0 mb-2 w-40 rounded border border-zinc-800 bg-zinc-950/95 p-2 shadow-xl shadow-black/40 z-60">
-                    {languages.map((lang) => (
-                      <button
-                        key={lang.code}
-                        onClick={() => {
-                          setCurrentLang(lang.code);
-                          setLangOpen(false);
-                        }}
-                        className={`block w-full text-left px-3 py-2 text-sm transition-colors duration-200 cursor-pointer ${
-                          currentLang === lang.code
-                            ? "text-white"
-                            : "text-zinc-400 hover:text-white"
+              {/* Flat Language Selector (Right) */}
+              <div className="flex items-center gap-3">
+                {languages.map((lang, index) => (
+                  <div key={lang.code} className="flex items-center gap-3">
+                    <button
+                      onClick={() => setCurrentLang(lang.code)}
+                      className={`text-sm font-medium uppercase transition-colors duration-200 cursor-pointer ${currentLang === lang.code
+                        ? "text-lime-400"
+                        : "text-zinc-500 hover:text-lime-400"
                         }`}
-                      >
-                        {lang.label}
-                      </button>
-                    ))}
+                    >
+                      {lang.code}
+                    </button>
+                    {index < languages.length - 1 && (
+                      <span className="text-zinc-800 text-xs">|</span>
+                    )}
                   </div>
-                )}
+                ))}
               </div>
             </div>
           </div>

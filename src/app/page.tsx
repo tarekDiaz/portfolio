@@ -5,7 +5,7 @@ export default function Home() {
     <div className="min-h-screen flex items-center">
       <div className="max-w-4xl mx-auto px-6 py-32 w-full">
         <div className="text-center">
-          <h1 className="text-6xl font-bold mb-6">Tárek.dev</h1>
+          <h1 className="text-6xl font-bold mb-6 text-lime-300">Tárek Díaz Carissimi</h1>
           <p className="text-xl text-zinc-400 mb-8">Ingeniero Multimedia</p>
           <p className="text-lg text-zinc-300 mb-12 max-w-2xl mx-auto">
             Desarrollador apasionado por crear experiencias web excepcionales.
