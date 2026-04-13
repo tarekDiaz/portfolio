@@ -4,7 +4,7 @@ interface SunProps {
   className?: string;
 }
 
-export function Sun({ width = 16, height = 16, className = "" }: SunProps) {
+export function Sun({ width, height, className = "" }: SunProps) {
   return (
     <svg
       width={width}

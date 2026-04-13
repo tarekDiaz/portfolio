@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import { Montserrat } from 'next/font/google';
+import { ThemeProvider } from "@/components/theme-provider"
 
 const montserrat = Montserrat({
     subsets: ['latin'],
@@ -18,12 +19,15 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="es">
-            <body className={`${montserrat.className} bg-background text-white overflow-x-hidden`}>
-                <Navbar />
-                <main className="min-h-screen">
-                    {children}
-                </main>
+        <html lang="en" suppressHydrationWarning>
+            <head />
+            <body className={`${montserrat.className} overflow-x-hidden`}>
+                <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+                    <Navbar />
+                    <main className="min-h-screen">
+                        {children}
+                    </main>
+                </ThemeProvider>
             </body>
         </html>
     );

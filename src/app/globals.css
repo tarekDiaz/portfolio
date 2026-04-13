@@ -1,13 +1,30 @@
 @import "tailwindcss";
 
-@theme {
+@custom-variant dark (&:where(.dark, .dark *));
 
-    /* --color-background: #23222B; */
-    --color-background: #111112;
+:root {
+    --background: rgb(217, 212, 224);
+    --text: #111112;
+}
+
+.dark {
+    --background: #111112;
+    --text: rgb(255, 255, 255);
+}
+
+@theme {
+    --color-background: var(--background);
+    --color-text: var(--text);
 
     --color-backgroundlando: #111112;
     --color-limalando: #d2ff00;
     --color-limeoff: #b2c73a;
 
     --ease-in-expo: ease-[cubic-bezier(0.95, 0.05, 0.795, 0.035)];
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
