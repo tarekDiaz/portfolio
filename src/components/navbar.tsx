@@ -86,30 +86,30 @@ export default function Navbar() {
     <nav className={`w-full sticky top-0 z-50 transition-transform duration-500 ${visible ? "translate-y-0" : "-translate-y-full"
       } md:translate-y-0`}>
       {/* Header Bar Layer - Flex on mobile, Grid on desktop */}
-      <div className="w-full h-16 px-6 flex justify-between md:grid md:grid-cols-3 items-center relative z-50 bg-background/10 backdrop-blur-md border-b border-text/5">
+      <div className="w-full h-20 px-5 flex justify-between md:grid md:grid-cols-3 items-center relative z-50 backdrop-blur-md border-b-2 border-text/10">
 
         {/* Column 1: Logo & Name (Left Aligned) */}
         <div className="flex justify-start">
-          <Link href="/" className="flex items-center gap-2 group">
+          <Link href="/" className="flex items-center gap-1 group">
             <Icon
-              width={32}
-              height={32}
-              className="text-text transition-transform duration-300 group-hover:scale-110 pb-0.5"
-              eyeColor="var(--background)"
+              width={40}
+              height={40}
+              className="transition-transform duration-300 group-hover:scale-110 pb-0.5"
+              eyeColor="var(--theme-background)"
             />
-            <span className="text-text text-xl font-semibold tracking-tight">Carissimi</span>
+            <span className= "hidden md:block text-2xl font-semibold tracking-tight">Carissimi</span>
           </Link>
         </div>
 
-        {/* Column 2: Navigation Links (Hidden on Mobile, Centered on Desktop) */}
-        <div className="hidden md:flex justify-center items-center gap-[max(1.5rem,6vw)] text-sm whitespace-nowrap">
+        {/* Column 2: Navigation Links*/}
+        <div className="hidden md:flex justify-center items-center gap-[max(1.5rem,7vw)] text-sm whitespace-nowrap">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={`transition-all duration-300 ${pathname === link.href
-                ? "text-text font-medium scale-105"
-                : "text-text/50 hover:text-text font-light"
+                ? "font-medium text-customlime scale-120"
+                : "text-text/50 hover:text-customlime font-light"
                 }`}
             >
               {link.label}
@@ -117,30 +117,28 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Column 3: Controls (Right Aligned) */}
+        {/* Language and Theme */}
         <div className="flex justify-end items-center">
-
-          {/* Desktop Languages & Theme Toggle */}
-          <div className="hidden md:flex items-center gap-6">
-            <div className="flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-5">
+            <div className="flex items-center gap-1">
               {languages.map((lang, index) => (
                 <div key={lang.code} className="flex items-center gap-3">
                   <button
                     onClick={() => setCurrentLang(lang.code)}
-                    className={`text-xs font-medium uppercase transition-colors duration-200 cursor-pointer ${currentLang === lang.code
-                      ? "text-text"
-                      : "text-text/30 hover:text-text/60 h-9"
+                    className={`text-sm font-medium uppercase duration-200 cursor-pointer ${currentLang === lang.code
+                      ? "text-text scale-105"
+                      : "text-text/30 hover:text-text/70"
                       }`}
                   >
                     {lang.code}
                   </button>
                   {index < languages.length - 1 && (
-                    <span className="text-text/10 text-[10px]">|</span>
+                    <span className="text-theme-text/10 text-[10px]">|</span>
                   )}
                 </div>
               ))}
             </div>
-            <ThemeSwitch size={32} />
+            <ThemeSwitch/>
           </div>
 
           {/* Mobile Menu Button */}
@@ -148,21 +146,20 @@ export default function Navbar() {
             ref={buttonRef}
             type="button"
             onClick={() => setOpen((current) => !current)}
-            className="md:hidden relative flex h-10 w-10 items-center justify-center text-text transition-colors duration-200 hover:text-text cursor-pointer group"
+            className="md:hidden relative flex h-10 w-10 items-center justify-center transition-all duration-200 text-text/60 hover:text-text cursor-pointer group"
             aria-expanded={open}
-            aria-label="Toggle navigation menu"
           >
-            <span className={`absolute block h-[2px] rounded-full bg-current transition-all duration-400 ${open
-              ? "w-5 rotate-45"
-              : "w-5 -translate-y-2 group-hover:w-5"
+            <span className={`absolute block h-0.5 rounded-full bg-current transition-all duration-400 ${open
+              ? "w-8 rotate-45"
+              : "w-8 -translate-y-3 group-hover:w-8"
               }`} />
-            <span className={`absolute block h-[2px] rounded-full bg-current transition-all duration-300 ${open
+            <span className={`absolute block h-0.5 rounded-full bg-current transition-all duration-300 ${open
               ? "opacity-0"
-              : "w-4 group-hover:w-5"
+              : "w-6 group-hover:w-8"
               }`} />
-            <span className={`absolute block h-[2px] rounded-full bg-current transition-all duration-300 ${open
-              ? "w-5 -rotate-45"
-              : "w-3 translate-y-2 group-hover:w-5"
+            <span className={`absolute block h-0.5 rounded-full bg-current transition-all duration-300 ${open
+              ? "w-8 -rotate-45"
+              : "w-4 translate-y-3 group-hover:w-8"
               }`} />
           </button>
         </div>
@@ -171,7 +168,7 @@ export default function Navbar() {
       {/* Mobile Dropdown Layer */}
       <div
         ref={menuRef}
-        className={`md:hidden fixed inset-x-0 top-0 z-40 bg-background/50 backdrop-blur-md px-8 pt-24 pb-4 border-b border-text/10 transition-all duration-500 ease-in-out [clip-path:inset(4rem_0_0_0)] ${open ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 invisible pointer-events-none"
+        className={`md:hidden fixed inset-x-0 top-0 z-40 backdrop-blur-md px-10 pt-30 pb-4 border-b border-text/10 transition-all duration-500 ease-in-out [clip-path:inset(4rem_0_0_0)] ${open ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 invisible pointer-events-none"
           }`}
         aria-hidden={!open}
       >
@@ -183,7 +180,7 @@ export default function Navbar() {
                 href={link.href}
                 className={`block transition-all duration-200 ${pathname === link.href
                   ? "text-text font-medium scale-105"
-                  : "text-text/60 hover:text-text font-light"
+                  : "text-text/70 hover:text-text font-light"
                   }`}
               >
                 {link.label}
@@ -196,7 +193,7 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center justify-between pr-5 ml-5">
-            <ThemeSwitch size={32} />
+            <ThemeSwitch/>
 
             {/* Flat Language Selector (Right) */}
             <div className="flex items-center gap-3">
@@ -212,7 +209,7 @@ export default function Navbar() {
                     {lang.code}
                   </button>
                   {index < languages.length - 1 && (
-                    <span className="text-zinc-800 text-xs">|</span>
+                    <span className="text-text/10 text-xs">|</span>
                   )}
                 </div>
               ))}

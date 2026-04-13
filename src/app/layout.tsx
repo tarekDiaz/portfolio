@@ -19,14 +19,33 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" suppressHydrationWarning>
-            <head />
+        <html lang="es" suppressHydrationWarning>
+            <head>
+                <script
+                    dangerouslySetInnerHTML={{
+                    __html: `
+                        (function() {
+                            try {
+                                const theme = localStorage.getItem('theme');
+                                const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+                                if (theme === 'dark' || (!theme && systemDark)) {
+                                document.documentElement.classList.add('dark');
+                                } else {
+                                document.documentElement.classList.remove('dark');
+                            }
+                        } catch (e) {}
+                    })();
+                    `,
+                    }}
+                />
+            </head>
             <body className={`${montserrat.className} overflow-x-hidden`}>
                 <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
                     <Navbar />
-                    <main className="min-h-screen">
-                        {children}
-                    </main>
+                        <main className="min-h-screen">
+                            {children}
+                        </main>
                 </ThemeProvider>
             </body>
         </html>

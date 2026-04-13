@@ -1,30 +1,29 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 :root {
-    --background: rgb(217, 212, 224);
+    --background: rgb(231, 231, 231);
     --text: #111112;
+  
+    --custom-lime: #b2c73a;
 }
 
 .dark {
-    --background: #111112;
-    --text: rgb(255, 255, 255);
+    --background: #202022;
+    --text: rgb(211, 212, 218);
+
+    --custom-lime: #d2ff00;
 }
 
 @theme {
     --color-background: var(--background);
     --color-text: var(--text);
-
-    --color-backgroundlando: #111112;
-    --color-limalando: #d2ff00;
-    --color-limeoff: #b2c73a;
+    --color-customlime: var(--custom-lime);
 
     --ease-in-expo: ease-[cubic-bezier(0.95, 0.05, 0.795, 0.035)];
 }
 
 body {
-    background-color: var(--background);
+    background: var(--background);
     color: var(--text);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background 0.5s ease-in, color 0.3s ease-in;
 }
