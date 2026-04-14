@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Sun, Moon, Icon } from "./icons";
 import ThemeSwitch from "./theme-switch";
+import EyeLogo from "./icons/EyeLogo";
 
 const links = [
   { href: "/about", label: "About" },
@@ -90,12 +91,12 @@ export default function Navbar() {
 
         {/* Column 1: Logo & Name (Left Aligned) */}
         <div className="flex justify-start">
-          <Link href="/" className="flex items-center gap-1 group">
-            <Icon
-              width={40}
-              height={40}
-              className="transition-transform duration-300 group-hover:scale-110 pb-0.5"
-              eyeColor="var(--theme-background)"
+          <Link href="/" className="flex items-center gap-1">
+            <EyeLogo
+              width={50}
+              height={50}
+              className="pb-0.5 duration-400 hover:scale-95"
+              eyeColor="var(--background)"
             />
             <span className= "hidden md:block text-2xl font-semibold tracking-tight">Carissimi</span>
           </Link>
@@ -117,10 +118,11 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Language and Theme */}
+        
         <div className="flex justify-end items-center">
-          <div className="hidden md:flex items-center gap-5">
-            <div className="flex items-center gap-1">
+          {/* Language Selector */}
+          <div className="hidden md:flex gap-2">
+            <div className="flex items-center gap-2">
               {languages.map((lang, index) => (
                 <div key={lang.code} className="flex items-center gap-3">
                   <button
@@ -133,11 +135,12 @@ export default function Navbar() {
                     {lang.code}
                   </button>
                   {index < languages.length - 1 && (
-                    <span className="text-theme-text/10 text-[10px]">|</span>
+                    <span className="text-text/10 text-[15px]">|</span>
                   )}
                 </div>
               ))}
             </div>
+            {/* Theme */}
             <ThemeSwitch/>
           </div>
 
