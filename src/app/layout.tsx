@@ -2,6 +2,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import { Montserrat } from 'next/font/google';
 import { ThemeProvider } from "@/components/theme-provider"
+import { Suspense } from "react";
 
 const montserrat = Montserrat({
     subsets: ['latin'],
@@ -44,7 +45,9 @@ export default function RootLayout({
                 <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
                     <Navbar />
                         <main className="min-h-screen">
-                            {children}
+                            <Suspense>
+                                {children}
+                            </Suspense>
                         </main>
                 </ThemeProvider>
             </body>

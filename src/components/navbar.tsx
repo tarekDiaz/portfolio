@@ -87,7 +87,7 @@ export default function Navbar() {
     <nav className={`w-full sticky top-0 z-50 transition-transform duration-500 ${visible ? "translate-y-0" : "-translate-y-full"
       } md:translate-y-0`}>
       {/* Header Bar Layer - Flex on mobile, Grid on desktop */}
-      <div className="w-full h-20 px-5 flex justify-between md:grid md:grid-cols-3 items-center relative z-50 backdrop-blur-md border-b-2 border-text/10">
+      <div className="w-full h-20 px-5 flex justify-between md:grid md:grid-cols-3 items-center relative z-50 backdrop-blur-xl">
 
         {/* Column 1: Logo & Name (Left Aligned) */}
         <div className="flex justify-start">
@@ -109,8 +109,8 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               className={`transition-all duration-300 ${pathname === link.href
-                ? "font-medium text-customlime scale-120"
-                : "text-text/50 hover:text-customlime font-light"
+                ? "font-medium text-text scale-120"
+                : "text-text/50 hover:text-text font-light"
                 }`}
             >
               {link.label}
