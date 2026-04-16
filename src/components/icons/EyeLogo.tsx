@@ -20,7 +20,6 @@ export default function EyeLogo({ width = 16, height = 16,className = "", eyeCol
 
     const [pupilOffset, setPupilOffset] = useState({ x: 0, y: 0 });
 
-    // Actualizar la ref con la posición actual del ratón
     useEffect(() => {
         mouseRef.current = { x, y };
     }, [x, y]);
@@ -70,7 +69,7 @@ export default function EyeLogo({ width = 16, height = 16,className = "", eyeCol
                 cancelAnimationFrame(animationFrameRef.current);
             }
         };
-    }, [isMouseInWindow]);
+    }, [x, y, isMouseInWindow]);
 
     return (
         <motion.div

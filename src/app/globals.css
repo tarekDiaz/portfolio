@@ -2,15 +2,15 @@
 
 :root {
     --background: rgb(231, 231, 231);
-    --text: #111112;
-  
+    --text: #1a1919;
     --custom-lime: #b2c73a;
+
+    --cursor: rgb(255, 255, 255);
 }
 
 .dark {
-    --background: #0c0c0c;
+    --background: #1a1919;
     --text: rgb(211, 212, 218);
-
     --custom-lime: #d2ff00;
 }
 
@@ -52,4 +52,64 @@ body::after {
   25% { transform: translate(-1%, -2%); }
   50% { transform: translate(-3%, 1%); }
   75% { transform: translate(2%, -1%); }
+}
+
+/* Cursor personalizado */
+@media (hover: hover) and (pointer: fine) {
+  *, *::before, *::after { 
+    cursor: none !important; 
+  }
+}
+
+
+.cursor-container {
+  position: fixed;
+  top: 0; left: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+
+  width: 15px; 
+  height: 15px;
+
+  border-radius: 50%;
+  background: var(--cursor);
+
+  z-index: 500;
+  mix-blend-mode: difference;
+  transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
+
+  --ring-scale: 1;
+}
+
+.cursor-container::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border: 0.5px solid var(--cursor);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(var(--ring-scale));
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.cursor--hover {
+  width: 30px; 
+  height: 30px;
+}
+
+.cursor--hover::after {
+  opacity: 1;
+}
+
+.cursor--active {
+  --ring-scale: 0;
+}
+
+.cursor--hover-text {
+  width: 50px;
+  height: 50px;
+}
+
+.cursor--hidden {
+  opacity: 0;
 }

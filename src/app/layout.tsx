@@ -3,6 +3,9 @@ import Navbar from "@/components/navbar";
 import { Montserrat } from 'next/font/google';
 import { ThemeProvider } from "@/components/theme-provider"
 import { Suspense } from "react";
+import Cursor from "@/components/cursor/cursor";
+
+
 
 const montserrat = Montserrat({
     subsets: ['latin'],
@@ -42,7 +45,9 @@ export default function RootLayout({
                 />
             </head>
             <body className={`${montserrat.className} overflow-x-hidden`}>
+                <Cursor />
                 <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+
                     <Navbar />
                         <main className="min-h-screen">
                             <Suspense>
