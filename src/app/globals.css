@@ -28,6 +28,8 @@ body {
     transition: background 0.5s ease-in, color 0.3s ease-in;
 }
 
+/* Efecto de ruido/grano */
+
 body::after {
     content: '';
     position: fixed;
@@ -61,6 +63,17 @@ body::after {
   }
 }
 
+@media (hover: none) and (pointer: coarse) {
+  .cursor { display: none !important; }
+  *, *::before, *::after { cursor: auto !important; }
+
+  .cursor-container {
+    display: none !important;
+  }
+}
+
+
+
 
 .cursor-container {
   position: fixed;
@@ -77,6 +90,8 @@ body::after {
   z-index: 500;
   mix-blend-mode: difference;
   transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
+
+  filter: blur(0.7px);
 
   --ring-scale: 1;
 }
