@@ -84,6 +84,10 @@ export default function EyeLogo({ width = 16, height = 16,className = "", eyeCol
                 height={height}
                 viewBox="0 0 512 512"
                 className={className}
+                style={{
+                    color: "var(--text)",
+                    transition: "color 0.5s ease-in",
+                }}
                 xmlns="http://www.w3.org/2000/svg"
             >
                 <g id="IRIS" transform="matrix(1.078125,0,0,1.078125,-18.382904,-57.152517)">
@@ -106,7 +110,10 @@ export default function EyeLogo({ width = 16, height = 16,className = "", eyeCol
                         cx="256"
                         cy="330"
                         r="25"
-                        fill={eyeColor}
+                        style={{
+                            fill: eyeColor,
+                            transition: "fill 0.5s ease-in",
+                        }}
                     />
                 </motion.g>
 
