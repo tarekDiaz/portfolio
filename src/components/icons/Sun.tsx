@@ -1,14 +1,13 @@
 interface SunProps {
-  width?: number;
-  height?: number;
+  size?: number;
   className?: string;
 }
 
-export function Sun({ width = 20, height = 20, className = "" }: SunProps) {
+export function Sun({ size=20, className = "" }: SunProps) {
   return (
     <svg
-      width={width}
-      height={height}
+      width={size}
+      height={size }
       fill="none"
       stroke="currentColor"
       strokeWidth="2"

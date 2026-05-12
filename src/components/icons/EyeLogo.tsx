@@ -74,7 +74,7 @@ export default function EyeLogo({ width = 16, height = 16,className = "", eyeCol
     return (
         <motion.div
             className={className}
-            initial="open"
+            initial="closed"
             animate="open"
             whileHover="closed"
         >
@@ -85,7 +85,7 @@ export default function EyeLogo({ width = 16, height = 16,className = "", eyeCol
                 viewBox="0 0 512 512"
                 className={className}
                 style={{
-                    color: "var(--text)",
+                    color: "var(--custom-icon)",
                     transition: "color 0.5s ease-in",
                 }}
                 xmlns="http://www.w3.org/2000/svg"
@@ -145,16 +145,15 @@ export default function EyeLogo({ width = 16, height = 16,className = "", eyeCol
                     fill="currentColor"
                     style={{
                         originY: 1
-                    }}
-                    
+                    }}                    
                     variants={{
                         open: { scaleY: 0},
-                        closed: { scaleY: 0.3 }
+                        closed: { scaleY: 0.4 }
                     }}
                     transition={{
                         duration: 0.4,
                         ease: "easeInOut"
-                    }}      
+                    }}
                 />
                 
                 <g id="BACK" transform="matrix(-1,0,0,1,512,-22)">

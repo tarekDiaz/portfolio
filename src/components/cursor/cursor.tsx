@@ -30,7 +30,7 @@ export default function Cursor() {
 
   useEffect(() => {
     const interactiveSelector = 'a, button, [role="button"], .clickable';
-    const textSelector = 'p, span, h1, h2, h3, h4, h5, h6, li, label, blockquote, em, strong, small, code';
+    const textSelector = 'h1';
 
     const updateHoverState = (target: EventTarget | null) => {
       if (!(target instanceof Element)) {
@@ -72,15 +72,15 @@ export default function Cursor() {
       window.removeEventListener('mouseup', onMouseUp);
     };
   }, []);
-
+ 
 
   return (
 
 
       <motion.div 
         style={{
-          left: smoothMouse.x, 
-          top: smoothMouse.y,
+          left: mouse.x, 
+          top: mouse.y,
         }} 
         className={`cursor-container ${isHovered ? 'cursor--hover' : ''} ${isTextHovered ? 'cursor--hover-text' : ''} ${isHovered && isPressed ? 'cursor--active' : ''} ${!isMouseInWindow ? 'cursor--hidden' : ''}`}>
 

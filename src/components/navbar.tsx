@@ -3,14 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Sun, Moon, Icon } from "./icons";
 import ThemeSwitch from "./theme-switch";
 import EyeLogo from "./icons/EyeLogo";
+import { motion } from "framer-motion";
 
 const links = [
-  { href: "/about", label: "About" },
-  { href: "/projects", label: "Proyectos" },
+  { href: "/projects", label: "Projects" },
   { href: "/contact", label: "Contact" },
+  { href: "/about", label: "About" }
 ];
 
 const languages = [
@@ -24,10 +24,13 @@ export default function Navbar() {
   const [visible, setVisible] = useState(true);
   const [langOpen, setLangOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState("es");
+
   const pathname = usePathname();
   const lastScrollY = useRef(0);
+
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+
   const langMenuRef = useRef<HTMLDivElement>(null);
   const langButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -36,9 +39,7 @@ export default function Navbar() {
       const currentScroll = window.scrollY;
       const delta = currentScroll - lastScrollY.current;
 
-      if (Math.abs(delta) < 10) {
-        return;
-      }
+      if (Math.abs(delta) < 10) return;
 
       if (currentScroll <= 0) {
         setVisible(true);
@@ -53,6 +54,7 @@ export default function Navbar() {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -79,147 +81,273 @@ export default function Navbar() {
 
     if (open || langOpen) {
       document.addEventListener("mousedown", handleClickOutside);
-      return () => document.removeEventListener("mousedown", handleClickOutside);
     }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, [open, langOpen]);
 
   return (
-    <nav className={`w-full sticky top-0 z-50 transition-transform duration-500 ${visible ? "translate-y-0" : "-translate-y-full"
-      } md:translate-y-0`}>
-      {/* Header Bar Layer - Flex on mobile, Grid on desktop */}
-      <div className="w-full h-20 px-5 flex justify-between md:grid md:grid-cols-3 items-center relative z-50 backdrop-blur-xl">
-
-        {/* Column 1: Logo & Name (Left Aligned) */}
-        <div className="flex justify-start">
-          <Link href="/" className="flex items-center gap-1">
-            <EyeLogo
-              width={50}
-              height={50}
-              className="pb-0.5 duration-400 hover:scale-95"
-              eyeColor="var(--background)"
-            />
-            <span className= "hidden md:block text-2xl font-semibold tracking-tight">Carissimi</span>
-          </Link>
-        </div>
-
-        {/* Column 2: Navigation Links*/}
-        <div className="hidden md:flex justify-center items-center gap-[max(1.5rem,7vw)] text-sm whitespace-nowrap">
-          {links.map((link) => (
+    <>
+      <nav
+        className={`
+          fixed inset-x-0 top-10 z-50 
+          w-60 h-14 
+          md:h-10 md:w-125 
+          left-1/2 -translate-x-1/2 
+          transition-all duration-500
+          ${visible ? "translate-y-0 opacity-100" : "-translate-y-24 opacity-0"}
+        `}
+      >
+        <motion.div
+          className="
+            absolute left-1/2 top-0 h-full -translate-x-1/2
+            grid grid-cols-3 items-center justify-center overflow-visible
+            md:grid-cols-5
+            bg-text/10 rounded-full
+          "
+          initial={{ width: 0 }}
+          animate={{ width: "100%" }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+        >
+          {/* Desktop Links */}
+          <div className="justify-self-center hidden md:block">
             <Link
-              key={link.href}
-              href={link.href}
-              className={`transition-all duration-300 ${pathname === link.href
-                ? "font-medium text-text scale-120"
-                : "text-text/50 hover:text-text font-light"
-                }`}
+              href="/about"
+              className={`transition-all duration-300 ${
+                pathname === "/about"
+                  ? "text-text"
+                  : "text-text/55 hover:text-text"
+              }`}
             >
-              {link.label}
+              About
             </Link>
-          ))}
-        </div>
-
-        
-        <div className="flex justify-end items-center">
-          {/* Language Selector */}
-          <div className="hidden md:flex gap-2">
-            <div className="flex items-center gap-2">
-              {languages.map((lang, index) => (
-                <div key={lang.code} className="flex items-center gap-3">
-                  <button
-                    onClick={() => setCurrentLang(lang.code)}
-                    className={`text-sm font-medium uppercase duration-200 cursor-pointer ${currentLang === lang.code
-                      ? "text-text scale-105"
-                      : "text-text/30 hover:text-text/70"
-                      }`}
-                  >
-                    {lang.code}
-                  </button>
-                  {index < languages.length - 1 && (
-                    <span className="text-text/10 text-[15px]">|</span>
-                  )}
-                </div>
-              ))}
-            </div>
-            {/* Theme */}
-            <ThemeSwitch/>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            ref={buttonRef}
-            type="button"
-            onClick={() => setOpen((current) => !current)}
-            className="md:hidden relative flex h-10 w-10 items-center justify-center transition-all duration-200 text-text/60 hover:text-text cursor-pointer group"
-            aria-expanded={open}
-          >
-            <span className={`absolute block h-0.5 rounded-full bg-current transition-all duration-400 ${open
-              ? "w-8 rotate-45"
-              : "w-8 -translate-y-3 group-hover:w-8"
-              }`} />
-            <span className={`absolute block h-0.5 rounded-full bg-current transition-all duration-300 ${open
-              ? "opacity-0"
-              : "w-6 group-hover:w-8"
-              }`} />
-            <span className={`absolute block h-0.5 rounded-full bg-current transition-all duration-300 ${open
-              ? "w-8 -rotate-45"
-              : "w-4 translate-y-3 group-hover:w-8"
-              }`} />
-          </button>
-        </div>
-      </div>
+          <div className="justify-self-center hidden md:block">
+            <Link
+              href="/projects"
+              className={`transition-all duration-300 ${
+                pathname === "/projects"
+                  ? "text-text"
+                  : "text-text/55 hover:text-text"
+              }`}
+            >
+              Projects
+            </Link>
+          </div>
 
-      {/* Mobile Dropdown Layer */}
+          <div className="justify-self-center hidden md:block">
+            <Link
+              href="/skills"
+              className={`transition-all duration-300 ${
+                pathname === "/skills"
+                  ? "text-text"
+                  : "text-text/55 hover:text-text"
+              }`}
+            >
+              Skills
+            </Link>
+          </div>
+
+          <div className="justify-self-center hidden md:block">
+            <Link
+              href="/contact"
+              className={`transition-all duration-300 ${
+                pathname === "/contact"
+                  ? "text-text"
+                  : "text-text/55 hover:text-text"
+              }`}
+            >
+              Contact
+            </Link>
+          </div>
+
+          {/* Language + Theme */}
+          <div className="justify-self-center hidden md:block relative">
+            <div className="grid grid-cols-2 items-center w-23 h-8 px-2 bg-background/50 rounded-full transition-colors duration-1000">
+              <button
+                ref={langButtonRef}
+                onClick={() => setLangOpen((prev) => !prev)}
+                className="text-text/55 justify-self-center px-2 py-1 rounded hover:text-text transition-colors"
+              >
+                {currentLang}
+              </button>
+
+              <div className="justify-self-center items-center">
+                <ThemeSwitch />
+              </div>
+            </div>
+
+            {langOpen && (
+              <div
+                ref={langMenuRef}
+                className="
+                  absolute top-full mt-3 left-1/2 -translate-x-1/2
+                  w-full overflow-hidden
+                  rounded-xl
+                  bg-background/95
+                  backdrop-blur-xl
+                  shadow-2xl
+                  z-50
+                "
+              >
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => {
+                      setCurrentLang(lang.code);
+                      setLangOpen(false);
+                    }}
+                    className={`
+                      w-full text-left px-4 py-3 text-sm transition-all duration-150
+                      ${
+                        currentLang === lang.code
+                          ? "text-text bg-text/10 font-medium"
+                          : "text-text/70 hover:text-text hover:bg-text/5"
+                      }
+                    `}
+                  >
+                    {lang.label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Mobile Burger */}
+          <div className="justify-self-center md:hidden">
+            <button
+              ref={buttonRef}
+              type="button"
+              onClick={() => setOpen((current) => !current)}
+              className="
+                relative ml-auto flex h-10 w-10 items-center justify-center
+                text-text/60 transition-all duration-200
+                hover:text-text cursor-pointer group
+              "
+              aria-expanded={open}
+              aria-label="Open navigation menu"
+            >
+              <span
+                className={`
+                  absolute block h-0.5 rounded-full bg-text transition-all duration-400
+                  ${
+                    open
+                      ? "w-7 rotate-45"
+                      : "w-7 -translate-y-1.5 group-hover:w-7"
+                  }
+                `}
+              />
+
+              <span
+                className={`
+                  absolute block h-0.5 rounded-full bg-text transition-all duration-300
+                  ${
+                    open
+                      ? "w-7 -rotate-45"
+                      : "w-4 translate-y-1.5 group-hover:w-7"
+                  }
+                `}
+              />
+            </button>
+          </div>
+
+          <div className="justify-self-center md:hidden"></div>
+
+          <div className="justify-self-center md:hidden">
+            <div className="text-text justify-self-center text-xl uppercase">
+              {currentLang}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Logo */}
+        <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex items-center justify-center bg-background/75 rounded-full w-22.5 h-22.5 transition-color duration-1000 scale-120 md:scale-100">
+          <Link href="/" aria-label="Go to home" className="block">
+            <EyeLogo
+              width={75}
+              height={75}
+              eyeColor="var(--background)"
+              className="hover:scale-98 transition-all duration-300"
+            />
+          </Link>
+        </div>
+      </nav>
+
+      {/* Mobile Menu */}
       <div
         ref={menuRef}
-        className={`md:hidden fixed inset-x-0 top-0 z-40 backdrop-blur-md px-10 pt-30 pb-4 border-b border-text/10 transition-all duration-500 ease-in-out [clip-path:inset(4rem_0_0_0)] ${open ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 invisible pointer-events-none"
-          }`}
+        className={`
+          md:hidden fixed inset-0 z-40
+          bg-background/55 backdrop-blur-2xl
+          transition-all duration-500 ease-in-out
+          ${
+            open
+              ? "opacity-100 visible pointer-events-auto"
+              : "opacity-0 invisible pointer-events-none"
+          }
+        `}
         aria-hidden={!open}
       >
-        <div className="flex flex-col">
-          <div className="flex flex-col gap-6 items-center justify-center">
+        <div className="flex h-full flex-col items-center pt-40 pb-10 px-10">
+          <div className="flex flex-col items-center justify-center gap-15">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`block transition-all duration-200 ${pathname === link.href
-                  ? "text-text font-medium scale-105"
-                  : "text-text/70 hover:text-text font-light"
-                  }`}
+                onClick={() => setOpen(false)}
+                className={`
+                  block transition-all duration-200 text-4xl
+                  ${
+                    pathname === link.href
+                      ? "text-text font-medium scale-105"
+                      : "text-text/70 hover:text-text font-light"
+                  }
+                `}
               >
                 {link.label}
               </Link>
             ))}
           </div>
 
-          {/* Mobile Controls Footer */}
-          <div className="border-t border-text/20 mt-10 mb-5">
-          </div>
+          <div className="mt-auto w-full">
+            <div className="border-t border-text/20 mb-5 w-full"></div>
 
-          <div className="flex items-center justify-between pr-5 ml-5">
-            <ThemeSwitch/>
+            <div className="flex w-full items-center gap-4 px-4">
+              <ThemeSwitch size={45} />
 
-            {/* Flat Language Selector (Right) */}
-            <div className="flex items-center gap-3">
-              {languages.map((lang, index) => (
-                <div key={lang.code} className="flex items-center gap-3">
-                  <button
-                    onClick={() => setCurrentLang(lang.code)}
-                    className={`text-sm uppercase transition-all duration-200 cursor-pointer ${currentLang === lang.code
-                      ? "text-text scale-105 font-medium"
-                      : "text-text/60 hover:text-text font-light"
-                      }`}
+              <div className="ml-auto flex items-center gap-3 justify-end">
+                {languages.map((lang, index) => (
+                  <div
+                    key={lang.code}
+                    className="flex items-center gap-3 leading-none"
                   >
-                    {lang.code}
-                  </button>
-                  {index < languages.length - 1 && (
-                    <span className="text-text/10 text-xs">|</span>
-                  )}
-                </div>
-              ))}
+                    <button
+                      onClick={() => setCurrentLang(lang.code)}
+                      className={`
+                        text-xl uppercase transition-all duration-200 cursor-pointer
+                        ${
+                          currentLang === lang.code
+                            ? "text-text scale-105 font-medium"
+                            : "text-text/60 hover:text-text font-light"
+                        }
+                      `}
+                    >
+                      {lang.code}
+                    </button>
+
+                    {index < languages.length - 1 && (
+                      <span className="text-text/10 text-xs">|</span>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </nav>
+    </>
   );
 }

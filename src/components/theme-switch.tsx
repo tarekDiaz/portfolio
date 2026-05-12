@@ -17,7 +17,7 @@ export default function ThemeSwitch({ size = 32 }: ThemeSwitchProps) {
     if (!mounted) return (
         <button
             style={{ width: size, height: size }}
-            className="rounded-4xl bg-text/10 animate-pulse">
+            className="rounded-4xl bg-text/10 animate-pulse items-center justify-center flex">
         </button>
     )
 
@@ -25,12 +25,12 @@ export default function ThemeSwitch({ size = 32 }: ThemeSwitchProps) {
         <button
             style={{ width: size, height: size }}
             onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-            className="flex items-center justify-center rounded-full transition-color duration-500 text-text/50 hover:text-text hover:bg-text/10 cursor-pointer"
+            className="flex items-center justify-center transition-color duration-500 text-text/50 hover:text-text cursor-pointer"
         >
             {resolvedTheme === "dark" ? (
-                <Sun/>
+                <Sun size={20 + (size-32)}/>
             ) : (
-                <Moon/>
+                <Moon size={16 + (size-32)}/>
             )}
         </button>
     );

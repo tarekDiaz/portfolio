@@ -1,11 +1,10 @@
 export default function Contact() {
   return (
-    <div className="min-h-screen py-16">
-      <div className="max-w-4xl mx-auto px-6">
+    <div className="min-h-screen max-w-4xl mx-auto pt-35 md:pt-30">
         <h1 className="text-4xl font-bold mb-8">Contact Me</h1>
         <div className="max-w-2xl">
           <p className="text-lg text-text mb-8">
-            I'd love to hear from you! Feel free to reach out for collaborations, opportunities, or just to say hello.
+            Work toghether
           </p>
 
           <div className="space-y-6">
@@ -40,6 +39,5 @@ export default function Contact() {
           </div>
         </div>
       </div>
-    </div>
   );
 }

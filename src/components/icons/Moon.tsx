@@ -1,14 +1,13 @@
 interface MoonProps {
-  width?: number;
-  height?: number;
+  size?: number;
   className?: string;
 }
 
-export function Moon({ width = 16, height = 16, className = "" }: MoonProps) {
+export function Moon({ size=16, className = "" }: MoonProps) {
   return (
     <svg
-      width={width}
-      height={height}
+      width={size}
+      height={size  }
       fill="none"
       stroke="currentColor"
       strokeWidth="2"
