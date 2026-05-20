@@ -34,6 +34,11 @@ export default function Navbar() {
   const langMenuRef = useRef<HTMLDivElement>(null);
   const langButtonRef = useRef<HTMLButtonElement>(null);
 
+  const getLinkClassName = (isActive: boolean) =>
+    `transition-all duration-300 ${
+      isActive ? "gradient-text font-bold" : "text-text/50 hover:text-text"
+    }`;
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScroll = window.scrollY;
@@ -97,7 +102,6 @@ export default function Navbar() {
           md:h-10 md:w-125 
           left-1/2 -translate-x-1/2 
           transition-all duration-500
-          ${visible ? "translate-y-0 opacity-100" : "-translate-y-24 opacity-0"}
         `}
       >
         <motion.div
@@ -105,7 +109,9 @@ export default function Navbar() {
             absolute left-1/2 top-0 h-full -translate-x-1/2
             grid grid-cols-3 items-center justify-center overflow-visible
             md:grid-cols-5
-            bg-text/10 rounded-full
+            bg-background md:bg-text/10 rounded-full
+            hover:bg-background border-2 border-text/0 hover:border-text/10 
+            transition-all duration-300
           "
           initial={{ width: 0 }}
           animate={{ width: "100%" }}
@@ -115,11 +121,7 @@ export default function Navbar() {
           <div className="justify-self-center hidden md:block">
             <Link
               href="/about"
-              className={`transition-all duration-300 ${
-                pathname === "/about"
-                  ? "text-text"
-                  : "text-text/55 hover:text-text"
-              }`}
+              className={getLinkClassName(pathname === "/about")}
             >
               About
             </Link>
@@ -128,11 +130,7 @@ export default function Navbar() {
           <div className="justify-self-center hidden md:block">
             <Link
               href="/projects"
-              className={`transition-all duration-300 ${
-                pathname === "/projects"
-                  ? "text-text"
-                  : "text-text/55 hover:text-text"
-              }`}
+              className={getLinkClassName(pathname === "/projects")}
             >
               Projects
             </Link>
@@ -141,11 +139,7 @@ export default function Navbar() {
           <div className="justify-self-center hidden md:block">
             <Link
               href="/skills"
-              className={`transition-all duration-300 ${
-                pathname === "/skills"
-                  ? "text-text"
-                  : "text-text/55 hover:text-text"
-              }`}
+              className={getLinkClassName(pathname === "/skills")}
             >
               Skills
             </Link>
@@ -154,11 +148,7 @@ export default function Navbar() {
           <div className="justify-self-center hidden md:block">
             <Link
               href="/contact"
-              className={`transition-all duration-300 ${
-                pathname === "/contact"
-                  ? "text-text"
-                  : "text-text/55 hover:text-text"
-              }`}
+              className={getLinkClassName(pathname === "/contact")}
             >
               Contact
             </Link>
@@ -264,12 +254,19 @@ export default function Navbar() {
         </motion.div>
 
         {/* Logo */}
-        <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex items-center justify-center bg-background/75 rounded-full w-22.5 h-22.5 transition-color duration-1000 scale-120 md:scale-100">
+        <div className="
+          absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 
+          flex items-center justify-center 
+          bg-background rounded-full w-22.5 h-22.5 
+          transition-color duration-1000
+          border-3 border-text/10
+          scale-120 md:scale-100">
           <Link href="/" aria-label="Go to home" className="block">
             <EyeLogo
               width={75}
               height={75}
-              eyeColor="var(--background)"
+              eyeColor={pathname === "/" ? "var(--primary)" : "var(--background)"}
+              color="var(--text)"
               className="hover:scale-98 transition-all duration-300"
             />
           </Link>
@@ -302,8 +299,8 @@ export default function Navbar() {
                   block transition-all duration-200 text-4xl
                   ${
                     pathname === link.href
-                      ? "text-text font-medium scale-105"
-                      : "text-text/70 hover:text-text font-light"
+                      ? "text-primary font-medium scale-105"
+                      : "text-text hover:text-text font-light"
                   }
                 `}
               >
@@ -330,8 +327,8 @@ export default function Navbar() {
                         text-xl uppercase transition-all duration-200 cursor-pointer
                         ${
                           currentLang === lang.code
-                            ? "text-text scale-105 font-medium"
-                            : "text-text/60 hover:text-text font-light"
+                            ? "text-primary scale-105 font-medium"
+                            : "text-text hover:text-text font-light"
                         }
                       `}
                     >

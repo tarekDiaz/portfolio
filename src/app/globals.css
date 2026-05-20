@@ -2,27 +2,46 @@
 
 :root {
     --background: rgb(231, 231, 231);
+    --background2: oklch(0.15 0 20);
+
     --text: #1a1919;
-    --custom-lime: #eeb587;
+
+    --primary: #750cf2;
+    --primary2: #0cbcf2;
+
+    --primary-2: #750cf2;
+    --primary-1: #327ef1;
+    
     --custom-icon: #1f1f1f;
 
-    --hsl-bg: hsl(0, 0%, 90%);
-
     --cursor: rgb(255, 255, 255);
+    --cursorborder: rgb(255, 217, 0);
 }
 
 .dark {
     --background: #101010;
+    --backgroud2: oklch(0.15 0 20);
+
     --text: rgb(211, 212, 218);
-    --custom-lime: #c79e45;
-    --custom-icon: rgb(211, 212, 218);
+
+    --primary: #a66821;
+    --primary2: #c29d54;
+
+    --primary-1: #ddbe11;
+    --primary-2: #a66821;
+
+    --custom-icon: rgb(206, 149, 27);
+
+    --cursorborder: #d9a68f;
 }
 
 @theme {
     --color-background: var(--background);
     --color-text: var(--text);
-    --color-customlime: var(--custom-lime);
+    --color-primary: var(--primary);
+    --color-primary2: var(--primary2);
     --color-customicon: var(--custom-icon);
+    --color-cursorborder: var(--cursorborder);
 
     --ease-in-expo: ease-[cubic-bezier(0.95, 0.05, 0.795, 0.035)];
 }
@@ -37,6 +56,19 @@ body {
   html {
     scrollbar-gutter: stable;
   }
+}
+
+
+::selection {
+  background-color: var(--primary2);
+}
+
+/* Utility for gradient text using CSS variables */
+.gradient-text {
+  background-image: radial-gradient(circle, var(--primary-1), var(--primary-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* Efecto de ruido/grano */
@@ -106,7 +138,7 @@ body::after {
   content: '';
   position: absolute;
   inset: -6px;
-  border: 0.5px solid var(--cursor);
+  border: 0.5px solid var(--cursorborder);
   border-radius: 50%;
   opacity: 0;
   transform: scale(var(--ring-scale));

@@ -55,7 +55,7 @@ export default function RootLayout({
                 <Cursor />
                 <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
                     <Navbar />
-                        <main className="min-h-screen">
+                        <main className="min-h-screen px-6">
                             <Suspense>
                                 {children}
                             </Suspense>

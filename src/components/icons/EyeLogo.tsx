@@ -9,9 +9,16 @@ interface IconProps {
     height?: number;
     className?: string;
     eyeColor: string;
+    color?: string;
 }
 
-export default function EyeLogo({ width = 16, height = 16,className = "", eyeColor}: IconProps) {
+export default function EyeLogo({
+    width = 16,
+    height = 16,
+    className = "",
+    eyeColor,
+    color = "var(--custom-icon)",
+}: IconProps) {
     
     const { x, y, isMouseInWindow } = useMousePosition();
     const svgRef = useRef<SVGSVGElement>(null);
@@ -85,7 +92,7 @@ export default function EyeLogo({ width = 16, height = 16,className = "", eyeCol
                 viewBox="0 0 512 512"
                 className={className}
                 style={{
-                    color: "var(--custom-icon)",
+                    color,
                     transition: "color 0.5s ease-in",
                 }}
                 xmlns="http://www.w3.org/2000/svg"
