@@ -1,10 +1,24 @@
+'use client';
+
 import HeroCanvasSuspense from "@/components/hero-canvas-suspense";
 import { Download } from "@/components/icons/Download";
+import { Copy } from "@/components/icons/Copy";
 import ScrollIndicator from "@/components/scroll-indicator";
 import { Arrow } from "@/components/icons/Arrow";
 import FadeIn from "@/components/fade-in";
+import { useState } from "react";
 
 export default function Home() {
+
+    const email = "tdiazcar@gmail.com";
+
+    const [copied, setCopied] = useState(false);
+  
+    const handleCopyEmail = () => {
+      navigator.clipboard.writeText(email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    };
 
   const featuredProjects = [
     {
@@ -213,69 +227,130 @@ export default function Home() {
       </section>
 
       {/* CONTACT */}
-      <section className="py-16 px-6">
+      <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <FadeIn direction="none">
-            <span className="text-sm uppercase tracking-[0.25em] text-text/35">
+            <span className="text-sm uppercase tracking-[0.25em] text-text3">
               Contact
             </span>
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <h2 className="text-4xl md:text-5xl mt-6 mb-8 leading-tight">
-              Let's work together!
-            </h2>
+            <div className="mt-6 max-w-3xl">
+              <h2 className="text-4xl md:text-5xl mb-6 leading-tight text-text">
+                Open to new opportunities.
+              </h2>
+
+              <p className="text-text2 text-lg leading-relaxed">
+                I am currently looking for junior opportunities where I can keep
+                growing as a developer, designer and multimedia engineer. I am open to
+                roles related to software development, web technologies, UX/UI design,
+                interactive media and digital product creation.
+              </p>
+            </div>
           </FadeIn>
 
-          <div className="flex justify-center items-center mt-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12">
+            <FadeIn delay={0.15}>
+              <div className="h-full rounded-2xl border border-background3 bg-background2 p-5">
+                <h3 className="text-text font-semibold mb-2">
+                  Software Development
+                </h3>
+                <p className="text-text3 text-sm leading-relaxed">
+                  Interested in junior roles where I can build, learn and improve
+                  through clean code, problem-solving and real projects.
+                </p>
+              </div>
+            </FadeIn>
+
             <FadeIn delay={0.25}>
-              <div className="flex justify-center items-center gap-4 w-full">
+              <div className="h-full rounded-2xl border border-background3 bg-background2 p-5">
+                <h3 className="text-text font-semibold mb-2">
+                  Web & Digital Products
+                </h3>
+                <p className="text-text3 text-sm leading-relaxed">
+                  Open to working on websites, interfaces, frontend experiences and
+                  digital products that combine usability and visual design.
+                </p>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.35}>
+              <div className="h-full rounded-2xl border border-background3 bg-background2 p-5">
+                <h3 className="text-text font-semibold mb-2">
+                  Design & Multimedia
+                </h3>
+                <p className="text-text3 text-sm leading-relaxed">
+                  Also interested in roles related to UX/UI, audiovisual design,
+                  interactive media, 3D, creative tools and multimedia experiences.
+                </p>
+              </div>
+            </FadeIn>
+          </div>
+
+          <FadeIn delay={0.45}>
+            <div className="mt-12 flex flex-col md:flex-row md:items-center md:justify-between gap-8 border-t border-background3 pt-8">
+              <div>
+                <p className="text-text2 mb-2">
+                  If you think my profile could fit your team, project or opportunity,
+                  feel free to reach out.
+                </p>
+
+                <div>
+                  <p className="text-text/80 hover:text-text pl-4">
+                    {email}
+                    <Copy width={24} height={24} className="inline-block ml-2 text-text hover:text-text transition-colors cursor-pointer" onClick={handleCopyEmail} />
+                    {copied && <span className="ml-2 text-sm text-primary">Copied!</span>}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href="/assets/CV - Tarek Diaz Carisismi.pdf"
                   download
                   className="
-                    flex-1 max-w-xs
                     inline-flex items-center justify-center
-                    px-5 py-1.5
+                    px-5 py-2
                     rounded-full
-                    border border-text/20
-                    text-text/70
+                    border border-background3
+                    bg-background2
+                    text-text2
                     transition-all duration-300
                     hover:text-text
-                    hover:border-text/40
+                    hover:border-text
                     text-center
                     gap-2
                   "
-                  style={{ minWidth: '160px' }}
                 >
-                  <Download width={30} height={30} />
+                  <Download width={24} height={24} />
                   Download CV
                 </a>
+
                 <a
                   href="/contact"
                   className="
-                    flex-1 max-w-xs
                     inline-flex items-center justify-center
-                    px-5 py-1.5
+                    px-5 py-2
                     rounded-full
-                    border border-text/20
-                    text-text/70
+                    border border-background3
+                    bg-background2
+                    text-text2
                     transition-all duration-300
                     hover:text-text
-                    hover:border-text/40
+                    hover:border-text
                     text-center
                     gap-2
                   "
-                  style={{ minWidth: '160px' }}
                 >
                   <span className="whitespace-nowrap">Contact Page</span>
                   <div className="animate-[bounceX_2.5s_infinite]">
-                    <Arrow width={30} height={30} angle={90} />
+                    <Arrow width={24} height={24} angle={90} />
                   </div>
                 </a>
               </div>
-            </FadeIn>
-          </div>
+            </div>
+          </FadeIn>
         </div>
       </section>
     </main>

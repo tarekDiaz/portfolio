@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Copy } from "@/components/icons/Copy";
-import { Copse } from "next/font/google";
 
 const email = "tdiazcar@gmail.com";
 

@@ -174,7 +174,7 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           {identityBlocks.map((block, index) => (
             <FadeIn key={block.title} delay={0.45 + index * 0.1} duration={0.6} distance={20}>
-              <div className="h-full rounded-2xl border border-text/10 bg-text/[0.03] p-5">
+              <div className="h-full rounded-2xl border border-text/10 bg-text/[0.03] p-5 transition-transform duration-200 hover:scale-105">
                 <h2 className="text-lg font-semibold text-text mb-2">{block.title}</h2>
                 <p className="text-sm leading-relaxed text-text/60">{block.text}</p>
               </div>
@@ -231,7 +231,7 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-8">
           {toolSections.map((section, index) => (
             <FadeIn key={section.title} delay={0.9 + index * 0.1} duration={0.6} distance={20}>
-              <div className="h-full rounded-2xl border border-text/10 bg-text/[0.03] p-6">
+              <div className="h-full rounded-2xl border border-text/10 bg-text/[0.03] p-6 transition-transform duration-200 hover:scale-105">
                 <h3 className="text-xl font-semibold text-text mb-2">{section.title}</h3>
                 <p className="text-sm text-text/55 leading-relaxed mb-5">{section.description}</p>
                 <div className="flex flex-wrap gap-2">
