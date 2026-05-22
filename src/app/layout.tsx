@@ -1,10 +1,12 @@
 import "./globals.css";
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 import { Montserrat } from 'next/font/google';
 import { Rubik } from 'next/font/google';
 import { ThemeProvider } from "@/components/theme-provider"
 import { Suspense } from "react";
 import Cursor from "@/components/cursor/cursor";
+import SmoothScroll from "@/components/smooth-scroll";
 
 
 
@@ -52,6 +54,7 @@ export default function RootLayout({
                 />
             </head>
             <body className={`${rubik.className} overflow-x-hidden`}>
+                <SmoothScroll />
                 <Cursor />
                 <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
                     <Navbar />
@@ -60,6 +63,7 @@ export default function RootLayout({
                                 {children}
                             </Suspense>
                         </main>
+                        <Footer />
                 </ThemeProvider>
             </body>
         </html>

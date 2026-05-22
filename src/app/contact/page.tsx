@@ -16,7 +16,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen max-w-4xl mx-auto pt-35 md:pt-30">
+    <div className="min-h-screen max-w-4xl mx-auto pt-45 md:pt-45">
         <h1 className="text-4xl font-bold mb-2">Contact Me</h1>
         <div className="max-w-2xl">
           <p className="text-lg text-text mb-8 pl-2">

@@ -1,12 +1,15 @@
 import HeroCanvasSuspense from "@/components/hero-canvas-suspense";
 import { Download } from "@/components/icons/Download";
+import ScrollIndicator from "@/components/scroll-indicator";
+import { Arrow } from "@/components/icons/Arrow";
 
 export default function Home() {
+
   const featuredProjects = [
     {
       title: "D.I.T.S (Drumming In The Studio)",
       description:
-        "Design and development of a musical application in virtual reality with MIDI integration. Final project honored.",
+        "Design and development of a musical application in virtual reality with MIDI integration. Final project graded with honors.",
       tags: ["Unity", "VR", "Music", "Drums", "MIDI", "Honors"],
     },
   ];
@@ -17,105 +20,125 @@ export default function Home() {
       <section className="relative h-dvh w-full flex items-center justify-center overflow-hidden">
   
         {/* Hero Content */}
-        <div className="relative z-20 w-full max-w-5xl mx-auto h-full flex flex-col items-center text-center px-4 pt-35 md:pt-30">
+        <div className="relative z-20 w-full h-full flex flex-col items-center text-center pt-35 md:pt-30">
 
           {/* Top content */}
-          <div className="space-y-1">
-            <h1 className="text-4xl md:text-6xl font-semibold tracking-tight gradient-text leading-none pt-5">
+          <div className="space-y-2">
+            <h1 className="text-[clamp(2.5rem,8vw,6rem)] md:text-[clamp(2.5rem,8vw,5rem)] font-semibold tracking-tight gradient-text leading-none pt-5">
               TAREK DIAZ CARISSIMI
             </h1>
-
-            <p className="max-w-3xl mx-auto text-lg md:text-xl text-text/75 leading-relaxed">
-              Multimedia Engineer | UX/UI Designer | VR Developer | Web Developer
-            </p>
-          </div>
-
-          {/* Canvas adaptativo */}
-          <div className="flex-1 w-full flex items-center justify-center min-h-0 m-2">
-            <HeroCanvasSuspense />
+            <div className="flex flex-col md:flex-row items-center gap-3 md:gap-5 px-2">
+              <p className="mx-auto font-light text-[clamp(1rem,2.5vw,1.5rem)] md:text-[clamp(1rem,2vw,1.3rem)] text-text/75">
+                Multimedia Engineer | UX/UI Designer | VR Developer | Web Developer
+              </p>
+              <a
+              href="/assets/CV - Tarek Diaz Carisismi.pdf"
+              download
+              className="
+                inline-flex items-center justify-center gap-2
+                px-4 h-10
+                border border-text/40
+                rounded-full
+                text-text/75
+                transition-all duration-300
+                text-sm
+                hover:text-text
+                hover:border-text
+                hover:bg-text/5
+              "
+            >
+              <Download width={20} height={20} />
+                Download CV
+            </a>
+            </div>
+            
           </div>
 
           {/* Botón */}
-          <a
-            href="/assets/CV - Tarek Diaz Carisismi.pdf"
-            download
-            className="
-              mb-20
-              inline-flex items-center justify-center gap-2
-              px-5 h-10
-              border border-text/40
-              rounded-full
-              text-text/75
-              transition-all duration-300
-              hover:text-text
-              hover:border-text
-              hover:bg-text/5
-            "
-          >
-          <Download width={18} height={18} />
-            Download CV
-          </a>
-        </div>
+          
 
-        {/* Scroll Indicator fijo abajo */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 z-30">
-          <div className="w-px h-5 bg-text/20" />
+          {/* Canvas adaptativo */}
+          <div className="flex-1 w-full max-w-4xl flex items-center justify-center min-h-0 z-10">
+            <HeroCanvasSuspense />
+          </div>
 
-          <span className="text-xs uppercase tracking-[0.3em] text-text/35">
-            Scroll
-          </span>
+          {/* Scroll Indicator justo debajo del canvas (posicionado desde page) */}
+          <div className="flex flex-col items-center gap-2 z-10 animate-bounce text-text/20 mt-3 mb-3">
+            <ScrollIndicator width={30} height={30} angle={180} />
+          </div>
+
         </div>
 
       </section>
 
       {/* ABOUT / SUMMARY */}
-      <section className="relative z-10 py-32 px-6">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-start">
-          <div>
-            <span className="text-sm uppercase tracking-[0.25em] text-text/35">
+      <section className="relative z-10 pt-45 min-h-screen">
+        <div className="mb-4 max-w-6xl mx-auto">
+            <span className="text-sm uppercase tracking-[0.25em] text-text/35 mb-4">
               About
             </span>
-
-            <h2 className="text-4xl md:text-5xl mt-4 mb-8 leading-tight">
-              Building immersive and interactive digital experiences.
+        </div>
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-4 md:gap-12 items-start">
+          <div>
+            <h2 className="mb-8 w-full leading-tight text-4xl md:text-[clamp(1.5rem,3.7vw,3rem)] md:block hidden">
+                <span className="whitespace-nowrap">"Caught within</span>
+                  <br />
+                <span className="whitespace-nowrap ml-10">the logic of art"</span>
+            </h2>
+            <h2 className="mb-8 w-full text-[clamp(1.5rem,5vw,3rem)] md:hidden flex">
+                <span className="whitespace-nowrap">"Caught within the logic of art"</span>
             </h2>
           </div>
 
-          <div className="space-y-6 text-text/70 text-lg leading-relaxed">
+          <div className="space-y-8 leading-10 text-text/75 text-[clamp(0.9rem,1.5vw,1.2rem)]">
             <p>
-              I am a Multimedia Engineering student specialized in creative
-              technology, UX/UI design and real-time interactive systems.
+              I am Tárek, a <strong>Multimedia Engineer</strong> driven by <strong>creativity</strong>, 
+              <strong> experimentation </strong> and <strong>interactive experiences</strong>.
             </p>
-
             <p>
-              My work combines development, audiovisual design and immersive
-              technologies to create experiences that connect visuals, sound and
+              My work and perspective combine <strong>development</strong>, <strong>audiovisual design </strong>  
+              and <strong>immersive technologies </strong>to create experiences that connect visuals, sound and
               interaction.
             </p>
-
-            <p>
-              I enjoy experimenting with Unity, Web Development, Creative
-              Coding, VR and physical computing to build projects with both
-              technical depth and artistic direction.
+            <p>      
+              I've always been naturally drawn to the space where <strong>art </strong> and <strong>logic </strong>
+              meet, and somehow that's where I ended up.            
             </p>
           </div>
         </div>
+        <div className="mt-32 flex justify-center">
+            <a
+              href="/about"
+              className="
+                inline-flex items-center justify-center
+                px-5 py-1.5
+                rounded-full
+                border border-text/20
+                text-text/70
+                transition-all duration-300
+                hover:text-text
+                hover:border-text/40
+                gap-3
+              "
+            >
+              <span className="whitespace-nowrap">Know me better</span>
+              <div className="animate-[bounceX_2.5s_infinite]">
+                <Arrow width={30} height={30} angle={90} />
+              </div>
+            </a>
+          </div>
       </section>
 
       {/* FEATURED PROJECT */}
-      <section className="py-32 px-6">
+      <section className="px-6 mt-35">
         <div className="max-w-6xl mx-auto">
-          <div className="mb-20">
-            <span className="text-sm uppercase tracking-[0.25em] text-text/35">
+          <div className="mb-4">
+            <span className="text-sm uppercase tracking-[0.25em] text-text/35 mb-4">
               Selected Work
             </span>
-
-            <h2 className="text-4xl md:text-5xl mt-4">
-              Featured Project
-            </h2>
           </div>
 
-          <div className="grid gap-8">
+          <div className="grid gap-8 px-16">
             {featuredProjects.map((project) => (
               <div
                 key={project.title}
@@ -170,67 +193,57 @@ export default function Home() {
               href="/projects"
               className="
                 inline-flex items-center justify-center
-                px-6 py-3
+                px-5 py-1.5
                 rounded-full
                 border border-text/20
                 text-text/70
                 transition-all duration-300
                 hover:text-text
                 hover:border-text/40
+                gap-3
               "
             >
-              Ver todos los proyectos
+              <span className="whitespace-nowrap">See all projects</span>
+              <div className="animate-[bounceX_2.5s_infinite]">
+                <Arrow width={30} height={30} angle={90} />
+              </div>
             </a>
+
           </div>
         </div>
       </section>
 
       {/* CONTACT */}
-      <section className="py-32 px-6 border-t border-text/10">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="py-16 px-6">
+        <div className="max-w-6xl mx-auto">
           <span className="text-sm uppercase tracking-[0.25em] text-text/35">
             Contact
           </span>
 
-          <h2 className="text-4xl md:text-6xl mt-6 mb-8 leading-tight">
-            Let’s build something immersive together.
+          <h2 className="text-4xl md:text-5xl mt-6 mb-8 leading-tight">
+            Let's work together!
           </h2>
 
-          <p className="text-lg text-text/65 max-w-2xl mx-auto leading-relaxed mb-12">
-            Interested in creative development, immersive systems, VR,
-            multimedia experiences or collaborations?
-          </p>
-
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-5">
-            <a
-              href="mailto:tarek@example.com"
-              className="
-                inline-flex items-center justify-center
-                px-7 py-3
-                rounded-full
-                bg-customlime
-                text-black
-                transition-all duration-300
-                hover:scale-[1.02]
-              "
-            >
-              Get In Touch
-            </a>
+          <div className="flex justify-center items-center">
 
             <a
               href="/contact"
               className="
                 inline-flex items-center justify-center
-                px-7 py-3
+                px-5 py-1.5
                 rounded-full
                 border border-text/20
                 text-text/70
                 transition-all duration-300
                 hover:text-text
                 hover:border-text/40
+                gap-3
               "
             >
-              Contact Page
+              <span className="whitespace-nowrap">Contact Page</span>
+              <div className="animate-[bounceX_2.5s_infinite]">
+                <Arrow width={30} height={30} angle={90} />
+              </div>
             </a>
           </div>
         </div>

@@ -5,13 +5,14 @@ export default function About() {
         
         <div className="prose prose-invert max-w-none">
           <p className="text-xl text-text mb-6 leading-relaxed">
-            I am <strong>Tárek Díaz Carissimi</strong>, a Multimedia Engineer. 
-            I define my work as the intersection where logic meets aesthetics, maintaining a balance of 
-            <strong> 60% artistic sensibility and 40% technical engineering</strong>.
+            I am <strong>Tárek Díaz Carissimi</strong>, an explorer graduated in Multimedia Engineering. 
+            I work at the intersection where logic meets aesthetics, maintaining a balance of 
+            <strong> artistic sensibility</strong> and <strong>technical engineering</strong>.
           </p>
 
           <p className="text-text mb-6">
-            My passion lies in <strong>exploring everywhere and creating anywhere</strong>. This curiosity led 
+            My philosophy 
+            <strong>Exploring everywhere and creating anywhere</strong>. This curiosity led 
             me to develop a VR music application for my Bachelor's Thesis—awarded with 
             <strong> Honors (Matrícula de Honor)</strong>—where I integrated MIDI systems with real-time audio 
             interaction and a deep focus on UX/UI design.

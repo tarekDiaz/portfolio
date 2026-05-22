@@ -2,15 +2,18 @@
 
 :root {
     --background: rgb(231, 231, 231);
-    --background2: oklch(0.15 0 20);
+    --background2: ;
+    --background3: ;
 
     --text: #1a1919;
+    --text2: ;
+    --text3: ;
 
     --primary: #750cf2;
     --primary2: #0cbcf2;
 
-    --primary-2: #750cf2;
-    --primary-1: #327ef1;
+    --gradient-2: #750cf2;
+    --gradient-1: #327ef1;
     
     --custom-icon: #1f1f1f;
 
@@ -20,15 +23,18 @@
 
 .dark {
     --background: #101010;
-    --backgroud2: oklch(0.15 0 20);
+    --background2: ;
+    --background3: ;
 
     --text: rgb(211, 212, 218);
+    --text2: ;
+    --text3: ;
 
     --primary: #a66821;
     --primary2: #c29d54;
 
-    --primary-1: #ddbe11;
-    --primary-2: #a66821;
+    --gradient-1: #ddbe11;
+    --gradient-2: #a66821;
 
     --custom-icon: rgb(206, 149, 27);
 
@@ -37,7 +43,11 @@
 
 @theme {
     --color-background: var(--background);
+    --color-background2: var(--background2);
+    --color-background3: var(--background3);
     --color-text: var(--text);
+    --color-text2: var(--text2);
+    --color-text3: var(--text3);
     --color-primary: var(--primary);
     --color-primary2: var(--primary2);
     --color-customicon: var(--custom-icon);
@@ -46,12 +56,20 @@
     --ease-in-expo: ease-[cubic-bezier(0.95, 0.05, 0.795, 0.035)];
 }
 
+.gradient-text {
+  background-image: radial-gradient(circle, var(--gradient-1), var(--gradient-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 body {
     background: var(--background);
     color: var(--text);
     transition: background 0.5s ease-in, color 0.3s ease-in;
 }
 
+/* Scrollbar hide */
 @layer base {
   html {
     scrollbar-gutter: stable;
@@ -61,14 +79,6 @@ body {
 
 ::selection {
   background-color: var(--primary2);
-}
-
-/* Utility for gradient text using CSS variables */
-.gradient-text {
-  background-image: radial-gradient(circle, var(--primary-1), var(--primary-2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }
 
 /* Efecto de ruido/grano */
@@ -90,6 +100,18 @@ body::after {
     left: -50%;
     
     animation: grain 0.3s steps(1) infinite;
+}
+
+@keyframes bounceX {
+  0%,10%,100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(5px);
+  }
+
+
 }
 
 @keyframes grain {
