@@ -1,38 +1,66 @@
 'use client';
 
 import FadeIn from "@/components/fade-in";
-import "../carousel.css";
 import { useState, useEffect, useRef } from "react";
-import AboutPlaceholderImage from "@/components/about-placeholder-image";
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 
 import {
   SiUnity,
   SiSharp,
   SiJavascript,
-  SiTypescript,
+  SiPostgresql,
   SiReact,
   SiNextdotjs,
-  SiNodedotjs,
+  SiBlender,
   SiFigma,
   SiArduino,
 } from "react-icons/si";
 
 import { BiLogoAdobe } from "react-icons/bi";
+import { 
+  HiOutlineUserGroup, 
+  HiOutlineChatBubbleLeftRight, 
+  HiOutlineLightBulb, 
+  HiOutlineSparkles, 
+  HiOutlineArrowsRightLeft,
+  HiOutlineHeart,
+  HiOutlineCursorArrowRays,
+  HiOutlineViewfinderCircle,
+  HiOutlineCodeBracketSquare,
+  HiOutlineGlobeAlt
+} from "react-icons/hi2";
 
 const identityBlocks = [
   {
     title: "Interactive Systems",
+    icon: HiOutlineCursorArrowRays,
     text: "I design and develop digital systems where users can interact with visuals, sound and real-time feedback.",
   },
   {
     title: "Immersive Experiences",
+    icon: HiOutlineViewfinderCircle,
     text: "I explore VR, physical computing and audiovisual environments to create experiences that feel present and alive.",
   },
   {
     title: "Creative Technology",
+    icon: HiOutlineCodeBracketSquare,
     text: "I use code, design and emerging tools as a medium for experimentation, expression and storytelling.",
   },
+];
+
+const softSkills = [
+  { name: "Communication", icon: HiOutlineChatBubbleLeftRight },
+  { name: "Teamwork", icon: HiOutlineUserGroup },
+  { name: "Problem Solving", icon: HiOutlineLightBulb },
+  { name: "Creative Thinking", icon: HiOutlineSparkles },
+  { name: "Adaptability", icon: HiOutlineArrowsRightLeft },
+  { name: "Empathy", icon: HiOutlineHeart },
+];
+
+const languages = [
+  { name: "Spanish", level: "Native", code: "ESP" },
+  { name: "Catalan", level: "Native", code: "CAT" },
+  { name: "English", level: "B2", code: "ENG" },
 ];
 
 const toolSections = [
@@ -87,12 +115,12 @@ const toolSections = [
 
 const toolsCarousel = [
   { name: "Unity", icon: SiUnity },
-  { name: "C#", icon: SiSharp },
+  { name: "C, C#, C++", icon: SiSharp },
   { name: "JavaScript", icon: SiJavascript },
-  { name: "TypeScript", icon: SiTypescript },
+  { name: "PostgreSQL", icon: SiPostgresql },
   { name: "React", icon: SiReact },
   { name: "Next.js", icon: SiNextdotjs },
-  { name: "Node.js", icon: SiNodedotjs },
+  { name: "Blender", icon: SiBlender },
   { name: "Figma", icon: SiFigma },
   { name: "Adobe Suite", icon: BiLogoAdobe },
   { name: "Arduino", icon: SiArduino },
@@ -140,9 +168,21 @@ export default function About() {
     <div className="min-h-screen max-w-4xl mx-auto pt-35 md:pt-30 pb-20 px-6 relative">
       {/* About Me Section */}
       <FadeIn delay={0.1} duration={0.6} distance={30}>
-          <h1 className="text-text/50 mb-2 tracking-[0.25em] uppercase text-sm">About Me</h1>
+          <h2 className="mb-2">
+            <span className="text-sm uppercase tracking-[0.25em] gradient-text mb-4">
+              About
+            </span>
+          </h2>
       </FadeIn>
       <section className="ml-4">
+        <FadeIn delay={0.1} duration={0.6}>
+          <img 
+            src="/assets/images/tarekDiaz.webp" 
+            alt="Tárek Díaz Carissimi" 
+            className="w-40 h-40 rounded-full justify-self-center block md:hidden m-8" 
+          />
+        </FadeIn>
+
         <FadeIn delay={0.2} duration={0.6}>
           <p className="text-text text-xl mb-6 leading-relaxed" style={{ position: 'relative' }}>
             I am{' '}
@@ -172,14 +212,20 @@ export default function About() {
           </p>
         </FadeIn>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          {identityBlocks.map((block, index) => (
-            <FadeIn key={block.title} delay={0.45 + index * 0.1} duration={0.6} distance={20}>
-              <div className="h-full rounded-2xl border border-text/10 bg-text/[0.03] p-5 transition-transform duration-200 hover:scale-105">
-                <h2 className="text-lg font-semibold text-text mb-2">{block.title}</h2>
-                <p className="text-sm leading-relaxed text-text/60">{block.text}</p>
-              </div>
-            </FadeIn>
-          ))}
+          {identityBlocks.map((block, index) => {
+            const Icon = block.icon;
+            return (
+              <FadeIn key={block.title} delay={0.45 + index * 0.1} duration={0.6} distance={20}>
+                <div className="h-full rounded-2xl border border-text/10 bg-text/[0.03] p-5 transition-transform duration-200 hover:scale-105 group">
+                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-text/[0.05] text-text transition-colors group-hover:bg-text group-hover:text-background">
+                    <Icon className="text-xl" />
+                  </div>
+                  <h2 className="text-lg font-semibold text-text mb-2">{block.title}</h2>
+                  <p className="text-sm leading-relaxed text-text/60">{block.text}</p>
+                </div>
+              </FadeIn>
+            );
+          })}
         </div>
         <FadeIn delay={0.3} duration={0.6}>
           <p className="text-text/75 mb-6 leading-relaxed">
@@ -199,9 +245,13 @@ export default function About() {
       </section>
 
       {/* Tools & Technologies Section */}
-      <h1 className="text-text/50 mb-2 tracking-[0.25em] uppercase text-sm mt-16">
-        Tools & Technologies
-      </h1>
+      <FadeIn delay={0.6} duration={0.6}>
+        <h2 className="text-text/50 mb-2 tracking-[0.25em] uppercase text-sm mt-16">        
+          <span className="text-sm uppercase tracking-[0.25em] gradient-text mb-4">
+            Tools & Technologies
+          </span>
+        </h2>
+      </FadeIn>
       <section className="ml-4">
         <FadeIn delay={0.7} duration={0.6}>
           <div className="mb-8">
@@ -245,12 +295,76 @@ export default function About() {
         </div>
       </section>
 
+      {/* Soft Skills & Languages Section */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mt-20">
+        {/* Soft Skills */}
+        <section>
+          <FadeIn delay={0.1} duration={0.6}>
+            <h2 className="mb-6">
+              <span className="text-sm uppercase tracking-[0.25em] gradient-text">
+                Soft Skills
+              </span>
+            </h2>
+            <div className="grid grid-cols-2 gap-4 ml-4">
+              {softSkills.map((skill, index) => {
+                const Icon = skill.icon;
+                return (
+                  <FadeIn key={skill.name} delay={0.2 + index * 0.05} duration={0.5} distance={10}>
+                    <div className="flex items-center gap-3 rounded-xl border border-text/10 bg-text/[0.02] p-4 transition-all hover:bg-text/[0.05]">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-text/[0.05] text-text/70">
+                        <Icon className="text-lg" />
+                      </div>
+                      <span className="text-sm font-medium text-text/80">{skill.name}</span>
+                    </div>
+                  </FadeIn>
+                );
+              })}
+            </div>
+          </FadeIn>
+        </section>
+
+        {/* Languages */}
+        <section>
+          <FadeIn delay={0.3} duration={0.6}>
+            <h2 className="mb-6">
+              <span className="text-sm uppercase tracking-[0.25em] gradient-text">
+                Languages
+              </span>
+            </h2>
+            <div className="flex flex-col gap-4 ml-4">
+              {languages.map((lang, index) => (
+                <FadeIn key={lang.name} delay={0.4 + index * 0.1} duration={0.5} distance={15}>
+                  <div className="group flex items-center justify-between rounded-2xl border border-text/10 bg-text/[0.03] p-5 transition-all hover:border-text/20 hover:bg-text/[0.06]">
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-text/[0.05] text-text/40">
+                        <HiOutlineGlobeAlt className="text-xl group-hover:text-text/70 transition-colors" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-text">{lang.name}</h3>
+                        <p className="text-xs uppercase tracking-wider text-text/40">{lang.code}</p>
+                      </div>
+                    </div>
+                    <div className="rounded-full border border-text/10 bg-text/[0.05] px-4 py-1.5 text-sm font-medium text-text/70">
+                      {lang.level}
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </FadeIn>
+        </section>
+      </div>
+
       {/* Syntesys Section */}
-       <h1 className="text-text/50 tracking-[0.25em] uppercase text-sm mt-16 mb-2">
-        Where I stand
-      </h1>
+      <FadeIn delay={0.1} duration={0.6} distance={30}>
+       <h2 className="mt-16 mb-4">
+          <span className="text-sm uppercase tracking-[0.25em] gradient-text">
+            Where I stand
+          </span>
+        </h2>
+      </FadeIn>  
       <section className="ml-4">
-        <FadeIn delay={0.1} duration={0.6} distance={30}>
+        <FadeIn delay={0.2} duration={0.6} distance={30}>
 
           <h1 className="text-2xl md:text-2xl font-bold mb-8 text-text italic justify-center flex">
             "Caught within the logic of art"
@@ -261,14 +375,14 @@ export default function About() {
             my work and the way I understand myself: as someone who moves naturally between the creative and the technical.
           </p>
         </FadeIn>
-        <FadeIn delay={1.2} duration={0.8} direction="none">
+        <FadeIn delay={0.4} duration={0.8} direction="none">
           <div className="border-l border-text/20 pl-6 mt-8">
             <p className="text-text/70 italic leading-relaxed">
-              "I see technology not only as a tool or a functional system, but as a natural
+              I see technology not only as a tool or a functional system, but as a natural
               extension of human expression. What we often call artificial is usually placed
               in opposition to nature, yet I believe it can also be understood as another
               form of nature, one shaped by our need to create, connect and give meaning to
-              the world around us."
+              the world around us.
             </p>
           </div>
         </FadeIn>
@@ -288,13 +402,22 @@ export default function About() {
               top: 0,
               x: smoothMouse.x,
               y: smoothMouse.y,
-              translateX: '20px',
-              translateY: '20px',
+              translateX: '10px',
+              translateY: '10px',
               pointerEvents: 'none',
               zIndex: 600,
             }}
           >
-            <AboutPlaceholderImage />
+                <div
+                  style={{ width: 150, height: 150 }}
+                  className="overflow-hidden rounded-full border-2 border-text/20 shadow-lg"
+                >
+                  <img
+                    src="/assets/images/tarekDiaz.webp"
+                    alt="Tárek Díaz Carissimi"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
           </motion.div>
         )}
       </AnimatePresence>

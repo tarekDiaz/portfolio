@@ -8,6 +8,7 @@
     --text: #1a1919;
     --text2: #4a4747;
     --text3: #777171;
+    --text4: #a19c9c;
 
     --primary: #750cf2;
     --primary2: #0cbcf2;
@@ -26,9 +27,10 @@
     --background2: #171717;
     --background3: #242424;
 
-    --text: rgb(211, 212, 218);
-    --text2: #a7a8ad;
-    --text3: #77787d;
+    --text: rgb(220, 220, 220);
+    --text2: rgb(170, 170, 170);
+    --text3: rgb(120, 120, 120);
+    --text4: rgb(90, 90, 90);
 
     --primary: #a66821;
     --primary2: #c29d54;
@@ -48,6 +50,7 @@
     --color-text: var(--text);
     --color-text2: var(--text2);
     --color-text3: var(--text3);
+    --color-text4: var(--text4);
     --color-primary: var(--primary);
     --color-primary2: var(--primary2);
     --color-customicon: var(--custom-icon);
@@ -82,7 +85,6 @@ body {
 }
 
 /* Efecto de ruido/grano */
-
 body::after {
     content: '';
     position: fixed;
@@ -108,10 +110,8 @@ body::after {
   }
 
   50% {
-    transform: translateX(5px);
+    transform: translateX(10px);
   }
-
-
 }
 
 @keyframes grain {
@@ -187,4 +187,14 @@ body::after {
 
 .cursor--hidden {
   opacity: 0;
+}
+
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }

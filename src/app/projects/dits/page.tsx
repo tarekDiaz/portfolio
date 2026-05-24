@@ -1,5 +1,5 @@
 import FadeIn from "@/components/fade-in";
-//import { Download, ExternalLink } from "lucide-react";
+import YouTubeVideo from "@/components/youtube-video";
 
 const projectTags = [
   "VR Development",
@@ -149,16 +149,9 @@ export default function DrumminInTheStudioPage() {
         </FadeIn>
 
         <FadeIn delay={0.2} duration={0.6}>
-          <div className="aspect-video w-full overflow-hidden rounded-2xl border border-background3 bg-background2">
-            <iframe
-              className="h-full w-full"
-              src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
-              title="Drummin In The Studio Demo"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
+           <YouTubeVideo videoId="Vp44KLID_AE" /> 
         </FadeIn>
+  
       </section>
 
       <section className="mx-auto max-w-6xl px-6 pb-24">

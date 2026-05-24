@@ -9,6 +9,7 @@ export default function Cursor() {
   const [isHovered, setIsHovered] = useState(false);
   const [isTextHovered, setIsTextHovered] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
+  const [isSuppressed, setIsSuppressed] = useState(false);
 
   const mouse = {
     x: useMotionValue(0),
@@ -31,6 +32,7 @@ export default function Cursor() {
   useEffect(() => {
     const interactiveSelector = 'a, button, [role="button"], .clickable';
     const textSelector = 'h1';
+    const visibilityEventName = 'cursor-visibility-change';
 
     const updateHoverState = (target: EventTarget | null) => {
       if (!(target instanceof Element)) {
@@ -57,9 +59,17 @@ export default function Cursor() {
 
     const onMouseDown = () => setIsPressed(true);
     const onMouseUp = () => setIsPressed(false);
+    const onCursorVisibilityChange = (event: Event) => {
+      if (!(event instanceof CustomEvent)) {
+        return;
+      }
+
+      setIsSuppressed(Boolean(event.detail?.hidden));
+    };
 
     document.addEventListener('mouseover', onMouseOver);
     document.addEventListener('mouseleave', onMouseLeaveDocument);
+    window.addEventListener(visibilityEventName, onCursorVisibilityChange);
 
     window.addEventListener('mousedown', onMouseDown);
     window.addEventListener('mouseup', onMouseUp);
@@ -67,6 +77,7 @@ export default function Cursor() {
     return () => {
       document.removeEventListener('mouseover', onMouseOver);
       document.removeEventListener('mouseleave', onMouseLeaveDocument);
+      window.removeEventListener(visibilityEventName, onCursorVisibilityChange);
 
       window.removeEventListener('mousedown', onMouseDown);
       window.removeEventListener('mouseup', onMouseUp);
@@ -82,7 +93,7 @@ export default function Cursor() {
           left: mouse.x, 
           top: mouse.y,
         }} 
-        className={`cursor-container ${isHovered ? 'cursor--hover' : ''} ${isTextHovered ? 'cursor--hover-text' : ''} ${isHovered && isPressed ? 'cursor--active' : ''} ${!isMouseInWindow ? 'cursor--hidden' : ''}`}>
+        className={`cursor-container ${isHovered ? 'cursor--hover' : ''} ${isTextHovered ? 'cursor--hover-text' : ''} ${isHovered && isPressed ? 'cursor--active' : ''} ${!isMouseInWindow || isSuppressed ? 'cursor--hidden' : ''}`}>
 
       </motion.div>
 

@@ -4,37 +4,71 @@
 import { useState, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import FadeIn from '@/components/fade-in';
+import { ChopperIcon } from '@/components/icons/ChopperIcon';
+import { MoleIcon } from '@/components/icons/MoleIcon';
+import { DitsIcon } from '@/components/icons/DitsIcon';
+import { Icon } from '@/components/icons/Icon';
 
-const projects = [
+type ProjectIcon = "dits" | "mole" | "chopper" | "website";
+
+type ProjectItem = {
+  title: string;
+  description: string;
+  tags: string[];
+  image: string;
+  href: string;
+  icon: ProjectIcon;
+};
+
+const projects: ProjectItem[] = [
   {
     title: "D.I.T.S (Drumming In The Studio)",
     description: "Design and development of a musical application in virtual reality and MIDI integration. Final project honored.",
     tags: ["Unity", "VR", "Music", "Drums", "MIDI", "Honors"],
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop",
-    href: "/projects/dits"
+    image: "/assets/images/imageDits.webp",
+    href: "/projects/dits",
+    icon: "dits",
   },
   {
     title: "Def a Mole",
     description: "3D Tower defense videogame developed in Unity. Be part of the insects and defend your garden from invading moles.",
     tags: ["Unity", "3D", "Tower Defense"],
-    image: "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=600&auto=format&fit=crop",
-    href: "/projects/defamole"
+    image: "/assets/images/defAMole.webp",
+    href: "/projects/defamole",
+    icon: "mole",
   },
   {
     title: "3D Animation",
     description: "3D animation of the character chopper from the anime One Piece. Modeling, texturing and animation done in 3ds Max.",
     tags: ["3ds Max", "Modeling", "Texturing", "Animation"],
-    image: "https://images.unsplash.com/photo-1618005198143-e528346d9a99?q=80&w=600&auto=format&fit=crop",
-    href: "/projects/3danimations"
+    image: "/assets/images/chopperLab.webp",
+    href: "/projects/3danimations",
+    icon: "chopper",
   },
   {
     title: "This website!",
     description: "Personal website developed with Next.js and Tailwind CSS. Showcases my portfolio and experience in software development.",
     tags: ["Next.js", "Tailwind CSS", "TypeScript", "React"],
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=600&auto=format&fit=crop",
-    href: "/projects/thiswebsite"
+    image: "/assets/images/porfolio.webp",
+    href: "/projects/thiswebsite",
+    icon: "website",
   }
 ];
+
+function ProjectCardIcon({ icon }: { icon: ProjectIcon }) {
+  switch (icon) {
+    case "dits":
+      return <DitsIcon width={90} height={90} className="text-text2" />;
+    case "mole":
+      return <MoleIcon width={90} height={90} className="text-text2" />;
+    case "chopper":
+      return <ChopperIcon width={90} height={90} className="text-text2" />;
+    case "website":
+    default:
+      return <Icon width={90} height={90} className="text-text2" />;
+  }
+}
 
 export default function ProjectsPage() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -65,30 +99,47 @@ export default function ProjectsPage() {
 
   return (
     <div className="min-h-screen max-w-4xl mx-auto pt-35 md:pt-30 px-6 pb-20 relative">
-      <h1 className="text-4xl font-bold mb-8 inline-block">Projects</h1>
-      
-      <div className="grid gap-8">
+      <FadeIn delay={0.05} duration={0.6}>
+        <h2 className="mb-8">
+          <span className="text-sm uppercase tracking-[0.25em] gradient-text">
+            Projects
+          </span>
+        </h2>
+      </FadeIn>
+
+      <div className="grid gap-8 mx-4">
         {projects.map((project, index) => (
-          <Link
-            key={index}
-            href={project.href}
-            onMouseEnter={() => setHoveredIndex(index)}
-            onMouseLeave={() => setHoveredIndex(null)}
-            className="block border border-text/20 rounded-lg p-6 transition-all duration-300 hover:border-text/40 hover:bg-text/5 hover:scale-[1.02]"
-          >
-            <h2 className="text-2xl font-semibold mb-4">{project.title}</h2>
-            <p className="text-text mb-4">{project.description}</p>
-            <div className="flex gap-2 flex-wrap">
-              {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1 border border-text/20 hover:bg-text/50 rounded text-sm"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </Link>
+          <FadeIn key={project.href} delay={0.1 + index * 0.08} duration={0.6} distance={18}>
+            <Link
+              href={project.href}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              className="block overflow-hidden border border-text4 rounded-lg p-6 transition-all duration-300 hover:border-text4 hover:bg-text/5 hover:scale-[1.02]"
+            >
+              <div className="grid items-stretch gap-8 md:grid-cols-[1fr_220px]">
+                <div>
+                  <h2 className="text-2xl font-semibold mb-4">{project.title}</h2>
+                  <p className="text-text2 mb-4">{project.description}</p>
+                  <div className="flex gap-2 flex-wrap">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-3 py-1 border border-text4 hover:bg-text3 rounded-full text-sm"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="hidden md:flex items-center justify-center">
+                  <div className="flex aspect-square items-center justify-center rounded-xl p-2">
+                    <ProjectCardIcon icon={project.icon} />
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </FadeIn>
         ))}
       </div>
 
@@ -96,30 +147,30 @@ export default function ProjectsPage() {
       {/* Lightweight floating preview that cleanly follows the cursor */}
       <AnimatePresence>
         {hoveredIndex !== null && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.15 }}
-            style={{
-              position: 'fixed',
-              left: 0,
-              top: 0,
-              x: smoothMouse.x,
-              y: smoothMouse.y,
-              translateX: '-50%',
-              translateY: '-50%', // Centered exactly at the mouse position
-              pointerEvents: 'none',
-              zIndex: 600, // Higher than the custom cursor (z-index: 500) so the cursor is hidden behind the image
-            }}
-            className="w-[400px] h-[250px] rounded-xl overflow-hidden shadow-xl border border-text/10 bg-background hidden md:block"
-          >
-            <img
-              src={projects[hoveredIndex].image}
-              alt=""
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.15 }}
+              style={{
+                position: 'fixed',
+                left: 0,
+                top: 0,
+                x: smoothMouse.x,
+                y: smoothMouse.y,
+                translateX: '-50%',
+                translateY: '-50%',
+                pointerEvents: 'none',
+                zIndex: 600,
+              }}
+              className="w-100 h-62.5 rounded-xl overflow-hidden shadow-xl bg-background hidden md:block"
+            >
+              <img
+                src={projects[hoveredIndex].image}
+                alt=""
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
         )}
       </AnimatePresence>
     </div>

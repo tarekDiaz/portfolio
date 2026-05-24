@@ -42,7 +42,7 @@ export default function FadeIn({
         x: 0,
         y: 0,
       }}
-      viewport={{ once: triggerOnce, margin: "-100px 0px -50px 0px" }}
+      viewport={{ once: triggerOnce, amount: 0 }}
       transition={{
         duration: duration,
         delay: delay,
