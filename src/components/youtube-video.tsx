@@ -1,8 +1,20 @@
+"use client";
+
 type YouTubeVideoProps = {
   videoId: string;
   title?: string;
   className?: string;
 };
+
+const visibilityEventName = "cursor-visibility-change";
+
+function setCursorHidden(hidden: boolean) {
+  window.dispatchEvent(
+    new CustomEvent(visibilityEventName, {
+      detail: { hidden },
+    })
+  );
+}
 
 export default function YouTubeVideo({
   videoId,
@@ -18,6 +30,9 @@ export default function YouTubeVideo({
           src={embedUrl}
           title={title}
           className="absolute inset-0 h-full w-full"
+          onMouseEnter={() => setCursorHidden(true)}
+          onMouseLeave={() => setCursorHidden(false)}
+          onBlur={() => setCursorHidden(false)}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
           loading="lazy"

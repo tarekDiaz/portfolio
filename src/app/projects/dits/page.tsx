@@ -85,9 +85,10 @@ export default function DrumminInTheStudioPage() {
     <main className="min-h-screen bg-background text-text">
       <section className="mx-auto max-w-6xl px-6 pt-32 pb-20">
         <FadeIn delay={0.1} duration={0.6} distance={30}>
-          <p className="mb-3 text-sm uppercase tracking-[0.25em] text-text3">
+          <span className="text-sm uppercase tracking-[0.25em] gradient-text">
             Final Degree Project
-          </p>
+          </span>
+
 
           <h1 className="max-w-4xl text-5xl font-bold leading-tight md:text-7xl">
             Drummin In The Studio

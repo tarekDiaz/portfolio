@@ -66,21 +66,19 @@ const languages = [
 const toolSections = [
   {
     title: "Development",
-    description:
-      "Building interactive systems, web experiences and real-time applications.",
     items: [
       "Unity",
+      "C++",
       "C#",
+      "Java",
       "JavaScript",
-      "TypeScript",
-      "React",
       "Next.js",
+      "SQL",
+      "noSQL",
     ],
   },
   {
     title: "Creative & Interactive",
-    description:
-      "Exploring immersive, audiovisual and physical interaction.",
     items: [
       "VR Development",
       "Processing",
@@ -95,18 +93,18 @@ const toolSections = [
     items: [
       "Figma",
       "3D Modeling",
-      "Adobe Creative Suite",
+      "Adobe Suite",
+      "Affinity",
+      "FL Studio",
       "UX/UI Design",
     ],
   },
   {
     title: "Exploration Areas",
-    description:
-      "Fields where technology becomes a creative medium.",
     items: [
+      "Virtual Reality",
       "Immersive Experiences",
       "Real-time Visuals",
-      "Physical Computing",
       "Audiovisual Systems",
       "Sound Design",
     ],
@@ -170,7 +168,7 @@ export default function About() {
       <FadeIn delay={0.1} duration={0.6} distance={30}>
           <h2 className="mb-2">
             <span className="text-sm uppercase tracking-[0.25em] gradient-text mb-4">
-              About
+              Who I am
             </span>
           </h2>
       </FadeIn>
@@ -207,41 +205,19 @@ export default function About() {
             >
               Tárek Díaz Carissimi
             </span>
-            , a Multimedia Engineer driven by curiosity, creativity and the desire to build experiences 
-            that feel meaningful, immersive and human.
+            , a Multimedia Engineering graduate driven by curiosity, creativity and the desire to build
+            experiences that feel meaningful, immersive and human. My work moves between development,
+            audiovisual design and interactive technologies, combining artistic sensitivity with logical
+            thinking through visuals, sound and interaction.
           </p>
-        </FadeIn>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          {identityBlocks.map((block, index) => {
-            const Icon = block.icon;
-            return (
-              <FadeIn key={block.title} delay={0.45 + index * 0.1} duration={0.6} distance={20}>
-                <div className="h-full rounded-2xl border border-text/10 bg-text/[0.03] p-5 transition-transform duration-200 hover:scale-105 group">
-                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-text/[0.05] text-text transition-colors group-hover:bg-text group-hover:text-background">
-                    <Icon className="text-xl" />
-                  </div>
-                  <h2 className="text-lg font-semibold text-text mb-2">{block.title}</h2>
-                  <p className="text-sm leading-relaxed text-text/60">{block.text}</p>
-                </div>
-              </FadeIn>
-            );
-          })}
-        </div>
-        <FadeIn delay={0.3} duration={0.6}>
-          <p className="text-text/75 mb-6 leading-relaxed">
-            My work moves between development, audiovisual design and interactive technologies, 
-            combining <strong>technical thinking</strong> with <strong>artistic sensitivity</strong>.
-             I enjoy creating projects where visuals, sound and interaction come together naturally.
+          <p className="text-text text-xl mb-6 leading-relaxed">
+            I've always felt naturally drawn to the space where emotion and logic coexist. That balance has
+            shaped both my perspective and the way I create — exploring immersive experiences, digital
+            interaction and creative systems that connect technology with atmosphere, perception and human expression.
           </p>
-        </FadeIn>
 
-        <FadeIn delay={0.4} duration={0.6}>
-          <p className="text-text/75 leading-relaxed mt-6">
-            Over last times, I have explored web development, UX/UI design, videogames, virtual reality 
-            and physical computing. What interests me most is connecting different mediums to shape how 
-            people experience digital spaces.
-          </p>
         </FadeIn>
+        
       </section>
 
       {/* Tools & Technologies Section */}
@@ -252,12 +228,12 @@ export default function About() {
           </span>
         </h2>
       </FadeIn>
-      <section className="ml-4">
+      <section >
         <FadeIn delay={0.7} duration={0.6}>
           <div className="mb-8">
-            <p className="text-text/70 leading-relaxed text-xl">
+            <p className="text-text/70 leading-relaxed ml-4">
                 A selection of technologies I've worked with across development, design, audiovisual
-                creation and interactive experiences.
+                creation and interactive experiences and areas I've worked in.
             </p>
           </div>
         </FadeIn>
@@ -269,7 +245,7 @@ export default function About() {
               {duplicatedTools.map((tool, index) => {
                 const Icon = tool.icon;
                 return (
-                  <div key={`${tool.name}-${index}`} className="flex min-w-fit items-center gap-3 rounded-full border border-text/10 bg-text/[0.03] px-5 py-3 text-text/75">
+                  <div key={`${tool.name}-${index}`} className="flex min-w-fit items-center gap-3 rounded-full border border-text/10 bg-text/[0.03] px-5 py-3 text-text/75 transition-transform duration-200 hover:scale-105">
                     <Icon className="text-xl text-text" />
                     <span className="text-sm whitespace-nowrap">{tool.name}</span>
                   </div>
@@ -278,15 +254,14 @@ export default function About() {
             </div>
           </div>
         </FadeIn>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-8 px-4">
           {toolSections.map((section, index) => (
             <FadeIn key={section.title} delay={0.9 + index * 0.1} duration={0.6} distance={20}>
               <div className="h-full rounded-2xl border border-text/10 bg-text/[0.03] p-6 transition-transform duration-200 hover:scale-105">
                 <h3 className="text-xl font-semibold text-text mb-2">{section.title}</h3>
-                <p className="text-sm text-text/55 leading-relaxed mb-5">{section.description}</p>
-                <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2">
                   {section.items.map((item) => (
-                    <span key={item} className="rounded-full border border-text/10 px-3 py-1 text-sm text-text/65">{item}</span>
+                    <span key={item} className="rounded-full border border-text/10 px-3 py-1 text-sm text-text/65 transition-transform duration-200 hover:scale-105">{item}</span>
                   ))}
                 </div>
               </div>
@@ -334,7 +309,7 @@ export default function About() {
             <div className="flex flex-col gap-4 ml-4">
               {languages.map((lang, index) => (
                 <FadeIn key={lang.name} delay={0.4 + index * 0.1} duration={0.5} distance={15}>
-                  <div className="group flex items-center justify-between rounded-2xl border border-text/10 bg-text/[0.03] p-5 transition-all hover:border-text/20 hover:bg-text/[0.06]">
+                  <div className="group flex items-center justify-between rounded-2xl border border-text/10 bg-text/[0.03] p-3 transition-all hover:border-text/20 hover:bg-text/[0.06]">
                     <div className="flex items-center gap-4">
                       <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-text/[0.05] text-text/40">
                         <HiOutlineGlobeAlt className="text-xl group-hover:text-text/70 transition-colors" />
@@ -355,6 +330,49 @@ export default function About() {
         </section>
       </div>
 
+      <FadeIn delay={0.1} duration={0.6} distance={30}>
+       <h2 className="mt-16 mb-4">
+          <span className="text-sm uppercase tracking-[0.25em] gradient-text">
+            Work Identity
+          </span>
+        </h2>
+      </FadeIn>  
+      <section className="ml-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+          {identityBlocks.map((block, index) => {
+            const Icon = block.icon;
+            return (
+              <FadeIn key={block.title} delay={0.45 + index * 0.1} duration={0.6} distance={20}>
+                <div className="h-full rounded-2xl border border-text/10 bg-text/[0.03] p-5 transition-transform duration-200 hover:scale-105 group">
+                  <div className="mb-3 flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-text/[0.05] text-text transition-colors group-hover:bg-text2 group-hover:text-background">
+                      <Icon className="text-xl" />
+                    </div>
+                    <h2 className="text-lg font-semibold text-text mb-0">{block.title}</h2>
+                  </div>
+                  <p className="text-sm leading-relaxed text-text/60 mt-2">{block.text}</p>
+                </div>
+              </FadeIn>
+            );
+          })}
+        </div>
+        <FadeIn delay={0.3} duration={0.6}>
+          <p className="text-text/75 mb-6 leading-relaxed">
+            My work moves between development, audiovisual design and interactive technologies, 
+            combining <strong>technical thinking</strong> with <strong>artistic sensitivity</strong>.
+             I enjoy creating projects where visuals, sound and interaction come together naturally.
+          </p>
+        </FadeIn>
+
+        <FadeIn delay={0.4} duration={0.6}>
+          <p className="text-text/75 leading-relaxed mt-6">
+            Over last times, I have explored web development, UX/UI design, videogames, virtual reality 
+            and physical computing. What interests me most is connecting different mediums to shape how 
+            people experience digital spaces.
+          </p>
+        </FadeIn>
+      </section>
+
       {/* Syntesys Section */}
       <FadeIn delay={0.1} duration={0.6} distance={30}>
        <h2 className="mt-16 mb-4">
@@ -369,7 +387,7 @@ export default function About() {
           <h1 className="text-2xl md:text-2xl font-bold mb-8 text-text italic justify-center flex">
             "Caught within the logic of art"
           </h1>
-          <p className="text-text/75 leading-relaxed">
+          <p className="text-text/75 text-xl leading-relaxed">
             This phrase reflects the space I often find myself in: between emotional and artistic expression, 
             and the logical, structured thinking of engineering. It is a balance that has shaped my studies, 
             my work and the way I understand myself: as someone who moves naturally between the creative and the technical.

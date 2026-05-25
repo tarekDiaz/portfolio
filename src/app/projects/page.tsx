@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import FadeIn from '@/components/fade-in';
+import { Arrow } from '@/components/icons/Arrow';
 import { ChopperIcon } from '@/components/icons/ChopperIcon';
 import { MoleIcon } from '@/components/icons/MoleIcon';
 import { DitsIcon } from '@/components/icons/DitsIcon';
@@ -170,6 +171,13 @@ export default function ProjectsPage() {
                 alt=""
                 className="w-full h-full object-cover"
               />
+
+              <div className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full bg-background3/70 px-5 py-2 text-sm text-text2 shadow-lg tracking-widest">
+                <span className="whitespace-nowrap">More details</span>
+                <div className="animate-[bounceX_2.5s_infinite]">
+                  <Arrow width={16} height={16} angle={90} />
+                </div>
+              </div>
             </motion.div>
         )}
       </AnimatePresence>
