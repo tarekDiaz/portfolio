@@ -66,6 +66,13 @@
   color: transparent;
 }
 
+.project-card:hover .project-title {
+  background-image: radial-gradient(circle, var(--gradient-1), var(--gradient-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 body {
     background: var(--background);
     color: var(--text);
@@ -197,4 +204,9 @@ body::after {
   100% {
     transform: translateX(-50%);
   }
+}
+
+.scroll-marquee {
+  animation: scroll 28s linear infinite;
+  will-change: transform;
 }

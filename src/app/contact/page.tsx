@@ -15,7 +15,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen max-w-6xl mx-auto pt-35 md:pt-35 px-6 pb-20">
+    <div className="min-h-screen max-w-5xl mx-auto pt-35 md:pt-35 px-6 pb-20">
         <h2 className="mb-8">
           <span className="text-sm uppercase tracking-[0.25em] gradient-text">
             Contact

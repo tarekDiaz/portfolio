@@ -99,7 +99,7 @@ export default function ProjectsPage() {
   }, []);
 
   return (
-    <div className="min-h-screen max-w-4xl mx-auto pt-35 md:pt-30 px-6 pb-20 relative">
+    <div className="min-h-screen max-w-5xl mx-auto pt-35 md:pt-30 pb-20 relative">
       <FadeIn delay={0.05} duration={0.6}>
         <h2 className="mb-8">
           <span className="text-sm uppercase tracking-[0.25em] gradient-text">
@@ -108,18 +108,18 @@ export default function ProjectsPage() {
         </h2>
       </FadeIn>
 
-      <div className="grid gap-8 mx-4">
+      <div className="grid gap-8 mx-8 px-10">
         {projects.map((project, index) => (
           <FadeIn key={project.href} delay={0.1 + index * 0.08} duration={0.6} distance={18}>
             <Link
               href={project.href}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              className="block overflow-hidden border border-text4 rounded-lg p-6 transition-all duration-300 hover:border-text4 hover:bg-text/5 hover:scale-[1.02]"
+              className="project-card block overflow-hidden border border-text4 rounded-lg p-6 transition-all duration-300 hover:border-text4 hover:bg-text/5 hover:scale-[1.02]"
             >
               <div className="grid items-stretch gap-8 md:grid-cols-[1fr_220px]">
                 <div>
-                  <h2 className="text-2xl font-semibold mb-4">{project.title}</h2>
+                  <h2 className="project-title text-2xl font-semibold mb-4 text-text transition-all duration-300">{project.title}</h2>
                   <p className="text-text2 mb-4">{project.description}</p>
                   <div className="flex gap-2 flex-wrap">
                     {project.tags.map((tag) => (

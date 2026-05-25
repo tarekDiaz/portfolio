@@ -138,7 +138,7 @@ export default function Home() {
           <div className="flex flex-col gap-12">
             {featuredProjects.map((project, index) => (
               <FadeIn key={project.title} delay={index * 0.15}>
-                <Link href={project.href} className="group block">
+                <Link href={project.href} className="project-card group block">
                   <div className="relative grid md:grid-cols-2 gap-8 items-center p-8 rounded-4xl border border-text4 bg-transparent transition-all duration-500 hover:border-text2 overflow-hidden">
 
                     {/* Placeholder for Project Image */}
@@ -150,7 +150,7 @@ export default function Home() {
 
                     {/* Content Area */}
                     <div className="">
-                      <h3 className="text-5xl font-normal text-text">
+                      <h3 className="project-title text-5xl font-normal text-text transition-all duration-300">
                         {project.title.includes('(') ? (
                           <>
                             <span className="block">{project.title.split('(')[0].trim()}</span>

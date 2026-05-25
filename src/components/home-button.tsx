@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { Arrow } from "@/components/icons/Arrow";
 
 interface HomeButtonProps {
@@ -17,9 +17,13 @@ export default function HomeButton({
   className = "",
   arrow = true,
 }: HomeButtonProps) {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <Link
       href={href}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       className={`
         inline-flex items-center justify-center
         px-8 py-3
@@ -27,17 +31,17 @@ export default function HomeButton({
         border border-text3
         text-text3
         transition-all duration-300
-        hover:text-text
         hover:border-text
         gap-3
+        project-card
         ${className}
       `}
     >
-      <span className="whitespace-nowrap">{children}</span>
+      <span className="whitespace-nowrap project-title">{children}</span>
 
       {arrow && (
         <div className="animate-[bounceX_2.5s_infinite]">
-          <Arrow width={25} height={25} angle={90} />
+          <Arrow width={25} height={25} angle={90} gradient={isHovered} />
         </div>
       )}
     </Link>

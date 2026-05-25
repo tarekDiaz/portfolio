@@ -1,20 +1,24 @@
 'use client';
 
 import FadeIn from "@/components/fade-in";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, type ComponentType } from "react";
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 
 import {
+  SiCplusplus,
   SiUnity,
   SiSharp,
   SiJavascript,
   SiPostgresql,
+  SiMongodb,
   SiReact,
   SiNextdotjs,
   SiBlender,
   SiFigma,
   SiArduino,
 } from "react-icons/si";
+
+import { FaJava } from "react-icons/fa";
 
 import { BiLogoAdobe } from "react-icons/bi";
 import { 
@@ -27,8 +31,16 @@ import {
   HiOutlineCursorArrowRays,
   HiOutlineViewfinderCircle,
   HiOutlineCodeBracketSquare,
-  HiOutlineGlobeAlt
+  HiOutlineGlobeAlt,
+  HiOutlineCpuChip,
+  HiOutlineSwatch,
+  HiOutlineMusicalNote,
+  HiOutlineVideoCamera,
+  HiOutlineTv,
+  HiOutlineSpeakerWave,
 } from "react-icons/hi2";
+
+type ToolIcon = ComponentType<{ className?: string }>;
 
 const identityBlocks = [
   {
@@ -65,7 +77,8 @@ const languages = [
 
 const toolSections = [
   {
-    title: "Development",
+    title: "Development tools",
+    icon: HiOutlineCodeBracketSquare,
     items: [
       "Unity",
       "C++",
@@ -79,6 +92,7 @@ const toolSections = [
   },
   {
     title: "Creative & Interactive",
+    icon: HiOutlineCursorArrowRays,
     items: [
       "VR Development",
       "Processing",
@@ -88,6 +102,7 @@ const toolSections = [
   },
   {
     title: "Design & Audiovisual",
+    icon: HiOutlineSparkles,
     description:
       "Designing interfaces, visuals, 3D assets and audiovisual content.",
     items: [
@@ -101,6 +116,7 @@ const toolSections = [
   },
   {
     title: "Exploration Areas",
+    icon: HiOutlineViewfinderCircle,
     items: [
       "Virtual Reality",
       "Immersive Experiences",
@@ -123,6 +139,32 @@ const toolsCarousel = [
   { name: "Adobe Suite", icon: BiLogoAdobe },
   { name: "Arduino", icon: SiArduino },
 ];
+
+const toolItemIcons: Record<string, ToolIcon> = {
+  Unity: SiUnity,
+  "C++": SiCplusplus,
+  "C#": SiSharp,
+  Java: FaJava,
+  JavaScript: SiJavascript,
+  "Next.js": SiNextdotjs,
+  SQL: SiPostgresql,
+  noSQL: SiMongodb,
+  "VR Development": HiOutlineViewfinderCircle,
+  Processing: HiOutlineCodeBracketSquare,
+  Arduino: SiArduino,
+  ESP32: HiOutlineCpuChip,
+  Figma: SiFigma,
+  "3D Modeling": SiBlender,
+  "Adobe Suite": BiLogoAdobe,
+  Affinity: HiOutlineSwatch,
+  "FL Studio": HiOutlineMusicalNote,
+  "UX/UI Design": HiOutlineCursorArrowRays,
+  "Virtual Reality": HiOutlineViewfinderCircle,
+  "Immersive Experiences": HiOutlineSparkles,
+  "Real-time Visuals": HiOutlineVideoCamera,
+  "Audiovisual Systems": HiOutlineTv,
+  "Sound Design": HiOutlineSpeakerWave,
+};
 
 export default function About() {
   const duplicatedTools = [...toolsCarousel, ...toolsCarousel];
@@ -163,7 +205,7 @@ export default function About() {
   }, []);
 
   return (
-    <div className="min-h-screen max-w-4xl mx-auto pt-35 md:pt-30 pb-20 px-6 relative">
+    <div className="min-h-screen max-w-5xl mx-auto pt-35 md:pt-30 pb-20 px-6 relative">
       {/* About Me Section */}
       <FadeIn delay={0.1} duration={0.6} distance={30}>
           <h2 className="mb-2">
@@ -206,42 +248,99 @@ export default function About() {
               Tárek Díaz Carissimi
             </span>
             , a Multimedia Engineering graduate driven by curiosity, creativity and the desire to build
-            experiences that feel meaningful, immersive and human. My work moves between development,
-            audiovisual design and interactive technologies, combining artistic sensitivity with logical
-            thinking through visuals, sound and interaction.
+            experiences that feel meaningful, immersive and human. 
           </p>
           <p className="text-text text-xl mb-6 leading-relaxed">
-            I've always felt naturally drawn to the space where emotion and logic coexist. That balance has
-            shaped both my perspective and the way I create — exploring immersive experiences, digital
-            interaction and creative systems that connect technology with atmosphere, perception and human expression.
+            My work moves between development,
+            audiovisual design and interactive technologies, combining artistic sensitivity with logical
+            thinking through visuals, sound and interaction.
           </p>
 
         </FadeIn>
         
       </section>
 
+      
+      {/* Soft Skills & Languages Section */}
+      <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] md:gap-20 mt-20">
+        {/* Soft Skills */}
+        <section className="md:pr-4">
+          <FadeIn delay={0.1} duration={0.6}>
+            <h2 className="mb-6">
+              <span className="text-sm uppercase tracking-[0.25em] gradient-text">
+                Soft Skills
+              </span>
+            </h2>
+            <div className="grid grid-cols-2 gap-4 ml-4">
+              {softSkills.map((skill, index) => {
+                const Icon = skill.icon;
+                return (
+                  <FadeIn key={skill.name} delay={0.2 + index * 0.05} duration={0.5} distance={10}>
+                    <div className="flex min-w-0 items-center gap-3 overflow-hidden rounded-xl border border-text/10 bg-text/[0.02] p-4 transition-all duration-200 hover:scale-105 hover:bg-text/[0.05]">
+                      <div className="flex h-8 w-8 aspect-square shrink-0 items-center justify-center rounded-lg bg-text/[0.05] text-text/70">
+                        <Icon className="text-lg" />
+                      </div>
+                      <span className="min-w-0 overflow-hidden text-ellipsis text-sm font-medium text-text/80">
+                        {skill.name}
+                      </span>
+                    </div>
+                  </FadeIn>
+                );
+              })}
+            </div>
+          </FadeIn>
+        </section>
+
+        {/* Languages */}
+        <section className="md:pl-8 lg:pl-12">
+          <FadeIn delay={0.3} duration={0.6}>
+            <h2 className="mb-6">
+              <span className="text-sm uppercase tracking-[0.25em] gradient-text">
+                Languages
+              </span>
+            </h2>
+            <div className="flex flex-col gap-4 ml-4">
+              {languages.map((lang, index) => (
+                <FadeIn key={lang.name} delay={0.4 + index * 0.1} duration={0.5} distance={15}>
+                  <div className="group flex min-w-0 items-center justify-between overflow-hidden rounded-2xl border border-text/10 bg-text/[0.03] p-3 transition-all duration-200 hover:scale-105 hover:border-text/20 hover:bg-text/[0.06]">
+                    <div className="flex min-w-0 items-center gap-4">
+                      <div className="flex h-10 w-10 aspect-square shrink-0 items-center justify-center rounded-xl bg-text/[0.05] text-text/40">
+                        <HiOutlineGlobeAlt className="text-xl group-hover:text-text/70 transition-colors" />
+                      </div>
+                      <div className="min-w-0 overflow-hidden">
+                        <h3 className="overflow-hidden text-ellipsis whitespace-nowrap font-semibold text-text">
+                          {lang.name}
+                        </h3>
+                        <p className="overflow-hidden text-ellipsis whitespace-nowrap text-xs uppercase tracking-wider text-text/40">
+                          {lang.code}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="shrink-0 rounded-full bg-text/[0.05] px-4 py-1.5 text-sm font-medium text-text/70">
+                      {lang.level}
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </FadeIn>
+        </section>
+      </div>
+
       {/* Tools & Technologies Section */}
-      <FadeIn delay={0.6} duration={0.6}>
-        <h2 className="text-text/50 mb-2 tracking-[0.25em] uppercase text-sm mt-16">        
-          <span className="text-sm uppercase tracking-[0.25em] gradient-text mb-4">
+      <FadeIn delay={0.2} duration={0.6}>
+        <h2 className="text-text/50 tracking-[0.25em] uppercase text-sm mt-16 mb-8">        
+          <span className="text-sm uppercase tracking-[0.25em] gradient-text">
             Tools & Technologies
           </span>
         </h2>
       </FadeIn>
       <section >
-        <FadeIn delay={0.7} duration={0.6}>
-          <div className="mb-8">
-            <p className="text-text/70 leading-relaxed ml-4">
-                A selection of technologies I've worked with across development, design, audiovisual
-                creation and interactive experiences and areas I've worked in.
-            </p>
-          </div>
-        </FadeIn>
-        <FadeIn delay={0.8} duration={0.6}>
+        <FadeIn delay={0.4} duration={0.6}>
           <div className="relative overflow-hidden border-y border-text/10 py-6">
             <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-background to-transparent" />
             <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-background to-transparent" />
-            <div className="flex w-max animate-[scroll_28s_linear_infinite] gap-4" style={{ animationName: 'scroll', animationDuration: '28s', animationTimingFunction: 'linear', animationIterationCount: 'infinite' }}>
+            <div className="scroll-marquee flex w-max gap-4">
               {duplicatedTools.map((tool, index) => {
                 const Icon = tool.icon;
                 return (
@@ -256,13 +355,26 @@ export default function About() {
         </FadeIn>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-8 px-4">
           {toolSections.map((section, index) => (
-            <FadeIn key={section.title} delay={0.9 + index * 0.1} duration={0.6} distance={20}>
+            <FadeIn key={section.title} delay={0.4 + index * 0.1} duration={0.6} distance={20}>
               <div className="h-full rounded-2xl border border-text/10 bg-text/[0.03] p-6 transition-transform duration-200 hover:scale-105">
-                <h3 className="text-xl font-semibold text-text mb-2">{section.title}</h3>
+                <h3 className="mb-4 flex items-center gap-2 text-xl font-semibold text-text">
+                  <section.icon className="text-2xl text-text/70" />
+                  <span>{section.title}</span>
+                </h3>
                   <div className="flex flex-wrap gap-2">
-                  {section.items.map((item) => (
-                    <span key={item} className="rounded-full border border-text/10 px-3 py-1 text-sm text-text/65 transition-transform duration-200 hover:scale-105">{item}</span>
-                  ))}
+                  {section.items.map((item) => {
+                    const TagIcon = toolItemIcons[item];
+
+                    return (
+                      <span
+                        key={item}
+                        className="flex items-center gap-2 rounded-full border border-text/10 px-3 py-1 text-sm text-text/65 transition-transform duration-200 hover:scale-105"
+                      >
+                        {TagIcon ? <TagIcon className="shrink-0 text-sm text-text/50" /> : null}
+                        <span className="whitespace-nowrap">{item}</span>
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
             </FadeIn>
@@ -270,65 +382,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Soft Skills & Languages Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mt-20">
-        {/* Soft Skills */}
-        <section>
-          <FadeIn delay={0.1} duration={0.6}>
-            <h2 className="mb-6">
-              <span className="text-sm uppercase tracking-[0.25em] gradient-text">
-                Soft Skills
-              </span>
-            </h2>
-            <div className="grid grid-cols-2 gap-4 ml-4">
-              {softSkills.map((skill, index) => {
-                const Icon = skill.icon;
-                return (
-                  <FadeIn key={skill.name} delay={0.2 + index * 0.05} duration={0.5} distance={10}>
-                    <div className="flex items-center gap-3 rounded-xl border border-text/10 bg-text/[0.02] p-4 transition-all hover:bg-text/[0.05]">
-                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-text/[0.05] text-text/70">
-                        <Icon className="text-lg" />
-                      </div>
-                      <span className="text-sm font-medium text-text/80">{skill.name}</span>
-                    </div>
-                  </FadeIn>
-                );
-              })}
-            </div>
-          </FadeIn>
-        </section>
-
-        {/* Languages */}
-        <section>
-          <FadeIn delay={0.3} duration={0.6}>
-            <h2 className="mb-6">
-              <span className="text-sm uppercase tracking-[0.25em] gradient-text">
-                Languages
-              </span>
-            </h2>
-            <div className="flex flex-col gap-4 ml-4">
-              {languages.map((lang, index) => (
-                <FadeIn key={lang.name} delay={0.4 + index * 0.1} duration={0.5} distance={15}>
-                  <div className="group flex items-center justify-between rounded-2xl border border-text/10 bg-text/[0.03] p-3 transition-all hover:border-text/20 hover:bg-text/[0.06]">
-                    <div className="flex items-center gap-4">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-text/[0.05] text-text/40">
-                        <HiOutlineGlobeAlt className="text-xl group-hover:text-text/70 transition-colors" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-text">{lang.name}</h3>
-                        <p className="text-xs uppercase tracking-wider text-text/40">{lang.code}</p>
-                      </div>
-                    </div>
-                    <div className="rounded-full border border-text/10 bg-text/[0.05] px-4 py-1.5 text-sm font-medium text-text/70">
-                      {lang.level}
-                    </div>
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
-          </FadeIn>
-        </section>
-      </div>
 
       <FadeIn delay={0.1} duration={0.6} distance={30}>
        <h2 className="mt-16 mb-4">
@@ -357,7 +410,7 @@ export default function About() {
           })}
         </div>
         <FadeIn delay={0.3} duration={0.6}>
-          <p className="text-text/75 mb-6 leading-relaxed">
+          <p className="text-text/75 mb-6 leading-relaxed text-xl">
             My work moves between development, audiovisual design and interactive technologies, 
             combining <strong>technical thinking</strong> with <strong>artistic sensitivity</strong>.
              I enjoy creating projects where visuals, sound and interaction come together naturally.
@@ -365,7 +418,7 @@ export default function About() {
         </FadeIn>
 
         <FadeIn delay={0.4} duration={0.6}>
-          <p className="text-text/75 leading-relaxed mt-6">
+          <p className="text-text/75 leading-relaxed mt-6 text-xl">
             Over last times, I have explored web development, UX/UI design, videogames, virtual reality 
             and physical computing. What interests me most is connecting different mediums to shape how 
             people experience digital spaces.
