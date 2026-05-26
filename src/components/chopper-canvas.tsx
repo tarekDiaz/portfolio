@@ -129,20 +129,14 @@ export default function ChopperCanvas() {
   }, []);
 
   return (
-    <div className="relative h-[60vh] min-h-90 w-full overflow-hidden rounded-2xl border border-background3 bg-transparent">
+    <div className="relative h-[60vh] min-h-90 w-full overflow-hidden bg-transparent">
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
 
       {loadState !== "ready" && (
-        <div className="absolute inset-0 flex items-center justify-center px-6 text-center">
-          <div className="max-w-md rounded-2xl border border-background3 bg-background/75 px-6 py-5 backdrop-blur-md">
-            <p className="mb-2 text-lg font-semibold text-text">
-              {loadState === "loading" ? "Loading Chopper T-pose model" : "3D preview placeholder"}
-            </p>
-
-            <p className="text-sm leading-relaxed text-text3">
-              Place your file as <span className="font-medium text-text">/public/models/chopperTpose.glb</span> to show the spinning 3D model here.
-            </p>
-          </div>
+        <div className="absolute inset-x-0 top-4 flex justify-center px-6 text-center pointer-events-none">
+          <p className="text-sm uppercase tracking-[0.2em] text-text/45">
+            {loadState === "loading" ? "Loading Chopper T-pose model" : "3D preview unavailable"}
+          </p>
         </div>
       )}
     </div>
