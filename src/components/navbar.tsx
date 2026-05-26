@@ -14,16 +14,18 @@ const links = [
 ];
 
 const languages = [
-  { code: "es", label: "Español" },
   { code: "en", label: "English" },
+  { code: "es", label: "Español" },
   { code: "ca", label: "Català" },
 ];
+
+const availableLanguage = "en";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [visible, setVisible] = useState(true);
   const [langOpen, setLangOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState("es");
+  const [currentLang, setCurrentLang] = useState(availableLanguage);
 
   const pathname = usePathname();
   const lastScrollY = useRef(0);
@@ -183,25 +185,39 @@ export default function Navbar() {
                   z-50
                 "
               >
-                {languages.map((lang) => (
-                  <button
-                    key={lang.code}
-                    onClick={() => {
-                      setCurrentLang(lang.code);
-                      setLangOpen(false);
-                    }}
-                    className={`
-                      w-full text-left px-4 py-3 text-sm transition-all duration-150
-                      ${
-                        currentLang === lang.code
-                          ? "text-text bg-text/10 font-medium"
-                          : "text-text/70 hover:text-text hover:bg-text/5"
-                      }
-                    `}
-                  >
-                    {lang.label}
-                  </button>
-                ))}
+                {languages.map((lang) => {
+                  const isAvailable = lang.code === availableLanguage;
+
+                  return (
+                    <button
+                      key={lang.code}
+                      disabled={!isAvailable}
+                      onClick={() => {
+                        if (!isAvailable) return;
+
+                        setCurrentLang(lang.code);
+                        setLangOpen(false);
+                      }}
+                      className={`
+                        w-full text-left px-4 py-3 text-sm transition-all duration-150 flex items-center justify-between
+                        ${
+                          !isAvailable
+                            ? "text-text/35 cursor-not-allowed"
+                            : currentLang === lang.code
+                              ? "text-text bg-text/10 font-medium"
+                              : "text-text/70 hover:text-text hover:bg-text/5"
+                        }
+                      `}
+                    >
+                      <span>{lang.label}</span>
+                      {!isAvailable && (
+                        <span className="text-[10px] uppercase tracking-wider text-text/35 ml-1">
+                          WIP
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
               </div>
             )}
           </div>
@@ -321,19 +337,34 @@ export default function Navbar() {
                     key={lang.code}
                     className="flex items-center gap-3 leading-none"
                   >
+                    {(() => {
+                      const isAvailable = lang.code === availableLanguage;
+
+                      return (
                     <button
-                      onClick={() => setCurrentLang(lang.code)}
+                      disabled={!isAvailable}
+                      onClick={() => {
+                        if (!isAvailable) return;
+                        setCurrentLang(lang.code);
+                      }}
                       className={`
-                        text-xl uppercase transition-all duration-200 cursor-pointer
+                        text-xl uppercase transition-all duration-200
                         ${
-                          currentLang === lang.code
+                          !isAvailable
+                            ? "text-text/35 cursor-not-allowed"
+                            : currentLang === lang.code
                             ? "text-primary scale-105 font-medium"
-                            : "text-text hover:text-text font-light"
+                            : "text-text hover:text-text font-light cursor-pointer"
                         }
                       `}
                     >
                       {lang.code}
+                      {!isAvailable && (
+                        <span className="ml-1 align-middle text-[10px] uppercase tracking-wider">WIP</span>
+                      )}
                     </button>
+                      );
+                    })()}
 
                     {index < languages.length - 1 && (
                       <span className="text-text/10 text-xs">|</span>

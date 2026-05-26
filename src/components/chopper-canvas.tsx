@@ -26,6 +26,7 @@ export default function ChopperCanvas() {
 
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.setClearColor(0x000000, 0);
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableZoom = false;
@@ -37,16 +38,30 @@ export default function ChopperCanvas() {
 
     const ambientLight = new THREE.AmbientLight(0xffffff, 2.2);
     const directionalLight = new THREE.DirectionalLight(0xffffff, 3.2);
-    directionalLight.position.set(4, 6, 5);
-    scene.add(ambientLight, directionalLight);
+    directionalLight.position.set(2, 4, 6);
+    const fillLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    fillLight.position.set(-3, 1, 4);
+    scene.add(ambientLight, directionalLight, fillLight);
 
     const loader = new GLTFLoader();
     let model: THREE.Object3D | null = null;
 
     loader.load(
-      "/models/chopper.glb",
+      "/models/chopperTpose.glb",
       (gltf) => {
         model = gltf.scene;
+
+        const box = new THREE.Box3().setFromObject(model);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
+
+        const maxDimension = Math.max(size.x, size.y, size.z);
+        const targetSize = 3.5;
+        const scale = maxDimension > 0 ? targetSize / maxDimension : 1;
+
+        model.scale.setScalar(scale);
+        model.position.sub(center.multiplyScalar(scale));
+
         model.traverse((child) => {
           if (child instanceof THREE.Mesh) {
             child.castShadow = true;
@@ -57,12 +72,9 @@ export default function ChopperCanvas() {
           }
         });
 
-        const box = new THREE.Box3().setFromObject(model);
-        const center = box.getCenter(new THREE.Vector3());
-        model.position.sub(center);
-
-        const size = box.getSize(new THREE.Vector3()).length();
-        camera.position.set(0, size * 0.45, size * 1.15);
+        const fittedBox = new THREE.Box3().setFromObject(model);
+        const fittedSize = fittedBox.getSize(new THREE.Vector3()).length();
+        camera.position.set(0, fittedSize * 0.15, fittedSize * 1.7);
         controls.target.set(0, 0, 0);
         controls.update();
 
@@ -117,18 +129,18 @@ export default function ChopperCanvas() {
   }, []);
 
   return (
-    <div className="relative h-[60vh] min-h-[360px] w-full overflow-hidden rounded-2xl border border-background3 bg-background2">
+    <div className="relative h-[60vh] min-h-90 w-full overflow-hidden rounded-2xl border border-background3 bg-transparent">
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
 
       {loadState !== "ready" && (
         <div className="absolute inset-0 flex items-center justify-center px-6 text-center">
           <div className="max-w-md rounded-2xl border border-background3 bg-background/75 px-6 py-5 backdrop-blur-md">
             <p className="mb-2 text-lg font-semibold text-text">
-              {loadState === "loading" ? "Loading Chopper 3D model" : "3D preview placeholder"}
+              {loadState === "loading" ? "Loading Chopper T-pose model" : "3D preview placeholder"}
             </p>
 
             <p className="text-sm leading-relaxed text-text3">
-              Place your file as <span className="font-medium text-text">/public/models/chopper.glb</span> to show the spinning 3D model here.
+              Place your file as <span className="font-medium text-text">/public/models/chopperTpose.glb</span> to show the spinning 3D model here.
             </p>
           </div>
         </div>

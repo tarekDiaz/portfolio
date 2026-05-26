@@ -48,7 +48,7 @@ export default function Home() {
               </h1>
             </FadeIn>
 
-            <FadeIn delay={0.25} duration={0.8} distance={20}>
+            <FadeIn delay={0.2} duration={0.8} distance={20}>
               <p className="mx-auto font-light tracking-[0.15em] text-[clamp(1rem,2vw,1.25rem)] text-text">
                 Multimedia Engineer | UX/UI Designer | VR Developer | Web Developer
               </p>
@@ -73,9 +73,9 @@ export default function Home() {
       </section>
 
       {/* ABOUT / SUMMARY */}
-      <section className="relative z-10 pt-45 mb-20">
+      <section className="relative z-10 py-30">
         <div className="mb-4 max-w-6xl mx-auto">
-          <FadeIn direction="none">
+          <FadeIn delay={0.1} direction="none">
             <span className="text-sm uppercase tracking-[0.25em] gradient-text mb-4">
               About
             </span>
@@ -83,7 +83,7 @@ export default function Home() {
         </div>
 
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-4 md:gap-12 items-start">
-          <FadeIn direction="left" delay={0.1}>
+          <FadeIn direction="left" delay={0.2}>
             <div>
               <h1 className="mb-8 w-full leading-tight text-4xl text-text italic md:text-[clamp(1.5rem,3.7vw,3rem)] md:block hidden">
                 <span className="whitespace-nowrap">"Caught within</span>
@@ -96,7 +96,7 @@ export default function Home() {
             </div>
           </FadeIn>
 
-          <FadeIn direction="right" delay={0.2}>
+          <FadeIn direction="right" delay={0.5}>
             <div className="space-y-8 leading-10 text-text2 text-xl md:text-xl">
               <p>
                 I am Tárek, a <strong>Multimedia Engineer</strong> driven by <strong>creativity</strong>,
@@ -125,10 +125,10 @@ export default function Home() {
       </section>
 
       {/* SELECTED WORK */}
-      <section className="px-6 mt-40 mb-20">
+      <section className="px-6 py-30">
         <div className="max-w-6xl mx-auto">
           <div className="mb-12">
-            <FadeIn direction="none">
+            <FadeIn direction="none" delay={0.1}>
               <span className="text-sm uppercase tracking-[0.25em] gradient-text mb-4">
                 Selected Work
               </span>
@@ -207,9 +207,9 @@ export default function Home() {
 
       {/* CONTACT */}
 
-      <section className="py-20 px-6 mb-20">
+      <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
-          <FadeIn direction="none">
+          <FadeIn  direction="none" delay={0.2}>
             <span className="text-sm uppercase tracking-[0.25em] gradient-text">
               Contact
             </span>
@@ -269,7 +269,7 @@ export default function Home() {
           <div className="mt-12 border-t border-background3 pt-16">
             <div className="grid gap-8 md:grid-cols-2 px-8">
 
-              <FadeIn>
+              <FadeIn direction="left" delay={0.2}>
               <div className="space-y-3 ">
                 <p className="text-sm uppercase tracking-[0.25em] gradient-text">
                   Contact me via email:
@@ -288,7 +288,7 @@ export default function Home() {
                 {copied && <span className="block text-sm text-primary">Copied!</span>}
               </div>
             </FadeIn>
-            <FadeIn delay={0.1}>
+            <FadeIn direction="right" delay={0.2}>
               <div className="space-y-4 md:text-right text-left">
                 <p className="text-sm uppercase tracking-[0.25em] gradient-text">
                   download my cv!

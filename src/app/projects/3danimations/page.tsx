@@ -41,10 +41,8 @@ const processBlocks = [
   },
 ];
 
-const youtubeVideoId = "";
 
 export default function ThreeDAnimationsPage() {
-  const hasVideo = youtubeVideoId.trim().length > 0;
 
   return (
     <main className="min-h-screen text-text">
@@ -173,13 +171,7 @@ export default function ThreeDAnimationsPage() {
         </FadeIn>
 
         <FadeIn delay={0.2} duration={0.6}>
-          {hasVideo ? (
-            <YouTubeVideo videoId={youtubeVideoId} />
-          ) : (
-            <div className="rounded-2xl border border-background3 bg-background2 p-8 text-center text-text2">
-              Add your YouTube video ID in <span className="font-medium text-text">src/app/projects/3danimations/page.tsx</span> to show the embedded video here.
-            </div>
-          )}
+            <YouTubeVideo videoId="syyTFcJQYGs" />
         </FadeIn>
       </section>
 
@@ -195,7 +187,7 @@ export default function ThreeDAnimationsPage() {
             </h2>
 
             <p className="mt-4 max-w-3xl leading-relaxed text-text2">
-              Place your Chopper model at <span className="font-medium text-text">/public/models/chopper.glb</span> and the canvas below will rotate it automatically.
+              Place your Chopper model at <span className="font-medium text-text">/public/models/chopperTpose.glb</span> and the canvas below will rotate it automatically.
             </p>
           </div>
         </FadeIn>

@@ -19,6 +19,7 @@ import {
 } from "react-icons/si";
 
 import { FaJava } from "react-icons/fa";
+import { RiSearchEyeLine } from "react-icons/ri";
 
 import { BiLogoAdobe } from "react-icons/bi";
 import { 
@@ -205,7 +206,7 @@ export default function About() {
   }, []);
 
   return (
-    <div className="min-h-screen max-w-5xl mx-auto pt-35 md:pt-30 pb-20 px-6 relative">
+    <div className="min-h-screen max-w-5xl mx-auto pt-35 pb-20 relative">
       {/* About Me Section */}
       <FadeIn delay={0.1} duration={0.6} distance={30}>
           <h2 className="mb-2">
@@ -215,7 +216,7 @@ export default function About() {
           </h2>
       </FadeIn>
       <section className="ml-4">
-        <FadeIn delay={0.1} duration={0.6}>
+        <FadeIn delay={0.2} duration={0.6}>
           <img 
             src="/assets/images/tarekDiaz.webp" 
             alt="Tárek Díaz Carissimi" 
@@ -223,7 +224,7 @@ export default function About() {
           />
         </FadeIn>
 
-        <FadeIn delay={0.2} duration={0.6}>
+        <FadeIn delay={0.3} duration={0.6}>
           <p className="text-text text-xl mb-6 leading-relaxed" style={{ position: 'relative' }}>
             I am{' '}
             <span
@@ -243,9 +244,12 @@ export default function About() {
               onTouchEnd={() => setShowPhoto(false)}
               onTouchCancel={() => setShowPhoto(false)}
               className="font-bold select-none cursor-default relative"
-              style={{ transition: 'color 0.2s' }}
+              style={{ transition: 'color 0.3s' }}
             >
-              Tárek Díaz Carissimi
+              <span className="inline-flex items-baseline gap-2">
+                Tárek Díaz Carissimi
+                <RiSearchEyeLine className="mr-1" />
+              </span>
             </span>
             , a Multimedia Engineering graduate driven by curiosity, creativity and the desire to build
             experiences that feel meaningful, immersive and human. 
@@ -265,22 +269,22 @@ export default function About() {
       <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] md:gap-20 mt-20">
         {/* Soft Skills */}
         <section className="md:pr-4">
-          <FadeIn delay={0.1} duration={0.6}>
+          <FadeIn delay={0.4} duration={0.6}>
             <h2 className="mb-6">
               <span className="text-sm uppercase tracking-[0.25em] gradient-text">
                 Soft Skills
               </span>
             </h2>
-            <div className="grid grid-cols-2 gap-4 ml-4">
+            <div className="grid grid-cols-2 gap-4 mx-4">
               {softSkills.map((skill, index) => {
                 const Icon = skill.icon;
                 return (
-                  <FadeIn key={skill.name} delay={0.2 + index * 0.05} duration={0.5} distance={10}>
-                    <div className="flex min-w-0 items-center gap-3 overflow-hidden rounded-xl border border-text/10 bg-text/[0.02] p-4 transition-all duration-200 hover:scale-105 hover:bg-text/[0.05]">
-                      <div className="flex h-8 w-8 aspect-square shrink-0 items-center justify-center rounded-lg bg-text/[0.05] text-text/70">
+                  <FadeIn key={skill.name} delay={0.4 + index * 0.05} duration={0.5} distance={10}>
+                    <div className="flex min-w-0 items-center gap-3 overflow-hidden rounded-xl border border-text/10 bg-background2 p-4 transition-all duration-200 hover:scale-105 hover:bg-background3">
+                      <div className="flex h-8 w-8 aspect-square shrink-0 items-center justify-center rounded-lg bg-background3 text-text2">
                         <Icon className="text-lg" />
                       </div>
-                      <span className="min-w-0 overflow-hidden text-ellipsis text-sm font-medium text-text/80">
+                      <span className="min-w-0 overflow-hidden text-ellipsis text-sm font-medium text-text">
                         {skill.name}
                       </span>
                     </div>
@@ -292,19 +296,19 @@ export default function About() {
         </section>
 
         {/* Languages */}
-        <section className="md:pl-8 lg:pl-12">
-          <FadeIn delay={0.3} duration={0.6}>
+        <section className="mt-10 md:mt-0">
+          <FadeIn delay={0.6} duration={0.6}>
             <h2 className="mb-6">
               <span className="text-sm uppercase tracking-[0.25em] gradient-text">
                 Languages
               </span>
             </h2>
-            <div className="flex flex-col gap-4 ml-4">
+            <div className="flex flex-col gap-4 mx-4">
               {languages.map((lang, index) => (
-                <FadeIn key={lang.name} delay={0.4 + index * 0.1} duration={0.5} distance={15}>
-                  <div className="group flex min-w-0 items-center justify-between overflow-hidden rounded-2xl border border-text/10 bg-text/[0.03] p-3 transition-all duration-200 hover:scale-105 hover:border-text/20 hover:bg-text/[0.06]">
+                <FadeIn key={lang.name} delay={0.6 + index * 0.1} duration={0.5} distance={15}>
+                  <div className="group flex min-w-0 items-center justify-between overflow-hidden rounded-2xl border border-text/10 bg-background2 p-3 transition-all duration-200 hover:scale-105 hover:border-text/20 hover:bg-background3">
                     <div className="flex min-w-0 items-center gap-4">
-                      <div className="flex h-10 w-10 aspect-square shrink-0 items-center justify-center rounded-xl bg-text/[0.05] text-text/40">
+                      <div className="flex h-10 w-10 aspect-square shrink-0 items-center justify-center rounded-xl bg-background3 text-text/40">
                         <HiOutlineGlobeAlt className="text-xl group-hover:text-text/70 transition-colors" />
                       </div>
                       <div className="min-w-0 overflow-hidden">
@@ -316,7 +320,7 @@ export default function About() {
                         </p>
                       </div>
                     </div>
-                    <div className="shrink-0 rounded-full bg-text/[0.05] px-4 py-1.5 text-sm font-medium text-text/70">
+                    <div className="shrink-0 rounded-full bg-background3 px-4 py-1.5 text-sm font-medium text-text2">
                       {lang.level}
                     </div>
                   </div>
@@ -328,7 +332,7 @@ export default function About() {
       </div>
 
       {/* Tools & Technologies Section */}
-      <FadeIn delay={0.2} duration={0.6}>
+      <FadeIn delay={0.8} duration={0.6}>
         <h2 className="text-text/50 tracking-[0.25em] uppercase text-sm mt-16 mb-8">        
           <span className="text-sm uppercase tracking-[0.25em] gradient-text">
             Tools & Technologies
@@ -336,15 +340,15 @@ export default function About() {
         </h2>
       </FadeIn>
       <section >
-        <FadeIn delay={0.4} duration={0.6}>
+        <FadeIn delay={0.9} duration={0.6}>
           <div className="relative overflow-hidden border-y border-text/10 py-6">
-            <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-background to-transparent" />
-            <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-background to-transparent" />
+            <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-linear-to-r from-background to-transparent" />
+            <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-linear-to-l from-background to-transparent" />
             <div className="scroll-marquee flex w-max gap-4">
               {duplicatedTools.map((tool, index) => {
                 const Icon = tool.icon;
                 return (
-                  <div key={`${tool.name}-${index}`} className="flex min-w-fit items-center gap-3 rounded-full border border-text/10 bg-text/[0.03] px-5 py-3 text-text/75 transition-transform duration-200 hover:scale-105">
+                  <div key={`${tool.name}-${index}`} className="flex min-w-fit items-center gap-3 rounded-full border border-text/10 bg-background2 px-5 py-3 text-text/75 transition-transform duration-200 hover:bg-background3 hover:scale-105">
                     <Icon className="text-xl text-text" />
                     <span className="text-sm whitespace-nowrap">{tool.name}</span>
                   </div>
@@ -355,8 +359,8 @@ export default function About() {
         </FadeIn>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-8 px-4">
           {toolSections.map((section, index) => (
-            <FadeIn key={section.title} delay={0.4 + index * 0.1} duration={0.6} distance={20}>
-              <div className="h-full rounded-2xl border border-text/10 bg-text/[0.03] p-6 transition-transform duration-200 hover:scale-105">
+            <FadeIn key={section.title} delay={0.9 + index * 0.1} duration={0.6} distance={20}>
+              <div className="h-full rounded-2xl border border-text/10 bg-background2 p-6 transition-transform duration-200 hover:scale-105">
                 <h3 className="mb-4 flex items-center gap-2 text-xl font-semibold text-text">
                   <section.icon className="text-2xl text-text/70" />
                   <span>{section.title}</span>
@@ -390,15 +394,15 @@ export default function About() {
           </span>
         </h2>
       </FadeIn>  
-      <section className="ml-4">
+      <section className="mx-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           {identityBlocks.map((block, index) => {
             const Icon = block.icon;
             return (
               <FadeIn key={block.title} delay={0.45 + index * 0.1} duration={0.6} distance={20}>
-                <div className="h-full rounded-2xl border border-text/10 bg-text/[0.03] p-5 transition-transform duration-200 hover:scale-105 group">
+                <div className="h-full rounded-2xl border border-text/10 bg-background2 p-5 transition-transform duration-200 hover:scale-105 group">
                   <div className="mb-3 flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-text/[0.05] text-text transition-colors group-hover:bg-text2 group-hover:text-background">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-background2 text-text transition-colors group-hover:bg-text2 group-hover:text-background">
                       <Icon className="text-xl" />
                     </div>
                     <h2 className="text-lg font-semibold text-text mb-0">{block.title}</h2>
@@ -480,8 +484,8 @@ export default function About() {
             }}
           >
                 <div
-                  style={{ width: 150, height: 150 }}
-                  className="overflow-hidden rounded-full border-2 border-text/20 shadow-lg"
+                  style={{ width: 200, height: 200 }}
+                  className="overflow-hidden rounded-full shadow-xl"
                 >
                   <img
                     src="/assets/images/tarekDiaz.webp"

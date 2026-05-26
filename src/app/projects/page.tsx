@@ -99,7 +99,7 @@ export default function ProjectsPage() {
   }, []);
 
   return (
-    <div className="min-h-screen max-w-5xl mx-auto pt-35 md:pt-30 pb-20 relative">
+    <div className="min-h-screen max-w-5xl mx-auto pt-35 pb-20 relative">
       <FadeIn delay={0.05} duration={0.6}>
         <h2 className="mb-8">
           <span className="text-sm uppercase tracking-[0.25em] gradient-text">

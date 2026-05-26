@@ -60,10 +60,7 @@ const featureBlocks = [
   },
 ];
 
-const youtubeVideoId = "";
-
 export default function DefAMolePage() {
-  const hasVideo = youtubeVideoId.trim().length > 0;
 
   return (
     <main className="min-h-screen text-text">
@@ -212,23 +209,15 @@ export default function DefAMolePage() {
             </p>
 
             <h2 className="text-3xl font-semibold text-text md:text-4xl">
-              Gameplay or trailer showcase.
+              Trailer showcase.
             </h2>
-
-            <p className="mt-4 max-w-3xl leading-relaxed text-text2">
-              Add your YouTube video ID in this file to embed the gameplay clip here.
-            </p>
           </div>
         </FadeIn>
 
         <FadeIn delay={0.2} duration={0.6}>
-          {hasVideo ? (
-            <YouTubeVideo videoId={youtubeVideoId} />
-          ) : (
-            <div className="rounded-2xl border border-background3 bg-background2 p-8 text-center text-text2">
-              Add your YouTube video ID in <span className="font-medium text-text">src/app/projects/defamole/page.tsx</span> to show the embedded video here.
-            </div>
-          )}
+
+            <YouTubeVideo videoId="zl9m7LViXJw" />
+
         </FadeIn>
       </section>
 
