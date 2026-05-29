@@ -104,14 +104,14 @@ const designBlocks = [
 
 export default function ThisWebsitePage() {
   return (
-    <main className="min-h-screen text-text">
-      <section className="mx-auto max-w-6xl px-6 pt-32 pb-20">
+    <main className="min-h-screen max-w-5xl mx-auto pt-35 pb-20 text-text">
+      <section className="pb-16">
         <FadeIn delay={0.1} duration={0.6} distance={30}>
           <span className="text-sm uppercase tracking-[0.25em] gradient-text">
             Personal Portfolio Website
           </span>
 
-          <h1 className="mt-4 max-w-4xl text-5xl font-semibold leading-tight md:text-7xl">
+          <h1 className="mt-4 max-w-4xl text-5xl font-bold leading-tight md:text-7xl">
             This website!
           </h1>
 
@@ -137,14 +137,14 @@ export default function ThisWebsitePage() {
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
               href="#process"
-              className="inline-flex items-center justify-center rounded-full border border-background3 bg-background2 px-5 py-2 text-text2 transition-all duration-300 hover:border-text hover:text-text"
+              className="inline-flex items-center justify-center rounded-full border border-background3 bg-background2 px-6 py-3 text-sm uppercase tracking-[0.22em] text-text2 transition-all duration-300 hover:scale-102 hover:border-text hover:text-text"
             >
               View process
             </Link>
 
             <Link
               href="#logo"
-              className="inline-flex items-center justify-center rounded-full border border-background3 bg-background2 px-5 py-2 text-text2 transition-all duration-300 hover:border-text hover:text-text"
+              className="inline-flex items-center justify-center rounded-full border border-background3 bg-background2 px-6 py-3 text-sm uppercase tracking-[0.22em] text-text2 transition-all duration-300 hover:scale-102 hover:border-text hover:text-text"
             >
               Logo meaning
             </Link>
@@ -152,13 +152,13 @@ export default function ThisWebsitePage() {
         </FadeIn>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-24">
+      <section className="pb-24">
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] items-start">
           <FadeIn delay={0.1} duration={0.6}>
             <div>
-              <p className="mb-2 text-sm uppercase tracking-[0.25em] text-text3">
+              <span className="text-sm uppercase tracking-[0.25em] gradient-text">
                 Overview
-              </p>
+              </span>
 
               <h2 className="text-3xl font-semibold leading-tight text-text md:text-4xl">
                 A personal site designed to show both projects and identity.
@@ -182,12 +182,12 @@ export default function ThisWebsitePage() {
         </div>
       </section>
 
-      <section id="process" className="mx-auto max-w-6xl px-6 pb-24">
+      <section id="process" className="pb-24">
         <FadeIn delay={0.1} duration={0.6}>
           <div className="mb-10">
-            <p className="mb-2 text-sm uppercase tracking-[0.25em] text-text3">
+            <span className="text-sm uppercase tracking-[0.25em] gradient-text">
               Process
-            </p>
+            </span>
 
             <h2 className="text-3xl font-semibold text-text md:text-4xl">
               How the portfolio was built.
@@ -198,7 +198,7 @@ export default function ThisWebsitePage() {
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {processBlocks.map((block, index) => (
             <FadeIn key={block.title} delay={0.15 + index * 0.05} duration={0.6} distance={20}>
-              <article className="h-full rounded-2xl border border-background3 bg-background2 p-6 transition-transform duration-200 hover:scale-105">
+              <article className="h-full rounded-2xl border border-background3 bg-background2 p-6 transition-transform duration-300 hover:scale-102">
                 <h3 className="mb-3 text-xl font-semibold text-text">
                   {block.title}
                 </h3>
@@ -212,12 +212,12 @@ export default function ThisWebsitePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-24">
+      <section className="pb-24">
         <FadeIn delay={0.1} duration={0.6}>
           <div className="mb-10">
-            <p className="mb-2 text-sm uppercase tracking-[0.25em] text-text3">
+            <span className="text-sm uppercase tracking-[0.25em] gradient-text">
               Tools
-            </p>
+            </span>
 
             <h2 className="text-3xl font-semibold text-text md:text-4xl">
               Main technologies used.
@@ -228,7 +228,7 @@ export default function ThisWebsitePage() {
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {toolBlocks.map((tool, index) => (
             <FadeIn key={tool.title} delay={0.15 + index * 0.05} duration={0.6} distance={20}>
-              <article className="h-full rounded-2xl border border-background3 bg-background2 p-6 transition-transform duration-200 hover:scale-105">
+              <article className="h-full rounded-2xl border border-background3 bg-background2 p-6 transition-transform duration-300 hover:scale-102">
                 <h3 className="mb-3 text-xl font-semibold text-text">
                   {tool.title}
                 </h3>
@@ -242,13 +242,13 @@ export default function ThisWebsitePage() {
         </div>
       </section>
 
-      <section id="logo" className="mx-auto max-w-6xl px-6 pb-24">
+      <section id="logo" className="pb-24">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] items-start">
           <FadeIn delay={0.1} duration={0.6}>
             <div>
-              <p className="mb-2 text-sm uppercase tracking-[0.25em] text-text3">
+              <span className="text-sm uppercase tracking-[0.25em] gradient-text">
                 Logo
-              </p>
+              </span>
 
               <h2 className="text-3xl font-semibold text-text md:text-4xl">
                 The logo represents vision, attention and identity.
@@ -288,9 +288,9 @@ export default function ThisWebsitePage() {
               </div>
 
               <div>
-                <p className="mb-3 text-sm uppercase tracking-[0.25em] text-text3">
+                <span className="text-sm uppercase tracking-[0.25em] gradient-text">
                   Identity Detail
-                </p>
+                </span>
 
                 <h2 className="max-w-3xl text-3xl font-semibold leading-tight text-text md:text-4xl">
                   A logo that keeps the site recognizable across every page and section.
@@ -305,12 +305,12 @@ export default function ThisWebsitePage() {
         </FadeIn>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-28">
+      <section className="pb-28">
         <FadeIn delay={0.1} duration={0.6}>
           <div className="rounded-2xl border border-background3 bg-background2 p-8 md:p-10">
-            <p className="mb-3 text-sm uppercase tracking-[0.25em] text-text3">
+            <span className="text-sm uppercase tracking-[0.25em] gradient-text">
               Final Note
-            </p>
+            </span>
 
             <h2 className="max-w-3xl text-3xl font-semibold leading-tight text-text md:text-4xl">
               The result is a portfolio built to present my work, my tools and my design identity in one place.

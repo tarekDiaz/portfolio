@@ -74,7 +74,7 @@ export default function ChopperCanvas() {
 
         const fittedBox = new THREE.Box3().setFromObject(model);
         const fittedSize = fittedBox.getSize(new THREE.Vector3()).length();
-        camera.position.set(0, fittedSize * 0.15, fittedSize * 1.7);
+        camera.position.set(0, fittedSize * 0.15, fittedSize * 1);
         controls.target.set(0, 0, 0);
         controls.update();
 
@@ -111,7 +111,7 @@ export default function ChopperCanvas() {
       animationFrame = requestAnimationFrame(animate);
 
       if (model) {
-        model.rotation.y += 0.007;
+        model.rotation.y += 0.0015;
       }
 
       controls.update();
@@ -129,7 +129,7 @@ export default function ChopperCanvas() {
   }, []);
 
   return (
-    <div className="relative h-[60vh] min-h-90 w-full overflow-hidden bg-transparent">
+    <div className="relative h-[40vh] min-h-90 w-full overflow-hidden bg-transparent">
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
 
       {loadState !== "ready" && (

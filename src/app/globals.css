@@ -79,6 +79,15 @@ body {
     transition: background 0.5s ease-in, color 0.3s ease-in;
 }
 
+.theme-transitioning,
+.theme-transitioning * ,
+.theme-transitioning *::before,
+.theme-transitioning *::after {
+  transition-property: background-color, border-color, color, fill, stroke, text-decoration-color, box-shadow, outline-color !important;
+  transition-duration: 400ms !important;
+  transition-timing-function: ease-in-out !important;
+}
+
 /* Scrollbar hide */
 @layer base {
   html {

@@ -402,7 +402,7 @@ export default function About() {
               <FadeIn key={block.title} delay={0.45 + index * 0.1} duration={0.6} distance={20}>
                 <div className="h-full rounded-2xl border border-text/10 bg-background2 p-5 transition-transform duration-200 hover:scale-105 group">
                   <div className="mb-3 flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-background2 text-text transition-colors group-hover:bg-text2 group-hover:text-background">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-background2 text-text transition-colors">
                       <Icon className="text-xl" />
                     </div>
                     <h2 className="text-lg font-semibold text-text mb-0">{block.title}</h2>

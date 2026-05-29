@@ -45,14 +45,14 @@ const processBlocks = [
 export default function ThreeDAnimationsPage() {
 
   return (
-    <main className="min-h-screen text-text">
-      <section className="mx-auto max-w-6xl px-6 pt-32 pb-20">
+    <main className="min-h-screen max-w-5xl mx-auto pt-35 pb-20 text-text">
+      <section className="pb-16">
         <FadeIn delay={0.1} duration={0.6} distance={30}>
           <span className="text-sm uppercase tracking-[0.25em] gradient-text">
             3D Animation Project
           </span>
 
-          <h1 className="mt-4 max-w-4xl text-5xl font-semibold leading-tight md:text-7xl">
+          <h1 className="mt-4 max-w-4xl text-5xl font-bold leading-tight md:text-7xl">
             Tony Tony Chopper, animated in 3ds Max.
           </h1>
 
@@ -78,14 +78,14 @@ export default function ThreeDAnimationsPage() {
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
               href="#video"
-              className="inline-flex items-center justify-center rounded-full border border-background3 bg-background2 px-5 py-2 text-text2 transition-all duration-300 hover:border-text hover:text-text"
+              className="inline-flex items-center justify-center rounded-full border border-background3 bg-background2 px-6 py-3 text-sm uppercase tracking-[0.22em] text-text2 transition-all duration-300 hover:scale-102 hover:border-text hover:text-text"
             >
               Watch video
             </Link>
 
             <Link
-              href="#preview"
-              className="inline-flex items-center justify-center rounded-full border border-background3 bg-background2 px-5 py-2 text-text2 transition-all duration-300 hover:border-text hover:text-text"
+              href="#overview"
+              className="inline-flex items-center justify-center rounded-full border border-background3 bg-background2 px-6 py-3 text-sm uppercase tracking-[0.22em] text-text2 transition-all duration-300 hover:scale-102 hover:border-text hover:text-text"
             >
               3D preview
             </Link>
@@ -93,45 +93,76 @@ export default function ThreeDAnimationsPage() {
         </FadeIn>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-24">
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] items-start">
-          <FadeIn delay={0.1} duration={0.6}>
-            <div>
-              <p className="mb-2 text-sm uppercase tracking-[0.25em] text-text3">
-                Overview
-              </p>
+      <section id="video" className="pb-24">
+        <FadeIn delay={0.1} duration={0.6}>
+          <div className="mb-8">
+            <span className="text-sm uppercase tracking-[0.25em] gradient-text">
+              Video
+            </span>
+          </div>
+        </FadeIn>  
 
-              <h2 className="text-3xl font-semibold leading-tight text-text md:text-4xl">
+        <FadeIn delay={0.1} duration={0.6}>
+        
+            <h2 className="text-3xl font-semibold text-text md:text-4xl">
+              Presentation and final animation.
+            </h2>
+
+            <p className="mt-4 max-w-3xl leading-relaxed text-text2">
+              The YouTube embed is ready here. Add your final video ID in this file to display the actual presentation clip.
+            </p>
+
+        </FadeIn>
+
+        <FadeIn delay={0.2} duration={0.6}>
+            <YouTubeVideo videoId="syyTFcJQYGs" />
+        </FadeIn>
+      </section>
+
+      <section id="overview" className="pb-24">
+        <FadeIn delay={0.1} duration={0.6}>
+          <div className="mb-10">
+            <span className="text-sm uppercase tracking-[0.25em] gradient-text">
+              Overview
+            </span>
+          </div>
+        </FadeIn>
+
+        <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] items-start">
+          <div className="space-y-6">
+            <FadeIn delay={0.25} duration={0.6}>
+
+              <h2 className="text-3xl font-semibold leading-tight text-text md:text-4xl mb-4">
                 A character study built to show the full 3D workflow.
               </h2>
-            </div>
-          </FadeIn>
 
-          <div className="space-y-6">
-            <FadeIn delay={0.2} duration={0.6}>
               <p className="leading-relaxed text-text2">
                 This project is a 3D animation exercise centered on Chopper from One Piece. The piece was created in 3ds Max and covers the complete production flow, from the initial model to the final render.
               </p>
             </FadeIn>
 
-            <FadeIn delay={0.3} duration={0.6}>
+            <FadeIn delay={0.35} duration={0.6}>
               <p className="leading-relaxed text-text2">
                 I wanted the result to feel like a compact portfolio piece that shows the technical process clearly: modeling, rigging, texturing, animation, editing and rendering all working together in a single presentation.
               </p>
             </FadeIn>
           </div>
+
+          <FadeIn delay={0.2} duration={0.6}>
+            <ChopperCanvas />
+          </FadeIn>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-24">
+      <section className="pb-24">
         <FadeIn delay={0.1} duration={0.6}>
           <div className="mb-10">
-            <p className="mb-2 text-sm uppercase tracking-[0.25em] text-text3">
+            <span className="text-sm uppercase tracking-[0.25em] gradient-text">
               Process
-            </p>
+            </span>
 
             <h2 className="text-3xl font-semibold text-text md:text-4xl">
-              How the piece was built.
+              How was it made
             </h2>
           </div>
         </FadeIn>
@@ -139,7 +170,7 @@ export default function ThreeDAnimationsPage() {
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {processBlocks.map((block, index) => (
             <FadeIn key={block.title} delay={0.15 + index * 0.05} duration={0.6} distance={20}>
-              <article className="h-full rounded-2xl border border-background3 bg-background2 p-6 transition-transform duration-200 hover:scale-105">
+              <article className="h-full rounded-2xl border border-background3 bg-background2 p-6 transition-transform duration-300 hover:scale-102">
                 <h3 className="mb-3 text-xl font-semibold text-text">
                   {block.title}
                 </h3>
@@ -152,57 +183,12 @@ export default function ThreeDAnimationsPage() {
           ))}
         </div>
       </section>
-
-      <section id="video" className="mx-auto max-w-6xl px-6 pb-24">
-        <FadeIn delay={0.1} duration={0.6}>
-          <div className="mb-8">
-            <p className="mb-2 text-sm uppercase tracking-[0.25em] text-text3">
-              Video
-            </p>
-
-            <h2 className="text-3xl font-semibold text-text md:text-4xl">
-              Presentation and final animation.
-            </h2>
-
-            <p className="mt-4 max-w-3xl leading-relaxed text-text2">
-              The YouTube embed is ready here. Add your final video ID in this file to display the actual presentation clip.
-            </p>
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={0.2} duration={0.6}>
-            <YouTubeVideo videoId="syyTFcJQYGs" />
-        </FadeIn>
-      </section>
-
-      <section id="preview" className="mx-auto max-w-6xl px-6 pb-24">
-        <FadeIn delay={0.1} duration={0.6}>
-          <div className="mb-8">
-            <p className="mb-2 text-sm uppercase tracking-[0.25em] text-text3">
-              3D Preview
-            </p>
-
-            <h2 className="text-3xl font-semibold text-text md:text-4xl">
-              Spinning model preview.
-            </h2>
-
-            <p className="mt-4 max-w-3xl leading-relaxed text-text2">
-              Place your Chopper model at <span className="font-medium text-text">/public/models/chopperTpose.glb</span> and the canvas below will rotate it automatically.
-            </p>
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={0.2} duration={0.6}>
-          <ChopperCanvas />
-        </FadeIn>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-6 pb-28">
+      <section className="pb-28">
         <FadeIn delay={0.1} duration={0.6}>
           <div className="rounded-2xl border border-background3 bg-background2 p-8 md:p-10">
-            <p className="mb-3 text-sm uppercase tracking-[0.25em] text-text3">
+            <span className="text-sm uppercase tracking-[0.25em] gradient-text">
               Final Note
-            </p>
+            </span>
 
             <h2 className="max-w-3xl text-3xl font-semibold leading-tight text-text md:text-4xl">
               A compact character piece that shows the full 3D pipeline from modeling to final render.

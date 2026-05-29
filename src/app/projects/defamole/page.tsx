@@ -63,14 +63,14 @@ const featureBlocks = [
 export default function DefAMolePage() {
 
   return (
-    <main className="min-h-screen text-text">
-      <section className="mx-auto max-w-6xl px-6 pt-32 pb-20">
+    <main className="min-h-screen max-w-5xl mx-auto pt-35 pb-20 text-text">
+      <section className="pb-16">
         <FadeIn delay={0.1} duration={0.6} distance={30}>
           <span className="text-sm uppercase tracking-[0.25em] gradient-text">
             Unity Game Project
           </span>
 
-          <h1 className="mt-4 max-w-4xl text-5xl font-semibold leading-tight md:text-7xl">
+          <h1 className="mt-4 max-w-4xl text-5xl font-bold leading-tight md:text-7xl">
             Def a Mole.
           </h1>
 
@@ -96,14 +96,14 @@ export default function DefAMolePage() {
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
               href="#video"
-              className="inline-flex items-center justify-center rounded-full border border-background3 bg-background2 px-5 py-2 text-text2 transition-all duration-300 hover:border-text hover:text-text"
+              className="inline-flex items-center justify-center rounded-full border border-background3 bg-background2 px-6 py-3 text-sm uppercase tracking-[0.22em] text-text2 transition-all duration-300 hover:scale-102 hover:border-text hover:text-text"
             >
               Watch video
             </Link>
 
             <Link
               href="#preview"
-              className="inline-flex items-center justify-center rounded-full border border-background3 bg-background2 px-5 py-2 text-text2 transition-all duration-300 hover:border-text hover:text-text"
+              className="inline-flex items-center justify-center rounded-full border border-background3 bg-background2 px-6 py-3 text-sm uppercase tracking-[0.22em] text-text2 transition-all duration-300 hover:scale-102 hover:border-text hover:text-text"
             >
               Characters preview
             </Link>
@@ -111,13 +111,13 @@ export default function DefAMolePage() {
         </FadeIn>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-24">
+      <section className="pb-24">
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] items-start">
           <FadeIn delay={0.1} duration={0.6}>
             <div>
-              <p className="mb-2 text-sm uppercase tracking-[0.25em] text-text3">
+              <span className="text-sm uppercase tracking-[0.25em] gradient-text">
                 Overview
-              </p>
+              </span>
 
               <h2 className="text-3xl font-semibold leading-tight text-text md:text-4xl">
                 A tower defense game about protecting the garden.
@@ -141,12 +141,12 @@ export default function DefAMolePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-24">
+      <section className="pb-24">
         <FadeIn delay={0.1} duration={0.6}>
           <div className="mb-10">
-            <p className="mb-2 text-sm uppercase tracking-[0.25em] text-text3">
+            <span className="text-sm uppercase tracking-[0.25em] gradient-text">
               My Role
-            </p>
+            </span>
 
             <h2 className="text-3xl font-semibold text-text md:text-4xl">
               What I contributed to the team project.
@@ -157,7 +157,7 @@ export default function DefAMolePage() {
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {roleBlocks.map((block, index) => (
             <FadeIn key={block.title} delay={0.15 + index * 0.05} duration={0.6} distance={20}>
-              <article className="h-full rounded-2xl border border-background3 bg-background2 p-6 transition-transform duration-200 hover:scale-105">
+              <article className="h-full rounded-2xl border border-background3 bg-background2 p-6 transition-transform duration-300 hover:scale-102">
                 <h3 className="mb-3 text-xl font-semibold text-text">
                   {block.title}
                 </h3>
@@ -171,12 +171,12 @@ export default function DefAMolePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-24">
+      <section className="pb-24">
         <FadeIn delay={0.1} duration={0.6}>
           <div className="mb-10">
-            <p className="mb-2 text-sm uppercase tracking-[0.25em] text-text3">
+            <span className="text-sm uppercase tracking-[0.25em] gradient-text">
               Gameplay Notes
-            </p>
+            </span>
 
             <h2 className="text-3xl font-semibold text-text md:text-4xl">
               Design goals of the game.
@@ -187,7 +187,7 @@ export default function DefAMolePage() {
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           {featureBlocks.map((feature, index) => (
             <FadeIn key={feature.title} delay={0.15 + index * 0.05} duration={0.6} distance={20}>
-              <article className="h-full rounded-2xl border border-background3 bg-background2 p-6 transition-transform duration-200 hover:scale-105">
+              <article className="h-full rounded-2xl border border-background3 bg-background2 p-6 transition-transform duration-300 hover:scale-102">
                 <h3 className="mb-3 text-xl font-semibold text-text">
                   {feature.title}
                 </h3>
@@ -201,12 +201,12 @@ export default function DefAMolePage() {
         </div>
       </section>
 
-      <section id="video" className="mx-auto max-w-6xl px-6 pb-24">
+      <section id="video" className="pb-24">
         <FadeIn delay={0.1} duration={0.6}>
           <div className="mb-8">
-            <p className="mb-2 text-sm uppercase tracking-[0.25em] text-text3">
+            <span className="text-sm uppercase tracking-[0.25em] gradient-text">
               Video
-            </p>
+            </span>
 
             <h2 className="text-3xl font-semibold text-text md:text-4xl">
               Trailer showcase.
@@ -221,12 +221,12 @@ export default function DefAMolePage() {
         </FadeIn>
       </section>
 
-      <section id="preview" className="mx-auto max-w-6xl px-6 pb-24">
+      <section id="preview" className="pb-24">
         <FadeIn delay={0.1} duration={0.6}>
           <div className="mb-8">
-            <p className="mb-2 text-sm uppercase tracking-[0.25em] text-text3">
+            <span className="text-sm uppercase tracking-[0.25em] gradient-text">
               Characters Preview
-            </p>
+            </span>
 
             <h2 className="text-3xl font-semibold text-text md:text-4xl">
               Placeholder canvas for game characters.
@@ -243,12 +243,12 @@ export default function DefAMolePage() {
         </FadeIn>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-28">
+      <section className="pb-28">
         <FadeIn delay={0.1} duration={0.6}>
           <div className="rounded-2xl border border-background3 bg-background2 p-8 md:p-10">
-            <p className="mb-3 text-sm uppercase tracking-[0.25em] text-text3">
+            <span className="text-sm uppercase tracking-[0.25em] gradient-text">
               Final Note
-            </p>
+            </span>
 
             <h2 className="max-w-3xl text-3xl font-semibold leading-tight text-text md:text-4xl">
               A small but complete Unity project where I helped shape the design, code and overall presentation.

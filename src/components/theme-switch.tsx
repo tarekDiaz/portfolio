@@ -14,6 +14,17 @@ export default function ThemeSwitch({ size = 32 }: ThemeSwitchProps) {
 
     useEffect(() => setMounted(true), [])
 
+    const toggleTheme = () => {
+        const root = document.documentElement;
+
+        root.classList.add("theme-transitioning");
+        window.setTimeout(() => {
+            root.classList.remove("theme-transitioning");
+        }, 350);
+
+        setTheme(resolvedTheme === "dark" ? "light" : "dark")
+    }
+
     if (!mounted) return (
         <button
             style={{ width: size, height: size }}
@@ -24,8 +35,9 @@ export default function ThemeSwitch({ size = 32 }: ThemeSwitchProps) {
     return (
         <button
             style={{ width: size, height: size }}
-            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-            className="flex items-center justify-center transition-color duration-500 text-text/50 hover:text-text cursor-pointer"
+            type="button"
+            onClick={toggleTheme}
+            className="flex items-center justify-center transition-colors duration-400 text-text/50 hover:text-text cursor-pointer"
         >
             {resolvedTheme === "dark" ? (
                 <Sun size={20 + (size-32)}/>
