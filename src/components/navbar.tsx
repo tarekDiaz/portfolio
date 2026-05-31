@@ -211,7 +211,7 @@ export default function Navbar() {
                     >
                       <span>{lang.label}</span>
                       {!isAvailable && (
-                        <span className="text-[10px] uppercase tracking-wider text-text/35 ml-1">
+                        <span className="text-[10px] uppercase tracking-wider text-primary ml-1">
                           WIP
                         </span>
                       )}
@@ -315,7 +315,7 @@ export default function Navbar() {
                   block transition-all duration-200 text-4xl
                   ${
                     pathname === link.href
-                      ? "text-primary font-medium scale-105"
+                      ? "gradient-text font-medium scale-105"
                       : "text-text hover:text-text font-light"
                   }
                 `}
@@ -353,14 +353,14 @@ export default function Navbar() {
                           !isAvailable
                             ? "text-text/35 cursor-not-allowed"
                             : currentLang === lang.code
-                            ? "text-primary scale-105 font-medium"
+                            ? "gradient-text scale-105 font-medium"
                             : "text-text hover:text-text font-light cursor-pointer"
                         }
                       `}
                     >
                       {lang.code}
                       {!isAvailable && (
-                        <span className="ml-1 align-middle text-[10px] uppercase tracking-wider">WIP</span>
+                        <span className="ml-1 align-middle text-[10px] uppercase tracking-wider text-primary">WIP</span>
                       )}
                     </button>
                       );

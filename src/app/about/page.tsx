@@ -208,14 +208,14 @@ export default function About() {
   return (
     <div className="min-h-screen max-w-5xl mx-auto pt-35 pb-20 relative">
       {/* About Me Section */}
-      <FadeIn delay={0.1} duration={0.6} distance={30}>
+      <section className="ml-4">
+        <FadeIn delay={0.1} duration={0.6} distance={30}>
           <h2 className="mb-2">
             <span className="text-sm uppercase tracking-[0.25em] gradient-text mb-4">
               Who I am
             </span>
           </h2>
-      </FadeIn>
-      <section className="ml-4">
+        </FadeIn>
         <FadeIn delay={0.2} duration={0.6}>
           <img 
             src="/assets/images/tarekDiaz.webp" 
@@ -332,14 +332,14 @@ export default function About() {
       </div>
 
       {/* Tools & Technologies Section */}
-      <FadeIn delay={0.8} duration={0.6}>
-        <h2 className="text-text/50 tracking-[0.25em] uppercase text-sm mt-16 mb-8">        
-          <span className="text-sm uppercase tracking-[0.25em] gradient-text">
-            Tools & Technologies
-          </span>
-        </h2>
-      </FadeIn>
       <section >
+        <FadeIn delay={0.8} duration={0.6}>
+          <h2 className="text-text/50 tracking-[0.25em] uppercase text-sm mt-16 mb-8">        
+            <span className="text-sm uppercase tracking-[0.25em] gradient-text">
+              Tools & Technologies
+            </span>
+          </h2>
+        </FadeIn>
         <FadeIn delay={0.9} duration={0.6}>
           <div className="relative overflow-hidden border-y border-text/10 py-6">
             <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-linear-to-r from-background to-transparent" />
@@ -359,7 +359,7 @@ export default function About() {
         </FadeIn>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-8 px-4">
           {toolSections.map((section, index) => (
-            <FadeIn key={section.title} delay={0.9 + index * 0.1} duration={0.6} distance={20}>
+            <FadeIn key={section.title} delay={0.2 + index * 0.1} duration={0.6} distance={20}>
               <div className="h-full rounded-2xl border border-text/10 bg-background2 p-6 transition-transform duration-200 hover:scale-105">
                 <h3 className="mb-4 flex items-center gap-2 text-xl font-semibold text-text">
                   <section.icon className="text-2xl text-text/70" />
@@ -387,14 +387,14 @@ export default function About() {
       </section>
 
 
-      <FadeIn delay={0.1} duration={0.6} distance={30}>
-       <h2 className="mt-16 mb-4">
-          <span className="text-sm uppercase tracking-[0.25em] gradient-text">
-            Work Identity
-          </span>
-        </h2>
-      </FadeIn>  
       <section className="mx-4">
+        <FadeIn delay={0.1} duration={0.6} distance={30}>
+          <h2 className="mt-16 mb-4">
+            <span className="text-sm uppercase tracking-[0.25em] gradient-text">
+              Work Identity
+            </span>
+          </h2>
+        </FadeIn>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           {identityBlocks.map((block, index) => {
             const Icon = block.icon;
@@ -413,7 +413,7 @@ export default function About() {
             );
           })}
         </div>
-        <FadeIn delay={0.3} duration={0.6}>
+        <FadeIn delay={0.2} duration={0.6}>
           <p className="text-text/75 mb-6 leading-relaxed text-xl">
             My work moves between development, audiovisual design and interactive technologies, 
             combining <strong>technical thinking</strong> with <strong>artistic sensitivity</strong>.
@@ -421,7 +421,7 @@ export default function About() {
           </p>
         </FadeIn>
 
-        <FadeIn delay={0.4} duration={0.6}>
+        <FadeIn delay={0.3} duration={0.6}>
           <p className="text-text/75 leading-relaxed mt-6 text-xl">
             Over last times, I have explored web development, UX/UI design, videogames, virtual reality 
             and physical computing. What interests me most is connecting different mediums to shape how 
@@ -431,14 +431,14 @@ export default function About() {
       </section>
 
       {/* Syntesys Section */}
-      <FadeIn delay={0.1} duration={0.6} distance={30}>
-       <h2 className="mt-16 mb-4">
-          <span className="text-sm uppercase tracking-[0.25em] gradient-text">
-            Where I stand
-          </span>
-        </h2>
-      </FadeIn>  
       <section className="ml-4">
+        <FadeIn delay={0.1} duration={0.6} distance={30}>
+          <h2 className="mt-16 mb-4">
+            <span className="text-sm uppercase tracking-[0.25em] gradient-text">
+              Where I stand
+            </span>
+          </h2>
+        </FadeIn>
         <FadeIn delay={0.2} duration={0.6} distance={30}>
 
           <h1 className="text-2xl md:text-2xl font-bold mb-8 text-text italic justify-center flex">

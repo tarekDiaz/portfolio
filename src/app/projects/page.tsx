@@ -57,17 +57,29 @@ const projects: ProjectItem[] = [
   }
 ];
 
-function ProjectCardIcon({ icon }: { icon: ProjectIcon }) {
+function ProjectCardIcon({
+  icon,
+  width = 90,
+  height = 90,
+  className = "text-text2",
+  gradient = false,
+}: {
+  icon: ProjectIcon;
+  width?: number;
+  height?: number;
+  className?: string;
+  gradient?: boolean;
+}) {
   switch (icon) {
     case "dits":
-      return <DitsIcon width={90} height={90} className="text-text2" />;
+      return <DitsIcon width={width} height={height} className={className} gradient={gradient} />;
     case "mole":
-      return <MoleIcon width={90} height={90} className="text-text2" />;
+      return <MoleIcon width={width} height={height} className={className} gradient={gradient} />;
     case "chopper":
-      return <ChopperIcon width={90} height={90} className="text-text2" />;
+      return <ChopperIcon width={width} height={height} className={className} gradient={gradient} />;
     case "website":
     default:
-      return <Icon width={90} height={90} className="text-text2" />;
+      return <Icon width={width} height={height} className={className} gradient={gradient} />;
   }
 }
 
@@ -108,7 +120,7 @@ export default function ProjectsPage() {
         </h2>
       </FadeIn>
 
-      <div className="grid gap-8 mx-8 px-10">
+      <div className="grid gap-8 md:px-16">
         {projects.map((project, index) => (
           <FadeIn key={project.href} delay={0.1 + index * 0.08} duration={0.6} distance={18}>
             <Link
@@ -119,7 +131,12 @@ export default function ProjectsPage() {
             >
               <div className="grid items-stretch gap-8 md:grid-cols-[1fr_220px]">
                 <div>
-                  <h2 className="project-title text-2xl font-semibold mb-4 text-text transition-all duration-300">{project.title}</h2>
+                  <h2 className="project-title mb-4 inline-flex w-fit items-center gap-4 text-2xl font-semibold text-text transition-all duration-300 max-md:gradient-text md:gap-0 md:inline-block">
+                    <span className="md:hidden flex aspect-square items-center justify-center rounded-xl p-1">
+                      <ProjectCardIcon icon={project.icon} width={56} height={56} className="text-text" />
+                    </span>
+                    <span>{project.title}</span>
+                  </h2>
                   <p className="text-text2 mb-4">{project.description}</p>
                   <div className="flex gap-2 flex-wrap">
                     {project.tags.map((tag) => (
@@ -131,11 +148,19 @@ export default function ProjectsPage() {
                       </span>
                     ))}
                   </div>
+
+                  <div className="mt-6 md:hidden overflow-hidden rounded-xl">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="h-48 w-full object-cover"
+                    />
+                  </div>
                 </div>
 
                 <div className="hidden md:flex items-center justify-center">
                   <div className="flex aspect-square items-center justify-center rounded-xl p-2">
-                    <ProjectCardIcon icon={project.icon} />
+                    <ProjectCardIcon icon={project.icon} gradient={hoveredIndex === index} />
                   </div>
                 </div>
               </div>

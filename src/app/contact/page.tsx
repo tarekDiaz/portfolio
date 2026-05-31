@@ -19,6 +19,7 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen max-w-5xl mx-auto pt-35 pb-20">
+      
       <FadeIn direction="up" duration={0.7}>
         <h2 className="mb-8">
           <span className="text-sm uppercase tracking-[0.25em] gradient-text">
@@ -26,8 +27,6 @@ export default function Contact() {
           </span>
         </h2>
       </FadeIn>
-
-      
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 px-6">
 
@@ -83,12 +82,10 @@ export default function Contact() {
         </FadeIn>
 
         {/* Left: Contact Info */}
-        <FadeIn direction="up" delay={0.1} duration={0.8}>
-          <div className="space-y-12">
-
-            <div className="space-y-8">
+          <div className="space-y-8 order-1">            
+            <FadeIn direction="up" delay={0.4} duration={0.8}>
               <div>
-                <h3 className="text-sm uppercase tracking-[0.2em] gradient-text mb-4">Email</h3>
+                <h3 className="text-sm uppercase tracking-[0.2em] gradient-text mb-4 inline-block">Email</h3>
                 <p className="text-xl text-text ml-4">
                   <button
                     onClick={handleCopyEmail}
@@ -105,9 +102,10 @@ export default function Contact() {
                   </button>
                 </p>
               </div>
+            </FadeIn>
 
-              <div>
-                <h3 className="text-sm uppercase tracking-[0.2em] gradient-text mb-4">Social</h3>
+            <FadeIn direction="up" delay={0.6} duration={0.8}>
+                <h3 className="text-sm uppercase tracking-[0.2em] gradient-text mb-4 inline-block">Social</h3>
                 <div className="flex flex-col gap-3 mx-4">
                   <a
                     href="https://www.linkedin.com/in/tarek-diaz-carissimi"
@@ -128,14 +126,10 @@ export default function Contact() {
                     GitHub
                   </a>
                 </div>
-              </div>
+              </FadeIn>
+
             </div>
           </div>
-        </FadeIn>
-
-        {/* Right: Simple Contact Form */}
-        
-      </div>
-    </div>
+        </div>
   );
 }

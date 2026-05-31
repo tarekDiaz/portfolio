@@ -356,7 +356,7 @@ export default function HeroCanvas() {
 
       <div
         ref={hoverRightLabelRef}
-        className="pointer-events-none absolute right-4 top-1/2 z-20 -translate-y-1/2 rounded-full border border-text/20 bg-background/65 px-4 py-2 text-xs uppercase tracking-[0.25em] text-text opacity-0 backdrop-blur-md transition-opacity duration-200"
+        className="pointer-events-none absolute right-4 top-1/2 z-20 -translate-y-1/2 rounded-full border border-text/20 bg-background/65 px-4 py-2 text-xs uppercase tracking-[0.25em] text-primary2 opacity-0 backdrop-blur-md transition-opacity duration-200"
       >
         Work in progress
       </div>

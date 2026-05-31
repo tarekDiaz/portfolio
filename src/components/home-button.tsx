@@ -29,7 +29,7 @@ export default function HomeButton({
         px-8 py-3
         rounded-full
         border border-text3
-        text-text3
+        text-text3 max-md:text-text
         transition-all duration-300
         hover:border-text
         gap-3

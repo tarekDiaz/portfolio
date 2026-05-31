@@ -9,6 +9,7 @@ import FadeIn from "@/components/fade-in";
 import { useState } from "react";
 import Link from "next/link";
 import HomeButton from "@/components/home-button";
+import { FaCode, FaLaptopCode, FaPalette } from "react-icons/fa6";
 
 export default function Home() {
 
@@ -32,6 +33,30 @@ export default function Home() {
     },
   ];
 
+  const contactCards = [
+    {
+      title: "Software Development",
+      description:
+        "Interested in junior roles where I can build, learn and improve through clean code, problem-solving and real projects.",
+      delay: 0.15,
+      icon: FaCode,
+    },
+    {
+      title: "Digital Products",
+      description:
+        "Open to working on websites, interfaces, frontend experiences and digital products that combine usability and visual design.",
+      delay: 0.25,
+      icon: FaLaptopCode,
+    },
+    {
+      title: "Design & Multimedia",
+      description:
+        "Also interested in roles related to UX/UI, audiovisual design, interactive media, 3D, creative tools and multimedia experiences.",
+      delay: 0.35,
+      icon: FaPalette,
+    },
+  ];
+
   return (
     <main className="w-full overflow-hidden">
       {/* HERO SECTION */}
@@ -43,7 +68,7 @@ export default function Home() {
           {/* Top content */}
           <div className="space-y-2">
             <FadeIn delay={0.1} duration={0.8} distance={30}>
-              <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-medium gradient-text leading-none pt-5">
+              <h1 className="text-5xl tracking-wide md:text-[clamp(2.5rem,8vw,5rem)] font-medium gradient-text leading-none pt-5">
                 TAREK DIAZ CARISSIMI
               </h1>
             </FadeIn>
@@ -73,7 +98,7 @@ export default function Home() {
       </section>
 
       {/* ABOUT / SUMMARY */}
-      <section className="relative z-10 py-30">
+      <section className="relative z-10 py-16 md:py-24">
         <div className="mb-4 max-w-6xl mx-auto">
           <FadeIn delay={0.1} direction="none">
             <span className="text-sm uppercase tracking-[0.25em] gradient-text mb-4">
@@ -85,13 +110,13 @@ export default function Home() {
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-4 md:gap-12 items-start">
           <FadeIn direction="left" delay={0.2}>
             <div>
-              <h1 className="mb-8 w-full leading-tight text-4xl text-text italic md:text-[clamp(1.5rem,3.7vw,3rem)] md:block hidden">
+              <h2 className="mb-8 w-full leading-tight text-4xl text-text italic md:text-[clamp(1.5rem,3.7vw,3rem)] md:block hidden">
                 <span className="whitespace-nowrap">"Caught within</span>
                 <br />
                 <span className="whitespace-nowrap ml-10">the logic of art"</span>
-              </h1>
+              </h2>
               <h2 className="my-8 w-full justify-center text-4xl italic md:hidden flex">
-                <span className="whitespace-nowrap">"Caught within the logic of art"</span>
+                <span>"Caught within the logic of art"</span>
               </h2>
             </div>
           </FadeIn>
@@ -125,8 +150,7 @@ export default function Home() {
       </section>
 
       {/* SELECTED WORK */}
-      <section className="px-6 py-30">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-16 md:py-24">
           <div className="mb-12">
             <FadeIn direction="none" delay={0.1}>
               <span className="text-sm uppercase tracking-[0.25em] gradient-text mb-4">
@@ -182,7 +206,7 @@ export default function Home() {
                         ))}
                       </div>
 
-                      <div className="pt-4 flex items-center gap-3 text-text4 group-hover:text-text transition-colors duration-300">
+                      <div className="pt-6 flex items-center gap-3 text-text4 group-hover:text-text transition-colors duration-300 justify-center md:justify-start">
                         <span>Explore project</span>
                         <div className="transition-transform duration-300 group-hover:translate-x-1">
                           <Arrow width={24} height={24} angle={90} />
@@ -202,13 +226,11 @@ export default function Home() {
               </HomeButton>
             </FadeIn>
           </div>
-        </div>
       </section>
 
       {/* CONTACT */}
 
-      <section className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-16 md:py-24">
           <FadeIn  direction="none" delay={0.2}>
             <span className="text-sm uppercase tracking-[0.25em] gradient-text">
               Contact
@@ -229,48 +251,26 @@ export default function Home() {
           </FadeIn>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12">
-            <FadeIn delay={0.15}>
-              <div className="h-full rounded-2xl border border-background3 p-5 hover:scale-102 hover:bg-background2 transition-all duration-300">
-                <h3 className="text-text font-semibold mb-2">
-                  Software Development
-                </h3>
-                <p className="text-text3 text-sm leading-relaxed">
-                  Interested in junior roles where I can build, learn and improve
-                  through clean code, problem-solving and real projects.
-                </p>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.25}>
-              <div className="h-full rounded-2xl border border-background3 p-5 hover:scale-102 hover:bg-background2 transition-all duration-300">
-                <h3 className="text-text font-semibold mb-2">
-                  Digital Products
-                </h3>
-                <p className="text-text3 text-sm leading-relaxed">
-                  Open to working on websites, interfaces, frontend experiences and
-                  digital products that combine usability and visual design.
-                </p>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.35}>
-              <div className="h-full rounded-2xl border border-background3 p-5 hover:scale-102 hover:bg-background2 transition-all duration-300">
-                <h3 className="text-text font-semibold mb-2">
-                  Design & Multimedia
-                </h3>
-                <p className="text-text3 text-sm leading-relaxed">
-                  Also interested in roles related to UX/UI, audiovisual design,
-                  interactive media, 3D, creative tools and multimedia experiences.
-                </p>
-              </div>
-            </FadeIn>
+            {contactCards.map((card) => (
+              <FadeIn key={card.title} delay={card.delay}>
+                <div className="h-full rounded-2xl border border-background3 p-5 flex flex-col justify-center md:justify-start hover:scale-102 hover:bg-background2 transition-all duration-300">
+                  <h3 className="inline-flex items-center gap-4 text-text font-semibold md:mb-2">
+                    <card.icon className="h-6 w-6 text-text" aria-hidden="true" />
+                    {card.title}
+                  </h3>
+                  <p className="text-text3 text-sm leading-relaxed hidden md:block">
+                    {card.description}
+                  </p>
+                </div>
+              </FadeIn>
+            ))}
           </div>
 
           <div className="mt-12 border-t border-background3 pt-16">
-            <div className="grid gap-8 md:grid-cols-2 px-8">
+            <div className="grid gap-8 md:grid-cols-2 px-0 md:px-8 justify-items-center md:justify-items-stretch">
 
               <FadeIn direction="left" delay={0.2}>
-              <div className="space-y-3 ">
+              <div className="w-full max-w-md space-y-3 text-center md:text-left md:max-w-none">
                 <p className="text-sm uppercase tracking-[0.25em] gradient-text">
                   Contact me via email:
                 </p>
@@ -278,7 +278,7 @@ export default function Home() {
                 <button
                   type="button"
                   onClick={handleCopyEmail}
-                  className="text-xl inline-flex items-center gap-2 text-left text-text2 transition-colors hover:text-text pt-2 pl-2"
+                  className="mx-auto md:mx-0 text-xl inline-flex items-center gap-2 text-center md:text-left text-text2 transition-colors hover:text-text pt-2"
                   aria-label={`Copy ${email} to clipboard`}
                 >
                   <span>{email}</span>
@@ -289,7 +289,7 @@ export default function Home() {
               </div>
             </FadeIn>
             <FadeIn direction="right" delay={0.2}>
-              <div className="space-y-4 md:text-right text-left">
+              <div className="w-full max-w-md space-y-4 text-center md:text-right md:max-w-none">
                 <p className="text-sm uppercase tracking-[0.25em] gradient-text">
                   download my cv!
                 </p>
@@ -307,7 +307,7 @@ export default function Home() {
                     hover:text-text
                     hover:border-text
                     gap-3
-                    mx-2
+                    mx-auto md:mx-2
                   "
                 >
                   <Download width={24} height={24} />
@@ -318,14 +318,13 @@ export default function Home() {
             </div>
             
             <FadeIn delay={0.4}>
-            <div className="mt-8 flex justify-center">
-              <HomeButton href="/contact" className="group">
-                Contact page
-              </HomeButton>
-            </div>
+              <div className="mt-16 flex justify-center ">
+                <HomeButton href="/contact" className="group">
+                  Contact page
+                </HomeButton>
+              </div>
             </FadeIn>
           </div>
-        </div>
       </section>
     </main>
   );
