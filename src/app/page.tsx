@@ -58,7 +58,7 @@ export default function Home() {
   ];
 
   return (
-    <main className="w-full overflow-hidden">
+    <div className="w-full overflow-hidden max-w-6xl mx-auto">
       {/* HERO SECTION */}
       <section className="relative h-dvh w-full flex items-center justify-center overflow-hidden">
 
@@ -99,15 +99,13 @@ export default function Home() {
 
       {/* ABOUT / SUMMARY */}
       <section className="relative z-10 py-16 md:py-24">
-        <div className="mb-4 max-w-6xl mx-auto">
           <FadeIn delay={0.1} direction="none">
             <span className="text-sm uppercase tracking-[0.25em] gradient-text mb-4">
               About
             </span>
           </FadeIn>
-        </div>
 
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-4 md:gap-12 items-start">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-12 items-start">
           <FadeIn direction="left" delay={0.2}>
             <div>
               <h2 className="mb-8 w-full leading-tight text-4xl text-text italic md:text-[clamp(1.5rem,3.7vw,3rem)] md:block hidden">
@@ -326,6 +324,6 @@ export default function Home() {
             </FadeIn>
           </div>
       </section>
-    </main>
+    </div>
   );
 }
