@@ -1,6 +1,7 @@
 "use client";
 
 import FadeIn from "@/components/fade-in";
+import DitsCanvas from "@/components/dits-canvas";
 import HomeButton from "@/components/home-button";
 import YouTubeVideo from "@/components/youtube-video";
 import Link from "next/link";
@@ -494,30 +495,7 @@ export default function DrumminInTheStudioPage() {
         </FadeIn>
 
         <FadeIn delay={0.2} duration={0.6}>
-          <div className="relative h-[60vh] min-h-90 w-full overflow-hidden rounded-2xl border border-background3 bg-background2">
-            <div className="absolute inset-0 opacity-[0.04]">
-              <div className="h-full w-full bg-[linear-gradient(to_right,currentColor_1px,transparent_1px),linear-gradient(to_bottom,currentColor_1px,transparent_1px)] bg-position-[48px_48px] text-text" />
-            </div>
-
-            <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-              <p className="mb-2 text-xl font-semibold text-text">
-                3D Web Preview Coming Soon
-              </p>
-
-              <p className="max-w-md text-sm leading-relaxed text-text3">
-                Responsive canvas area prepared for a future Three.js or React
-                Three Fiber implementation of the studio space.
-              </p>
-            </div>
-
-            {/* Future interactive canvas:
-            
-            <Canvas className="h-full w-full">
-              ...
-            </Canvas>
-            
-            */}
-          </div>
+          <DitsCanvas />
         </FadeIn>
       </section>
 
