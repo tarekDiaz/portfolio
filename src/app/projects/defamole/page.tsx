@@ -1,7 +1,8 @@
 import Link from "next/link";
 import FadeIn from "@/components/fade-in";
+import HomeButton from "@/components/home-button";
 import YouTubeVideo from "@/components/youtube-video";
-import DefaMoleCanvas from "@/components/defamole-canvas";
+import CharacterPreviewCanvas from "@/components/character-preview-canvas";
 
 const projectTags = [
   "Unity",
@@ -60,6 +61,63 @@ const featureBlocks = [
   },
 ];
 
+const characters = {
+  moles: [
+    {
+      title: "Baby Mole",
+      modelSrc: "/models/moles/BabyMole.glb",
+      description: "A small and simple mole used for the earliest enemy presence and lighter encounter beats.",
+    },
+    {
+      title: "Basic Mole",
+      modelSrc: "/models/moles/BasicMole.glb",
+      description: "The standard mole unit, acting as the base enemy shape for the game.",
+    },
+    {
+      title: "Evasive Mole",
+      modelSrc: "/models/moles/EvasiveMole.glb",
+      description: "A quicker mole variant built to slip past defenses and force reactive placement.",
+    },
+    {
+      title: "Explosive Mole",
+      modelSrc: "/models/moles/ExplosiveMole.glb",
+      description: "A high-threat mole that suggests burst damage or danger on contact.",
+    },
+    {
+      title: "Mother Mole",
+      modelSrc: "/models/moles/MotherMole.glb",
+      description: "A larger, more important mole that reads like a tougher or support-oriented enemy.",
+    },
+    {
+      title: "Tank Mole",
+      modelSrc: "/models/moles/TankMole.glb",
+      description: "A heavy mole with a bulkier silhouette, meant to feel durable and imposing.",
+    },
+  ],
+  others: [
+    {
+      title: "Ant",
+      modelSrc: "/models/moles/PdV_Model_Ant.glb",
+      description: "A small insect defender with a compact shape that works well for quick support roles.",
+    },
+    {
+      title: "Beetle",
+      modelSrc: "/models/moles/PdV_Model_Beetle.glb",
+      description: "A sturdier insect character that can read as a reliable frontline defender.",
+    },
+    {
+      title: "Snail",
+      modelSrc: "/models/moles/PdV_Model_Snail.glb",
+      description: "A slower but recognizable support unit, useful for variety in the insect roster.",
+    },
+    {
+      title: "Worm",
+      modelSrc: "/models/moles/PdV_Model_Worm.glb",
+      description: "A simple underground creature that fits the garden theme and adds visual contrast.",
+    },
+  ],
+};
+
 export default function DefAMolePage() {
 
   return (
@@ -102,10 +160,10 @@ export default function DefAMolePage() {
             </Link>
 
             <Link
-              href="#preview"
+              href="#characters"
               className="inline-flex items-center justify-center rounded-full border border-background3 bg-background2 px-6 py-3 text-sm uppercase tracking-[0.22em] text-text2 transition-all duration-300 hover:scale-102 hover:border-text hover:text-text"
             >
-              Characters preview
+              Characters
             </Link>
           </div>
         </FadeIn>
@@ -221,38 +279,78 @@ export default function DefAMolePage() {
         </FadeIn>
       </section>
 
-      <section id="preview" className="pb-24">
+      <section id="characters" className="pb-24">
         <FadeIn delay={0.1} duration={0.6}>
           <div className="mb-8">
             <span className="text-sm uppercase tracking-[0.25em] gradient-text">
-              Characters Preview
+              Characters
             </span>
 
             <h2 className="text-3xl font-semibold text-text md:text-4xl">
-              Placeholder canvas for game characters.
+              Models and enemies from Def a Mole.
             </h2>
 
             <p className="mt-4 max-w-3xl leading-relaxed text-text2">
-              The canvas can load a model from <span className="font-medium text-text">/models/defamole.glb</span> if you add one, or it can stay as an animated placeholder for the characters of the game.
+              First you can see the moles used as enemies, followed by the other character models from the game. Each card keeps the canvas small so two fit on desktop and one stacks on mobile.
             </p>
           </div>
         </FadeIn>
 
-        <FadeIn delay={0.2} duration={0.6}>
-          <DefaMoleCanvas />
-        </FadeIn>
+        <div className="space-y-10">
+          <div>
+            <FadeIn delay={0.15} duration={0.6}>
+              <div className="mb-5">
+                <span className="text-xs uppercase tracking-[0.25em] text-text3">Moles</span>
+              </div>
+            </FadeIn>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              {characters.moles.map((character, index) => (
+                <FadeIn key={character.title} delay={0.15 + index * 0.04} duration={0.6} distance={18}>
+                  <article className="overflow-hidden rounded-2xl border border-background3 bg-background2">
+                    <CharacterPreviewCanvas modelSrc={character.modelSrc} title={character.title} />
+
+                    <div className="p-5">
+                      <h3 className="text-lg font-semibold text-text">{character.title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-text3">{character.description}</p>
+                    </div>
+                  </article>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <FadeIn delay={0.15} duration={0.6}>
+              <div className="mb-5">
+                <span className="text-xs uppercase tracking-[0.25em] text-text3">Animal Turrets</span>
+              </div>
+            </FadeIn>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              {characters.others.map((character, index) => (
+                <FadeIn key={character.title} delay={0.15 + index * 0.04} duration={0.6} distance={18}>
+                  <article className="overflow-hidden rounded-2xl border border-background3 bg-background2">
+                    <CharacterPreviewCanvas modelSrc={character.modelSrc} title={character.title} />
+
+                    <div className="p-5">
+                      <h3 className="text-lg font-semibold text-text">{character.title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-text3">{character.description}</p>
+                    </div>
+                  </article>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
 
       <section className="pb-28">
         <FadeIn delay={0.1} duration={0.6}>
-          <div className="rounded-2xl border border-background3 bg-background2 p-8 md:p-10">
-            <span className="text-sm uppercase tracking-[0.25em] gradient-text">
-              Final Note
-            </span>
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:flex-wrap sm:justify-center">
+            <HomeButton href="/contact">Contact</HomeButton>
 
-            <h2 className="max-w-3xl text-3xl font-semibold leading-tight text-text md:text-4xl">
-              A small but complete Unity project where I helped shape the design, code and overall presentation.
-            </h2>
+            <HomeButton href="/projects">See other projects</HomeButton>
           </div>
         </FadeIn>
       </section>

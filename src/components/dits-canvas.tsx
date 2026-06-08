@@ -25,7 +25,7 @@ export default function DitsCanvas() {
 
     const scene = new THREE.Scene();
     scene.background = null;
-    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(45, 1, 0.01, 1000);
     const renderer = new THREE.WebGLRenderer({
       canvas,
       alpha: true,
@@ -38,7 +38,22 @@ export default function DitsCanvas() {
 
     const raycaster = new THREE.Raycaster();
     const pointer = new THREE.Vector2();
-    const clock = new THREE.Clock();
+
+    // Temporizador ligero que reemplaza a THREE.Clock
+    class ThreeTimer {
+      last: number;
+      constructor() {
+        this.last = performance.now();
+      }
+      getDelta() {
+        const now = performance.now();
+        const delta = (now - this.last) / 1000;
+        this.last = now;
+        return delta;
+      }
+    }
+
+    const threeTimer = new ThreeTimer();
     const bounceStates = new Map<THREE.Object3D, BounceState>();
 
     const ambientLight = new THREE.AmbientLight(0xffffff, 2.4);
@@ -73,15 +88,16 @@ export default function DitsCanvas() {
 
       state.factor = 1;
       state.velocity = 0;
-      state.targetFactor = 1.18;
+      state.targetFactor = 1.12;
       state.phase = "up";
       object.scale.copy(state.baseScale);
     };
 
     const updateBounces = (delta: number) => {
       bounceStates.forEach((state, object) => {
-        const springStrength = 28;
-        const damping = 11;
+        // parámetros suavizados: menor fuerza de resorte y mayor amortiguación
+        const springStrength = 16;
+        const damping = 14;
 
         state.velocity += (state.targetFactor - state.factor) * springStrength * delta;
         state.velocity *= Math.exp(-damping * delta);
@@ -143,7 +159,11 @@ export default function DitsCanvas() {
 
         const fittedBox = new THREE.Box3().setFromObject(model);
         const fittedSize = fittedBox.getSize(new THREE.Vector3()).length();
-        camera.position.set(0, fittedSize * 0.2, fittedSize * 0.75);
+
+        // Posicionar la cámara: más frontal y más cerca
+        // Reducimos Y para estar más a la altura del frente y reducimos Z para acercar
+        camera.position.set(0, fittedSize * 0.15, fittedSize * 0.60);
+        camera.lookAt(0, 0, 0);
 
         scene.add(model);
         setLoadState("ready");
@@ -179,7 +199,7 @@ export default function DitsCanvas() {
     const animate = () => {
       animationFrame = requestAnimationFrame(animate);
 
-      const delta = Math.min(clock.getDelta(), 0.033);
+      const delta = Math.min(threeTimer.getDelta(), 0.05);
 
       if (model) {
         updateBounces(delta);
