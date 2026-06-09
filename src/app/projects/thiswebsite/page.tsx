@@ -1,6 +1,6 @@
-import Link from "next/link";
 import FadeIn from "@/components/fade-in";
 import EyeLogo from "@/components/icons/EyeLogo";
+import HomeButton from "@/components/home-button";
 
 const projectTags = [
   "Next.js",
@@ -111,7 +111,7 @@ export default function ThisWebsitePage() {
             Personal Portfolio Website
           </span>
 
-          <h1 className="mt-4 max-w-4xl text-5xl font-bold leading-tight md:text-7xl">
+          <h1 className="mt-4 max-w-4xl text-5xl font-bold leading-tight md:text-6xl">
             This website!
           </h1>
 
@@ -132,34 +132,18 @@ export default function ThisWebsitePage() {
             ))}
           </div>
         </FadeIn>
-
-        <FadeIn delay={0.3} duration={0.6}>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <Link
-              href="#process"
-              className="inline-flex items-center justify-center rounded-full border border-background3 bg-background2 px-6 py-3 text-sm uppercase tracking-[0.22em] text-text2 transition-all duration-300 hover:scale-102 hover:border-text hover:text-text"
-            >
-              View process
-            </Link>
-
-            <Link
-              href="#logo"
-              className="inline-flex items-center justify-center rounded-full border border-background3 bg-background2 px-6 py-3 text-sm uppercase tracking-[0.22em] text-text2 transition-all duration-300 hover:scale-102 hover:border-text hover:text-text"
-            >
-              Logo meaning
-            </Link>
-          </div>
-        </FadeIn>
       </section>
 
       <section className="pb-24">
-        <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] items-start">
-          <FadeIn delay={0.1} duration={0.6}>
-            <div>
-              <span className="text-sm uppercase tracking-[0.25em] gradient-text">
-                Overview
-              </span>
+        <FadeIn delay={0.1} duration={0.6}>
+          <span className="text-sm uppercase tracking-[0.25em] gradient-text">
+            Overview
+          </span>
+        </FadeIn>
 
+        <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] items-start">
+          <FadeIn delay={0.2} duration={0.6}>
+            <div>
               <h2 className="text-3xl font-semibold leading-tight text-text md:text-4xl">
                 A personal site designed to show both projects and identity.
               </h2>
@@ -243,13 +227,15 @@ export default function ThisWebsitePage() {
       </section>
 
       <section id="logo" className="pb-24">
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] items-start">
-          <FadeIn delay={0.1} duration={0.6}>
-            <div>
-              <span className="text-sm uppercase tracking-[0.25em] gradient-text">
-                Logo
-              </span>
+        <FadeIn delay={0.1} duration={0.6}>
+          <span className="text-sm uppercase tracking-[0.25em] gradient-text">
+            Logo
+          </span>
+        </FadeIn>
 
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] items-start">
+          <FadeIn delay={0.2} duration={0.6}>
+            <div>
               <h2 className="text-3xl font-semibold text-text md:text-4xl">
                 The logo represents vision, attention and identity.
               </h2>
@@ -288,11 +274,7 @@ export default function ThisWebsitePage() {
               </div>
 
               <div>
-                <span className="text-sm uppercase tracking-[0.25em] gradient-text">
-                  Identity Detail
-                </span>
-
-                <h2 className="max-w-3xl text-3xl font-semibold leading-tight text-text md:text-4xl">
+                <h2 className="max-w-3xl text-3xl font-semibold leading-tight text-text">
                   A logo that keeps the site recognizable across every page and section.
                 </h2>
 
@@ -307,14 +289,10 @@ export default function ThisWebsitePage() {
 
       <section className="pb-28">
         <FadeIn delay={0.1} duration={0.6}>
-          <div className="rounded-2xl border border-background3 bg-background2 p-8 md:p-10">
-            <span className="text-sm uppercase tracking-[0.25em] gradient-text">
-              Final Note
-            </span>
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:flex-wrap sm:justify-center">
+            <HomeButton href="/contact">Contact</HomeButton>
 
-            <h2 className="max-w-3xl text-3xl font-semibold leading-tight text-text md:text-4xl">
-              The result is a portfolio built to present my work, my tools and my design identity in one place.
-            </h2>
+            <HomeButton href="/projects">See more</HomeButton>
           </div>
         </FadeIn>
       </section>
