@@ -2,7 +2,7 @@
 
 import { Suspense, lazy } from "react";
 
-const HeroCanvas = lazy(() => import("./hero-canvas"));
+const HeroCanvas = lazy(() => import("./wavy-sphere"));
 
 function HeroCanvasFallback() {
   return (
