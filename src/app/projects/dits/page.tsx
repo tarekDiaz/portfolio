@@ -197,10 +197,10 @@ export default function DrumminInTheStudioPage() {
       <section className="pb-16">
         <FadeIn delay={0.1} duration={0.6} distance={30}>
           <span className="text-sm uppercase tracking-[0.25em] gradient-text">
-            Project
+            VR Music Application
           </span>
 
-          <h1 className="max-w-4xl font-bold leading-tight text-text text-5xl">
+          <h1 className="max-w-4xl font-bold leading-tight text-text text-5xl md:text-6xl">
             Drummin In The Studio
           </h1>
           <div className="mt-4 flex flex-wrap gap-2">
@@ -275,7 +275,7 @@ export default function DrumminInTheStudioPage() {
         <FadeIn delay={0.1} duration={0.6}>
           <div className="mb-6">
             <span className="mb-2 text-sm uppercase tracking-[0.25em] gradient-text">
-              Demo
+              Video
             </span>
           </div>
         </FadeIn>

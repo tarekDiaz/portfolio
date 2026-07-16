@@ -128,7 +128,7 @@ export default function DefAMolePage() {
             Unity Game Project
           </span>
 
-          <h1 className="mt-4 max-w-4xl text-5xl font-bold leading-tight md:text-7xl">
+          <h1 className="mt-4 max-w-4xl text-5xl font-bold leading-tight md:text-6xl">
             Def a Mole.
           </h1>
 
@@ -149,34 +149,33 @@ export default function DefAMolePage() {
             ))}
           </div>
         </FadeIn>
+      </section>
 
-        <FadeIn delay={0.3} duration={0.6}>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <Link
-              href="#video"
-              className="inline-flex items-center justify-center rounded-full border border-background3 bg-background2 px-6 py-3 text-sm uppercase tracking-[0.22em] text-text2 transition-all duration-300 hover:scale-102 hover:border-text hover:text-text"
-            >
-              Watch video
-            </Link>
-
-            <Link
-              href="#characters"
-              className="inline-flex items-center justify-center rounded-full border border-background3 bg-background2 px-6 py-3 text-sm uppercase tracking-[0.22em] text-text2 transition-all duration-300 hover:scale-102 hover:border-text hover:text-text"
-            >
-              Characters
-            </Link>
+      <section id="video" className="pb-24">
+        <FadeIn delay={0.1} duration={0.6}>
+          <div className="mb-8">
+            <span className="text-sm uppercase tracking-[0.25em] gradient-text">
+              Video
+            </span>
           </div>
+        </FadeIn>
+
+        <FadeIn delay={0.2} duration={0.6}>
+
+            <YouTubeVideo videoId="zl9m7LViXJw" className="mx-auto max-w-4xl"/>
+
         </FadeIn>
       </section>
 
       <section className="pb-24">
+        <FadeIn delay={0.1} duration={0.6}>
+          <span className="text-sm uppercase tracking-[0.25em] gradient-text">
+            Overview
+          </span>
+        </FadeIn>
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] items-start">
-          <FadeIn delay={0.1} duration={0.6}>
+          <FadeIn delay={0.2} duration={0.6}>
             <div>
-              <span className="text-sm uppercase tracking-[0.25em] gradient-text">
-                Overview
-              </span>
-
               <h2 className="text-3xl font-semibold leading-tight text-text md:text-4xl">
                 A tower defense game about protecting the garden.
               </h2>
@@ -259,25 +258,7 @@ export default function DefAMolePage() {
         </div>
       </section>
 
-      <section id="video" className="pb-24">
-        <FadeIn delay={0.1} duration={0.6}>
-          <div className="mb-8">
-            <span className="text-sm uppercase tracking-[0.25em] gradient-text">
-              Video
-            </span>
-
-            <h2 className="text-3xl font-semibold text-text md:text-4xl">
-              Trailer showcase.
-            </h2>
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={0.2} duration={0.6}>
-
-            <YouTubeVideo videoId="zl9m7LViXJw" />
-
-        </FadeIn>
-      </section>
+      
 
       <section id="characters" className="pb-24">
         <FadeIn delay={0.1} duration={0.6}>

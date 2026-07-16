@@ -1,7 +1,9 @@
-import Link from "next/link";
 import FadeIn from "@/components/fade-in";
 import YouTubeVideo from "@/components/youtube-video";
 import ChopperCanvas from "@/components/chopper-canvas";
+import HomeButton from "@/components/home-button";
+import { FaProjectDiagram } from "react-icons/fa";
+import { FaCubes, FaPalette, FaPersonRunning, FaStar, FaVideo } from "react-icons/fa6";
 
 const projectTags = [
   "3ds Max",
@@ -17,26 +19,32 @@ const projectTags = [
 const processBlocks = [
   {
     title: "Modeling",
+    icon: FaCubes,
     text: "I built the character from scratch in 3ds Max, shaping the main volumes, proportions and silhouette to keep Chopper recognizable while staying clean for animation.",
   },
   {
     title: "Rigging",
+    icon: FaProjectDiagram,
     text: "The rig was prepared to support facial expression and body movement, making the model ready for animation without breaking the topology.",
   },
   {
     title: "Texturing",
+    icon: FaPalette,
     text: "I applied the materials and textures needed to preserve the character's identity and make the render read well under different lighting conditions.",
   },
   {
     title: "Animation",
+    icon: FaPersonRunning,
     text: "The final motion focuses on a smooth presentation loop, with controlled timing and clean movement to showcase the model from multiple angles.",
   },
   {
     title: "Editing & Rendering",
+    icon: FaVideo,
     text: "After rendering the shots, I edited the final sequence to present the model in a polished way suitable for portfolio viewing and sharing.",
   },
   {
     title: "Final Look",
+    icon: FaStar,
     text: "The goal was to create a compact 3D piece that communicates character, technique and finish through a clear animation showcase.",
   },
 ];
@@ -52,7 +60,7 @@ export default function ThreeDAnimationsPage() {
             3D Animation Project
           </span>
 
-          <h1 className="mt-4 max-w-4xl text-5xl font-bold leading-tight md:text-7xl">
+          <h1 className="mt-4 max-w-4xl text-5xl font-bold leading-tight md:text-6xl">
             Tony Tony Chopper, animated in 3ds Max.
           </h1>
 
@@ -73,24 +81,6 @@ export default function ThreeDAnimationsPage() {
             ))}
           </div>
         </FadeIn>
-
-        <FadeIn delay={0.3} duration={0.6}>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <Link
-              href="#video"
-              className="inline-flex items-center justify-center rounded-full border border-background3 bg-background2 px-6 py-3 text-sm uppercase tracking-[0.22em] text-text2 transition-all duration-300 hover:scale-102 hover:border-text hover:text-text"
-            >
-              Watch video
-            </Link>
-
-            <Link
-              href="#overview"
-              className="inline-flex items-center justify-center rounded-full border border-background3 bg-background2 px-6 py-3 text-sm uppercase tracking-[0.22em] text-text2 transition-all duration-300 hover:scale-102 hover:border-text hover:text-text"
-            >
-              3D preview
-            </Link>
-          </div>
-        </FadeIn>
       </section>
 
       <section id="video" className="pb-24">
@@ -102,20 +92,8 @@ export default function ThreeDAnimationsPage() {
           </div>
         </FadeIn>  
 
-        <FadeIn delay={0.1} duration={0.6}>
-        
-            <h2 className="text-3xl font-semibold text-text md:text-4xl">
-              Presentation and final animation.
-            </h2>
-
-            <p className="mt-4 max-w-3xl leading-relaxed text-text2">
-              The YouTube embed is ready here. Add your final video ID in this file to display the actual presentation clip.
-            </p>
-
-        </FadeIn>
-
         <FadeIn delay={0.2} duration={0.6}>
-            <YouTubeVideo videoId="syyTFcJQYGs" />
+            <YouTubeVideo videoId="syyTFcJQYGs" className="mx-auto max-w-4xl" />
         </FadeIn>
       </section>
 
@@ -171,8 +149,12 @@ export default function ThreeDAnimationsPage() {
           {processBlocks.map((block, index) => (
             <FadeIn key={block.title} delay={0.15 + index * 0.05} duration={0.6} distance={20}>
               <article className="h-full rounded-2xl border border-background3 bg-background2 p-6 transition-transform duration-300 hover:scale-102">
-                <h3 className="mb-3 text-xl font-semibold text-text">
-                  {block.title}
+                <h3 className="mb-3 flex items-center gap-3 text-xl font-semibold text-text">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center text-text2">
+                    <block.icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+
+                  <span>{block.title}</span>
                 </h3>
 
                 <p className="text-sm leading-relaxed text-text3">
@@ -183,19 +165,17 @@ export default function ThreeDAnimationsPage() {
           ))}
         </div>
       </section>
+
       <section className="pb-28">
         <FadeIn delay={0.1} duration={0.6}>
-          <div className="rounded-2xl border border-background3 bg-background2 p-8 md:p-10">
-            <span className="text-sm uppercase tracking-[0.25em] gradient-text">
-              Final Note
-            </span>
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:flex-wrap sm:justify-center">
+            <HomeButton href="/contact">Contact</HomeButton>
 
-            <h2 className="max-w-3xl text-3xl font-semibold leading-tight text-text md:text-4xl">
-              A compact character piece that shows the full 3D pipeline from modeling to final render.
-            </h2>
+            <HomeButton href="/projects">See more</HomeButton>
           </div>
         </FadeIn>
       </section>
+      
     </main>
   );
 }
