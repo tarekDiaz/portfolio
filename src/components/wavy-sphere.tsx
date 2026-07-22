@@ -209,6 +209,41 @@ function InnerCoreSphere() {
 }
 
 function Scene() {
+  const mouseDrivenGroupRef = useRef<THREE.Group>(null);
+  const pointerRef = useRef({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handlePointerMove = (event: PointerEvent) => {
+      pointerRef.current.x = (event.clientX / window.innerWidth) * 2 - 1;
+      pointerRef.current.y = -((event.clientY / window.innerHeight) * 2 - 1);
+    };
+
+    window.addEventListener("pointermove", handlePointerMove);
+
+    return () => {
+      window.removeEventListener("pointermove", handlePointerMove);
+    };
+  }, []);
+
+  useFrame(() => {
+    if (!mouseDrivenGroupRef.current) return;
+
+    const targetRotationX = pointerRef.current.y * 0.28;
+    const targetRotationY = pointerRef.current.x * 0.45;
+
+    mouseDrivenGroupRef.current.rotation.x = THREE.MathUtils.lerp(
+      mouseDrivenGroupRef.current.rotation.x,
+      targetRotationX,
+      0.08
+    );
+
+    mouseDrivenGroupRef.current.rotation.y = THREE.MathUtils.lerp(
+      mouseDrivenGroupRef.current.rotation.y,
+      targetRotationY,
+      0.08
+    );
+  });
+
   return (
     <>
       <ambientLight intensity={0.38} />
@@ -219,15 +254,17 @@ function Scene() {
       <pointLight position={[0, 0, 4]} intensity={1.4} color="#ffffff" />
       <pointLight position={[2, -1, 2]} intensity={0.8} color="#f5f5f5" />
 
-      <InnerCoreSphere />
-      <AnimatedOuterSphere />
+      <group ref={mouseDrivenGroupRef}>
+        <InnerCoreSphere />
+        <AnimatedOuterSphere />
+      </group>
     </>
   );
 }
 
 export default function WavyMetalSphere() {
   return (
-    <div className="relative h-[420px] w-[420px]">
+    <div className="relative h-105 w-105">
       <Canvas
         camera={{ position: [0, 0, 4.5], fov: 42 }}
         dpr={[1, 2]}

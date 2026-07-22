@@ -26,7 +26,7 @@ const projects: ProjectItem[] = [
   {
     title: "D.I.T.S (Drumming In The Studio)",
     description: "Design and development of a musical application in virtual reality and MIDI integration. Final project honored.",
-    tags: ["Unity", "VR", "Music", "Drums", "MIDI", "Honors"],
+    tags: ["Unity", "VR", "Music", "Drums", "MIDI","University honors", "Game Development", "C#", "Game Design", "UI Design"],
     image: "/assets/images/imageDits.webp",
     href: "/projects/dits",
     icon: "dits",
@@ -34,7 +34,7 @@ const projects: ProjectItem[] = [
   {
     title: "Def a Mole",
     description: "3D Tower defense videogame developed in Unity. Be part of the insects and defend your garden from invading moles.",
-    tags: ["Unity", "3D", "Tower Defense"],
+    tags: ["Unity", "3D", "Tower Defense", "Game Development", "C#", "Game Design", "UI Design"],
     image: "/assets/images/defAMole.webp",
     href: "/projects/defamole",
     icon: "mole",
@@ -42,7 +42,7 @@ const projects: ProjectItem[] = [
   {
     title: "3D Animation",
     description: "3D animation of the character chopper from the anime One Piece. Modeling, texturing and animation done in 3ds Max.",
-    tags: ["3ds Max", "Modeling", "Texturing", "Animation"],
+    tags: [ "Modeling", "Texturing", "Animation", "3ds Max"],
     image: "/assets/images/chopperLab.webp",
     href: "/projects/3danimations",
     icon: "chopper",
@@ -50,7 +50,7 @@ const projects: ProjectItem[] = [
   {
     title: "This website!",
     description: "Personal website developed with Next.js and Tailwind CSS. Showcases my portfolio and experience in software development.",
-    tags: ["Next.js", "Tailwind CSS", "TypeScript", "React"],
+    tags: ["Web Development", "Next.js", "Tailwind CSS", "React", "Framer Motion", "3D", "Three.js", "Responsive Design", "Optimization", "Accessibility"],
     image: "/assets/images/porfolio.webp",
     href: "/projects/thiswebsite",
     icon: "website",

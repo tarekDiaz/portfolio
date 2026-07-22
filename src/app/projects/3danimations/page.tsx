@@ -150,7 +150,7 @@ export default function ThreeDAnimationsPage() {
             <FadeIn key={block.title} delay={0.15 + index * 0.05} duration={0.6} distance={20}>
               <article className="h-full rounded-2xl border border-background3 bg-background2 p-6 transition-transform duration-300 hover:scale-102">
                 <h3 className="mb-3 flex items-center gap-3 text-xl font-semibold text-text">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center text-text2">
+                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-background3 bg-background text-text2 shadow-sm">
                     <block.icon className="h-5 w-5" aria-hidden="true" />
                   </span>
 

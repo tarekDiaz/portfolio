@@ -116,15 +116,6 @@ export default function Contact() {
                     <FaLinkedinIn className="text-xl shrink-0" aria-hidden="true" />
                     LinkedIn
                   </a>
-                  <a
-                    href="https://github.com/tarekDiaz"
-                    className="inline-flex items-center gap-3 text-lg text-text/60 hover:text-text transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaGithub className="text-xl shrink-0" aria-hidden="true" />
-                    GitHub
-                  </a>
                 </div>
               </FadeIn>
 

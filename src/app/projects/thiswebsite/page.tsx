@@ -1,6 +1,23 @@
 import FadeIn from "@/components/fade-in";
 import EyeLogo from "@/components/icons/EyeLogo";
 import HomeButton from "@/components/home-button";
+import { FaPalette, FaStar } from "react-icons/fa6";
+import {
+  FiActivity,
+  FiCpu,
+  FiFileText,
+  FiMonitor,
+  FiSliders,
+  FiType,
+} from "react-icons/fi";
+import {
+  SiFramer,
+  SiNextdotjs,
+  SiReact,
+  SiTailwindcss,
+  SiThreedotjs,
+  SiTypescript,
+} from "react-icons/si";
 
 const projectTags = [
   "Next.js",
@@ -16,31 +33,37 @@ const projectTags = [
 const processBlocks = [
   {
     title: "Structure and content",
+    icon: FiFileText,
     text:
       "The website was planned as a portfolio that could present my profile, projects and contact information in a clear and visual way, with each page working like a small case study.",
   },
   {
     title: "Design direction",
+    icon: FaPalette,
     text:
       "I chose a minimalist visual language with soft cards, rounded shapes, subtle motion and strong typography so the content could feel clean, readable and focused on the work itself.",
   },
   {
     title: "Component system",
+    icon: FiCpu,
     text:
       "Reusable sections, navigation elements, buttons and animated blocks were built as components to keep the project organized and easy to extend as the portfolio grows.",
   },
   {
     title: "Responsive behavior",
+    icon: FiMonitor,
     text:
       "The layout adapts to desktop and mobile so the content stays readable and balanced across screen sizes, keeping the same identity without feeling compressed.",
   },
   {
     title: "Motion and transitions",
+    icon: FiActivity,
     text:
       "Small transitions, hover states and scroll-based reveals were used to make the site feel more alive without making it feel heavy or distracting.",
   },
   {
     title: "Final presentation",
+    icon: FaStar,
     text:
       "The result is a portfolio website that works both as a personal presentation and as a showcase of development, design and visual refinement.",
   },
@@ -49,31 +72,37 @@ const processBlocks = [
 const toolBlocks = [
   {
     title: "Next.js",
+    icon: SiNextdotjs,
     text:
       "Used as the main framework to structure the site with page routing, server components and a clean project architecture.",
   },
   {
     title: "React",
+    icon: SiReact,
     text:
       "Used for interactive pieces such as animated sections, reusable cards and stateful components like the navigation and hover effects.",
   },
   {
     title: "TypeScript",
+    icon: SiTypescript,
     text:
       "Helped keep the codebase more predictable and easier to scale, especially when building reusable components and typed project data.",
   },
   {
     title: "Tailwind CSS",
+    icon: SiTailwindcss,
     text:
       "Used to build the visual system quickly and consistently, with utility classes for spacing, layout, responsive behavior and subtle styling.",
   },
   {
     title: "Framer Motion",
+    icon: SiFramer,
     text:
       "Used for fades, reveals and smooth motion so the site feels polished and dynamic while keeping the interactions light.",
   },
   {
     title: "Three.js / R3F",
+    icon: SiThreedotjs,
     text:
       "Used in the portfolio to render interactive 3D previews and show the technical side of the site in a more visual way.",
   },
@@ -82,21 +111,25 @@ const toolBlocks = [
 const designBlocks = [
   {
     title: "Typography",
+    icon: FiType,
     text:
       "Large titles, light supporting text and clear contrast were used to make the site feel structured and easy to scan.",
   },
   {
     title: "Cards and spacing",
+    icon: FiSliders,
     text:
       "Rounded cards, consistent padding and wide gaps help the pages breathe and keep each section visually separated.",
   },
   {
     title: "Motion language",
+    icon: FiActivity,
     text:
       "The motion is subtle and functional, used mainly to guide attention and make navigation feel more natural.",
   },
   {
     title: "Color system",
+    icon: FaPalette,
     text:
       "The palette is based on the portfolio theme, with gradients and muted surfaces supporting the content instead of competing with it.",
   },
@@ -183,8 +216,12 @@ export default function ThisWebsitePage() {
           {processBlocks.map((block, index) => (
             <FadeIn key={block.title} delay={0.15 + index * 0.05} duration={0.6} distance={20}>
               <article className="h-full rounded-2xl border border-background3 bg-background2 p-6 transition-transform duration-300 hover:scale-102">
-                <h3 className="mb-3 text-xl font-semibold text-text">
-                  {block.title}
+                <h3 className="mb-3 flex items-center gap-3 text-xl font-semibold text-text">
+                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-background3 bg-background text-text2 shadow-sm">
+                    <block.icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+
+                  <span>{block.title}</span>
                 </h3>
 
                 <p className="text-sm leading-relaxed text-text3">
@@ -213,8 +250,12 @@ export default function ThisWebsitePage() {
           {toolBlocks.map((tool, index) => (
             <FadeIn key={tool.title} delay={0.15 + index * 0.05} duration={0.6} distance={20}>
               <article className="h-full rounded-2xl border border-background3 bg-background2 p-6 transition-transform duration-300 hover:scale-102">
-                <h3 className="mb-3 text-xl font-semibold text-text">
-                  {tool.title}
+                <h3 className="mb-3 flex items-center gap-3 text-xl font-semibold text-text">
+                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-background3 bg-background text-text2 shadow-sm">
+                    <tool.icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+
+                  <span>{tool.title}</span>
                 </h3>
 
                 <p className="text-sm leading-relaxed text-text3">
@@ -255,6 +296,40 @@ export default function ThisWebsitePage() {
               </p>
             </FadeIn>
           </div>
+        </div>
+      </section>
+
+      <section className="pb-24">
+        <FadeIn delay={0.1} duration={0.6}>
+          <div className="mb-10">
+            <span className="text-sm uppercase tracking-[0.25em] gradient-text">
+              Design
+            </span>
+
+            <h2 className="text-3xl font-semibold text-text md:text-4xl">
+              Visual language and presentation.
+            </h2>
+          </div>
+        </FadeIn>
+
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {designBlocks.map((block, index) => (
+            <FadeIn key={block.title} delay={0.15 + index * 0.05} duration={0.6} distance={20}>
+              <article className="h-full rounded-2xl border border-background3 bg-background2 p-6 transition-transform duration-300 hover:scale-102">
+                <h3 className="mb-3 flex items-center gap-3 text-xl font-semibold text-text">
+                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-background3 bg-background text-text2 shadow-sm">
+                    <block.icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+
+                  <span>{block.title}</span>
+                </h3>
+
+                <p className="text-sm leading-relaxed text-text3">
+                  {block.text}
+                </p>
+              </article>
+            </FadeIn>
+          ))}
         </div>
       </section>
 

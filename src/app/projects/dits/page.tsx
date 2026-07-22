@@ -237,18 +237,26 @@ export default function DrumminInTheStudioPage() {
                 translateY: "-50%",
               }}
             >
-              <div className="relative h-62.5 w-100 overflow-hidden rounded-xl">
-                <img
-                  src={hoveredTech.image}
-                  alt={hoveredTech.title}
-                  className="h-full w-full object-cover"
-                  loading="lazy"
-                />
+              <div className="relative w-md max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-background3 bg-background/90 p-6 shadow-2xl backdrop-blur-md">
+                <div className="mb-4 flex items-center justify-between gap-4">
+                  <div>
+                    <span className="text-xs uppercase tracking-[0.25em] text-text2">
+                      Details
+                    </span>
+                    <h4 className="mt-1 text-2xl font-semibold text-text">
+                      {hoveredTech.title}
+                    </h4>
+                  </div>
 
-                <div className="absolute right-3 top-3 inline-flex items-center gap-2 rounded-full bg-background3/80 px-3 py-2 text-xs tracking-widest text-text2">
-                  <span className="whitespace-nowrap">Close</span>
-                  <PiMouseLeftClickFill size={14} aria-hidden="true" />
+                  <div className="inline-flex items-center gap-2 rounded-full border border-text/10 bg-background2/80 px-3 py-2 text-xs tracking-widest text-text2">
+                    <span className="whitespace-nowrap">Close</span>
+                    <PiMouseLeftClickFill size={14} aria-hidden="true" />
+                  </div>
                 </div>
+
+                <p className="max-w-md text-sm leading-relaxed text-text2">
+                  {hoveredTech.text}
+                </p>
               </div>
             </motion.div>
           )}
@@ -331,6 +339,30 @@ export default function DrumminInTheStudioPage() {
         </div>
       </section>
 
+            <section className="pb-24">
+        <FadeIn delay={0.1} duration={0.6}>
+          <div className="mb-8">
+            <span className="mb-2 text-sm uppercase tracking-[0.25em] gradient-text">
+              Interactive Preview
+            </span>
+
+            <h1 className="text-3xl font-semibold text-text md:text-4xl">
+              Virtual studio preview.
+            </h1>
+
+            <p className="mt-4 max-w-3xl leading-relaxed text-text2">
+              This space is reserved for a future interactive 3D preview of the
+              virtual drum room, allowing visitors to explore a simplified
+              version of the VR environment directly from the browser.
+            </p>
+          </div>
+        </FadeIn>
+
+        <FadeIn delay={0.2} duration={0.6}>
+          <DitsCanvas />
+        </FadeIn>
+      </section>
+
       <section className="pb-24">
         <FadeIn delay={0.1} duration={0.6}>
           <div className="mb-10">
@@ -353,22 +385,52 @@ export default function DrumminInTheStudioPage() {
               distance={20}
             >
               <article
-                className="h-full cursor-pointer rounded-2xl border border-background3 bg-background2 p-6 transition-transform duration-300 hover:scale-102"
+                className="group h-full cursor-pointer overflow-hidden rounded-2xl border border-background3 bg-background2 transition-transform duration-300 hover:scale-102"
                 onMouseEnter={() => setHoveredFeatureIndex(index)}
                 onMouseLeave={handleFeatureLeave}
                 onClick={() => handleFeatureClick(index)}
               >
-                <div className="mb-3 flex items-center gap-3">
-                  <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center text-text">
-                    <feature.Icon size={22} aria-hidden="true" />
-                  </span>
+                <div className="flex flex-col gap-4 p-5 md:hidden">
+                  <div className="flex items-center gap-3">
+                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-text/15 bg-background/55 text-text backdrop-blur-sm">
+                      <feature.Icon size={22} aria-hidden="true" />
+                    </span>
 
-                  <h3 className="text-xl font-semibold text-text">{feature.title}</h3>
+                    <h3 className="text-xl font-semibold text-text">{feature.title}</h3>
+                  </div>
+
+                  <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+                    <img
+                      src={feature.image}
+                      alt={feature.title}
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  <p className="text-sm leading-relaxed text-text3">
+                    {feature.text}
+                  </p>
                 </div>
 
-                <p className="text-sm leading-relaxed text-text3">
-                  {feature.text}
-                </p>
+                <div className="relative hidden aspect-video w-full overflow-hidden md:block">
+                  <img
+                    src={feature.image}
+                    alt={feature.title}
+                    className="hidden h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 md:block"
+                    loading="lazy"
+                  />
+
+                  <div className="absolute inset-0 hidden bg-linear-to-t from-background/85 via-background/20 to-transparent md:block" />
+
+                  <div className="absolute bottom-0 left-0 right-0 hidden p-5 md:block">
+                    <div className="mb-2 inline-flex h-10 w-10 items-center justify-center rounded-full border border-text/15 bg-background/55 text-text backdrop-blur-sm">
+                      <feature.Icon size={22} aria-hidden="true" />
+                    </div>
+
+                    <h3 className="text-xl font-semibold text-text">{feature.title}</h3>
+                  </div>
+                </div>
               </article>
             </FadeIn>
           ))}
@@ -377,7 +439,7 @@ export default function DrumminInTheStudioPage() {
 
       {hoveredFeature !== null && (
         <>
-          {/* Centered image overlay (appears when preview toggled) */}
+          {/* Centered details overlay (appears when preview toggled) */}
           {showFeatureImage && (
             <motion.div
               className="pointer-events-none fixed left-0 top-0 hidden md:block"
@@ -389,18 +451,26 @@ export default function DrumminInTheStudioPage() {
                 translateY: "-50%",
               }}
             >
-              <div className="relative h-62.5 w-100 overflow-hidden rounded-xl">
-                <img
-                  src={hoveredFeature.image}
-                  alt={hoveredFeature.title}
-                  className="h-full w-full object-cover"
-                  loading="lazy"
-                />
+              <div className="relative w-md max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-background3 bg-background/90 p-6 shadow-2xl backdrop-blur-md">
+                <div className="mb-4 flex items-center justify-between gap-4">
+                  <div>
+                    <span className="text-xs uppercase tracking-[0.25em] text-text2">
+                      Details
+                    </span>
+                    <h4 className="mt-1 text-2xl font-semibold text-text">
+                      {hoveredFeature.title}
+                    </h4>
+                  </div>
 
-                <div className="absolute right-3 top-3 inline-flex items-center gap-2 rounded-full bg-background3/80 px-3 py-2 text-xs tracking-widest text-text2">
-                  <span className="whitespace-nowrap">Close</span>
-                  <PiMouseLeftClickFill size={14} aria-hidden="true" />
+                  <div className="inline-flex items-center gap-2 rounded-full border border-text/10 bg-background2/80 px-3 py-2 text-xs tracking-widest text-text2">
+                    <span className="whitespace-nowrap">Close</span>
+                    <PiMouseLeftClickFill size={14} aria-hidden="true" />
+                  </div>
                 </div>
+
+                <p className="max-w-md text-sm leading-relaxed text-text2">
+                  {hoveredFeature.text}
+                </p>
               </div>
             </motion.div>
           )}
@@ -451,52 +521,56 @@ export default function DrumminInTheStudioPage() {
               duration={0.6}
               distance={20}
             >
-              <article className="h-full rounded-2xl border border-background3 bg-background2 p-6 transition-transform duration-300 hover:scale-102"
+              <article className="group h-full cursor-pointer overflow-hidden rounded-2xl border border-background3 bg-background2 transition-transform duration-300 hover:scale-102"
                 onMouseEnter={() => setHoveredTechIndex(index)}
                 onMouseLeave={handleTechLeave}
                 onClick={() => handleTechClick(index)}
               >
-                {/* static image removed from card (preview shown on hover/click) */}
+                <div className="flex flex-col gap-4 p-5 md:hidden">
+                  <div className="flex items-center gap-3">
+                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-text/15 bg-background/55 text-text backdrop-blur-sm">
+                      <block.Icon size={22} aria-hidden="true" />
+                    </span>
 
-                <div className="mb-3 flex items-center gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center text-text">
-                    <block.Icon size={22} aria-hidden="true" />
-                  </span>
+                    <h3 className="text-xl font-semibold text-text">{block.title}</h3>
+                  </div>
 
-                  <h3 className="text-xl font-semibold text-text">{block.title}</h3>
+                  <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+                    <img
+                      src={block.image}
+                      alt={block.title}
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  <p className="text-sm leading-relaxed text-text3">
+                    {block.text}
+                  </p>
                 </div>
 
-                <p className="text-sm leading-relaxed text-text3">
-                  {block.text}
-                </p>
+                <div className="relative hidden aspect-video w-full overflow-hidden md:block">
+                  <img
+                    src={block.image}
+                    alt={block.title}
+                    className="hidden h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 md:block"
+                    loading="lazy"
+                  />
+
+                  <div className="absolute inset-0 hidden bg-linear-to-t from-background/85 via-background/20 to-transparent md:block" />
+
+                  <div className="absolute bottom-0 left-0 right-0 hidden p-5 md:block">
+                    <div className="mb-2 inline-flex h-10 w-10 items-center justify-center rounded-full border border-text/15 bg-background/55 text-text backdrop-blur-sm">
+                      <block.Icon size={22} aria-hidden="true" />
+                    </div>
+
+                    <h3 className="text-xl font-semibold text-text">{block.title}</h3>
+                  </div>
+                </div>
               </article>
             </FadeIn>
           ))}
         </div>
-      </section>
-
-      <section className="pb-24">
-        <FadeIn delay={0.1} duration={0.6}>
-          <div className="mb-8">
-            <span className="mb-2 text-sm uppercase tracking-[0.25em] gradient-text">
-              Interactive Preview
-            </span>
-
-            <h1 className="text-3xl font-semibold text-text md:text-4xl">
-              Virtual studio preview.
-            </h1>
-
-            <p className="mt-4 max-w-3xl leading-relaxed text-text2">
-              This space is reserved for a future interactive 3D preview of the
-              virtual drum room, allowing visitors to explore a simplified
-              version of the VR environment directly from the browser.
-            </p>
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={0.2} duration={0.6}>
-          <DitsCanvas />
-        </FadeIn>
       </section>
 
       <section className="pb-24">

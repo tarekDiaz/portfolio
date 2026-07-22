@@ -3,6 +3,8 @@ import FadeIn from "@/components/fade-in";
 import HomeButton from "@/components/home-button";
 import YouTubeVideo from "@/components/youtube-video";
 import CharacterPreviewCanvas from "@/components/character-preview-canvas";
+import { FaPalette, FaStar } from "react-icons/fa6";
+import { FiActivity, FiCpu, FiMonitor, FiSliders } from "react-icons/fi";
 
 const projectTags = [
   "Unity",
@@ -18,26 +20,32 @@ const projectTags = [
 const roleBlocks = [
   {
     title: "Design",
+    icon: FaPalette,
     text: "I took part in the overall game design, helping define the feel of the experience, the player flow and how the tower defense loop should read in a garden-based setting.",
   },
   {
     title: "Programming",
+    icon: FiCpu,
     text: "A large part of my contribution was in coding gameplay systems in Unity, supporting enemy behavior, interactions, UI logic and the core flow of the game.",
   },
   {
     title: "Team Collaboration",
+    icon: FiMonitor,
     text: "The project was developed in a team, so I also participated in the broader pipeline, helping where needed across implementation, testing and iteration.",
   },
   {
     title: "3D Work",
+    icon: FaStar,
     text: "Even though my focus was mainly design and programming, I also contributed a bit across the visual and production side to help the game feel consistent.",
   },
   {
     title: "Gameplay Loop",
+    icon: FiActivity,
     text: "The concept centers on the insects defending the garden from invading moles, combining placement, timing and strategy in a compact tower defense format.",
   },
   {
     title: "Unity Pipeline",
+    icon: FiSliders,
     text: "The final piece was assembled in Unity, where the interactive systems, level setup and presentation were brought together into a playable project.",
   },
 ];
@@ -45,18 +53,22 @@ const roleBlocks = [
 const featureBlocks = [
   {
     title: "Insect Side",
+    icon: FiMonitor,
     text: "The player's perspective is tied to the insect defenders, which gives the game a lighter visual identity and a distinct point of view for the tower defense mechanics.",
   },
   {
     title: "Invading Moles",
+    icon: FiActivity,
     text: "Enemy waves of moles create pressure on the garden, providing the main challenge and guiding the player's defensive choices.",
   },
   {
     title: "Strategy and Placement",
+    icon: FiSliders,
     text: "The experience relies on choosing where to place units or defenses and reacting to incoming threats while keeping the garden protected.",
   },
   {
     title: "Iteration",
+    icon: FiCpu,
     text: "As with most team projects, the design and code evolved through testing, balancing and refining the feel of the game.",
   },
 ];
@@ -215,8 +227,12 @@ export default function DefAMolePage() {
           {roleBlocks.map((block, index) => (
             <FadeIn key={block.title} delay={0.15 + index * 0.05} duration={0.6} distance={20}>
               <article className="h-full rounded-2xl border border-background3 bg-background2 p-6 transition-transform duration-300 hover:scale-102">
-                <h3 className="mb-3 text-xl font-semibold text-text">
-                  {block.title}
+                <h3 className="mb-3 flex items-center gap-3 text-xl font-semibold text-text">
+                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-background3 bg-background text-text2 shadow-sm">
+                    <block.icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+
+                  <span>{block.title}</span>
                 </h3>
 
                 <p className="text-sm leading-relaxed text-text3">
@@ -245,8 +261,12 @@ export default function DefAMolePage() {
           {featureBlocks.map((feature, index) => (
             <FadeIn key={feature.title} delay={0.15 + index * 0.05} duration={0.6} distance={20}>
               <article className="h-full rounded-2xl border border-background3 bg-background2 p-6 transition-transform duration-300 hover:scale-102">
-                <h3 className="mb-3 text-xl font-semibold text-text">
-                  {feature.title}
+                <h3 className="mb-3 flex items-center gap-3 text-xl font-semibold text-text">
+                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-background3 bg-background text-text2 shadow-sm">
+                    <feature.icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+
+                  <span>{feature.title}</span>
                 </h3>
 
                 <p className="text-sm leading-relaxed text-text3">
