@@ -56,15 +56,15 @@ function AnimatedOuterSphere() {
     <mesh ref={meshRef}>
         <sphereGeometry ref={geometryRef} args={[1.35, 128, 128]} />
         <meshPhysicalMaterial
-            color="#b8b8b8"
-            metalness={0.65}
-            roughness={0.22}
+            color="#4a4747"
+            metalness={0.5}
+            roughness={0.2}
             clearcoat={1}
-            clearcoatRoughness={0.12}
+            clearcoatRoughness={0.2}
             reflectivity={0.8}
             transparent
-            opacity={0.78}
-            transmission={0}
+            opacity={0.6}
+            transmission={0.3}
             depthWrite={false}
         />
     </mesh>
