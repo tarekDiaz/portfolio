@@ -48,13 +48,11 @@ function AnimatedOuterSphere() {
     positionAttr.needsUpdate = true;
     geometry.computeVertexNormals();
 
-    meshRef.current.rotation.y = time * 0.18;
-    meshRef.current.rotation.x = Math.sin(time * 0.3) * 0.06;
   });
 
   return (
     <mesh ref={meshRef}>
-        <sphereGeometry ref={geometryRef} args={[1.35, 128, 128]} />
+        <sphereGeometry ref={geometryRef} args={[1.5, 32, 32]} />
         <meshPhysicalMaterial
             color="#4a4747"
             metalness={0.5}
@@ -75,30 +73,6 @@ function InnerCoreSphere() {
   const groupRef = useRef<THREE.Group>(null);
   const lightRef = useRef<THREE.PointLight>(null);
   const glowRef = useRef<THREE.Mesh>(null);
-  const materialRef = useRef<THREE.ShaderMaterial>(null);
-
-  const uniforms = useMemo(
-    () => ({
-      uTime: { value: 0 },
-      uColor1: { value: new THREE.Color("#ddbe11") }, // --gradient-1
-      uColor2: { value: new THREE.Color("#a66821") }, // --gradient-2
-    }),
-    []
-  );
-
-  useEffect(() => {
-    const rootStyles = getComputedStyle(document.documentElement);
-
-    const gradient1 =
-      rootStyles.getPropertyValue("--gradient-1").trim() || "#ddbe11";
-    const gradient2 =
-      rootStyles.getPropertyValue("--gradient-2").trim() || "#a66821";
-
-    if (materialRef.current) {
-      materialRef.current.uniforms.uColor1.value = new THREE.Color(gradient1);
-      materialRef.current.uniforms.uColor2.value = new THREE.Color(gradient2);
-    }
-  }, []);
 
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
@@ -106,85 +80,33 @@ function InnerCoreSphere() {
 
     if (groupRef.current) {
       groupRef.current.scale.setScalar(pulse);
-      groupRef.current.rotation.y = time * 0.2;
-    }
-
-    if (materialRef.current) {
-      materialRef.current.uniforms.uTime.value = time;
     }
 
     if (lightRef.current) {
       lightRef.current.intensity = 3.2 + Math.sin(time * 2.2) * 0.7;
-      // luz con tono intermedio cálido
-      lightRef.current.color.set("#c98c1a");
+      lightRef.current.color.set("#d29b1c");
     }
 
     if (glowRef.current) {
       glowRef.current.scale.setScalar(1.25 + Math.sin(time * 2.2) * 0.08);
-      glowRef.current.rotation.y = -time * 0.15;
     }
   });
 
   return (
     <group ref={groupRef}>
-      {/* Núcleo con gradiente animado */}
       <mesh>
-        <sphereGeometry args={[0.26, 64, 64]} />
-        <shaderMaterial
-          ref={materialRef}
-          uniforms={uniforms}
-          transparent={false}
-          toneMapped={false}
-          vertexShader={`
-            varying vec3 vPosition;
-            varying vec3 vNormal;
-
-            void main() {
-              vPosition = position;
-              vNormal = normal;
-              gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-            }
-          `}
-          fragmentShader={`
-            uniform float uTime;
-            uniform vec3 uColor1;
-            uniform vec3 uColor2;
-
-            varying vec3 vPosition;
-            varying vec3 vNormal;
-
-            void main() {
-              vec3 p = normalize(vPosition);
-
-              // rotación del gradiente
-              float angle = uTime * 0.9;
-              float c = cos(angle);
-              float s = sin(angle);
-
-              mat2 rot = mat2(c, -s, s, c);
-              vec2 rotated = rot * p.xz;
-
-              // mezcla angular + un poco vertical para que sea más orgánico
-              float angular = rotated.x * 0.5 + 0.5;
-              float vertical = p.y * 0.5 + 0.5;
-              float gradient = mix(angular, vertical, 0.35);
-
-              vec3 color = mix(uColor1, uColor2, gradient);
-
-              // brillo hacia bordes y centro luminoso
-              float fresnel = pow(1.0 - abs(dot(normalize(vNormal), vec3(0.0, 0.0, 1.0))), 2.0);
-              color += mix(uColor1, vec3(1.0), 0.35) * 0.18;
-              color += fresnel * 0.12;
-
-              gl_FragColor = vec4(color, 1.0);
-            }
-          `}
+        <sphereGeometry args={[0.26, 32, 32]} />
+        <meshStandardMaterial
+          color="#d29b1c"
+          emissive="#d29b1c"
+          emissiveIntensity={1.4}
+          roughness={0.2}
+          metalness={0}
         />
       </mesh>
 
-      {/* Halo visual cálido */}
       <mesh ref={glowRef}>
-        <sphereGeometry args={[0.42, 64, 64]} />
+        <sphereGeometry args={[0.42, 32, 32]} />
         <meshBasicMaterial
           color="#d29b1c"
           transparent
@@ -195,7 +117,6 @@ function InnerCoreSphere() {
         />
       </mesh>
 
-      {/* Luz emitida desde el núcleo */}
       <pointLight
         ref={lightRef}
         position={[0, 0, 0]}
@@ -266,7 +187,7 @@ export default function WavyMetalSphere() {
   return (
     <div className="relative h-105 w-105">
       <Canvas
-        camera={{ position: [0, 0, 4.5], fov: 42 }}
+        camera={{ position: [0, 0, 4.5], fov: 45 }}
         dpr={[1, 2]}
         gl={{
           antialias: true,
