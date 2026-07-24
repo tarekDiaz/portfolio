@@ -31,7 +31,7 @@ function AnimatedOuterSphere({
       positionAttr.array as Float32Array
     );
 
-    audioRef.current = new Audio("/sounds/sphere-click.mp3");
+    audioRef.current = new Audio("assets/sounds/wavy-sphere-touch.mp3");
     audioRef.current.volume = 0.45;
     audioRef.current.preload = "auto";
 
@@ -255,7 +255,7 @@ function InnerCoreSphere({
         <sphereGeometry args={[0.26, 32, 32]} />
 
         <meshStandardMaterial
-          color="#d29b1c"
+          color="#ffffff"
           emissive="#d29b1c"
           emissiveIntensity={1.4}
           roughness={0.2}
