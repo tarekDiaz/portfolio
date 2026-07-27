@@ -83,7 +83,9 @@ export default function Home() {
           {/* Canvas adaptativo */}
           <div className="flex-1 w-full max-w-4xl flex items-center justify-center min-h-0 z-10">
             <FadeIn delay={0.4} duration={0.9} distance={0} className="w-full h-full flex items-center justify-center">
-              <HeroCanvasSuspense />
+              <div className="relative overflow-visible">
+                  <HeroCanvasSuspense />
+              </div>
             </FadeIn>
           </div>
 

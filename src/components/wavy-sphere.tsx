@@ -393,7 +393,12 @@ function Scene() {
 
 export default function WavySphere() {
   return (
-    <div className="relative h-105 w-105">
+    <div className="relative aspect-square w-[min(50vw,420px)]">
+
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="animatedHalo" />
+      </div>
+
       <Canvas
         camera={{
           position: [0, 0, 4.5],

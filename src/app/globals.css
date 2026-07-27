@@ -220,3 +220,18 @@ body::after {
   animation: scroll 28s linear infinite;
   will-change: transform;
 }
+
+.animatedHalo {
+    width:170%;
+    aspect-ratio:1;
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle,
+        var(--text),        
+        transparent 60%
+    );
+
+    filter: blur(55px);
+}
+
