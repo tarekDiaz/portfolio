@@ -73,9 +73,10 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="w-full border text-text2 border-text4 rounded-full py-4 text-sm uppercase tracking-[0.25em] hover:border-text2 hover:text-text transition-all active:scale-[0.98]"
+                className="pointer-events-none w-full border text-text4 border-text4 rounded-full py-4 text-sm uppercase tracking-[0.25em] hover:border-text2 hover:text-text transition-all active:scale-[0.98]"
               >
                 Send message
+                <span className="ml-2 text-xs uppercase tracking-[0.25em] text-primary"> WIP </span>
               </button>
             </form>
           </div>

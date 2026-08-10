@@ -4,6 +4,7 @@ import Footer from "@/components/footer";
 import { Montserrat } from 'next/font/google';
 import { Rubik } from 'next/font/google';
 import { ThemeProvider } from "@/components/theme-provider"
+import { LocaleProvider } from "@/components/locale-provider";
 import { Suspense } from "react";
 import Cursor from "@/components/cursor/cursor";
 import SmoothScroll from "@/components/smooth-scroll";
@@ -32,7 +33,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="es" suppressHydrationWarning>
+        <html lang="en" suppressHydrationWarning>
             <head>
                 <script
                     dangerouslySetInnerHTML={{
@@ -57,13 +58,15 @@ export default function RootLayout({
                 <SmoothScroll />
                 <Cursor />
                 <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-                    <Navbar />
+                    <LocaleProvider>
+                        <Navbar />
                         <main className="min-h-screen px-6">
                             <Suspense>
                                 {children}
                             </Suspense>
                         </main>
                         <Footer />
+                    </LocaleProvider>
                 </ThemeProvider>
             </body>
         </html>

@@ -7,10 +7,13 @@ import ThemeSwitch from "./theme-switch";
 import EyeLogo from "./icons/EyeLogo";
 import { motion } from "framer-motion";
 
+import { useLocale } from "./locale-provider";
+
 const links = [
-  { href: "/projects", label: "Projects" },
-  { href: "/contact", label: "Contact" },
-  { href: "/about", label: "About" }
+  { href: "/about", key: "about" },
+  { href: "/projects", key: "projects" },
+  { href: "/skills", key: "skills" },
+  { href: "/contact", key: "contact" }
 ];
 
 const languages = [
@@ -19,16 +22,15 @@ const languages = [
   { code: "ca", label: "Català" },
 ];
 
-const availableLanguage = "en";
-
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [visible, setVisible] = useState(true);
   const [langOpen, setLangOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState(availableLanguage);
 
   const pathname = usePathname();
   const lastScrollY = useRef(0);
+
+  const { locale, setLocale, t } = useLocale();
 
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -120,41 +122,13 @@ export default function Navbar() {
           transition={{ duration: 0.8, ease: "easeInOut" }}
         >
           {/* Desktop Links */}
-          <div className="justify-self-center hidden md:block">
-            <Link
-              href="/about"
-              className={getLinkClassName(pathname === "/about")}
-            >
-              About
-            </Link>
-          </div>
-
-          <div className="justify-self-center hidden md:block">
-            <Link
-              href="/projects"
-              className={getLinkClassName(pathname === "/projects")}
-            >
-              Projects
-            </Link>
-          </div>
-
-          <div className="justify-self-center hidden md:block">
-            <Link
-              href="/skills"
-              className={getLinkClassName(pathname === "/skills")}
-            >
-              Skills
-            </Link>
-          </div>
-
-          <div className="justify-self-center hidden md:block">
-            <Link
-              href="/contact"
-              className={getLinkClassName(pathname === "/contact")}
-            >
-              Contact
-            </Link>
-          </div>
+          {links.map((link) => (
+            <div key={link.href} className="justify-self-center hidden md:block">
+              <Link href={link.href} className={getLinkClassName(pathname === link.href)}>
+                {t(link.key)}
+              </Link>
+            </div>
+          ))}
 
           {/* Language + Theme */}
           <div className="justify-self-center hidden md:block relative">
@@ -164,7 +138,7 @@ export default function Navbar() {
                 onClick={() => setLangOpen((prev) => !prev)}
                 className="text-text/55 justify-self-center px-2 py-1 rounded hover:text-text transition-colors"
               >
-                {currentLang}
+                {locale}
               </button>
 
               <div className="justify-self-center items-center">
@@ -186,35 +160,19 @@ export default function Navbar() {
                 "
               >
                 {languages.map((lang) => {
-                  const isAvailable = lang.code === availableLanguage;
-
                   return (
                     <button
                       key={lang.code}
-                      disabled={!isAvailable}
                       onClick={() => {
-                        if (!isAvailable) return;
-
-                        setCurrentLang(lang.code);
+                        setLocale(lang.code as any);
                         setLangOpen(false);
                       }}
                       className={`
                         w-full text-left px-4 py-3 text-sm transition-all duration-150 flex items-center justify-between
-                        ${
-                          !isAvailable
-                            ? "text-text/35 cursor-not-allowed"
-                            : currentLang === lang.code
-                              ? "text-text bg-text/10 font-medium"
-                              : "text-text/70 hover:text-text hover:bg-text/5"
-                        }
+                        ${locale === lang.code ? "text-text bg-text/10 font-medium" : "text-text/70 hover:text-text hover:bg-text/5"}
                       `}
                     >
                       <span>{lang.label}</span>
-                      {!isAvailable && (
-                        <span className="text-[10px] uppercase tracking-wider text-primary ml-1">
-                          WIP
-                        </span>
-                      )}
                     </button>
                   );
                 })}
@@ -264,7 +222,7 @@ export default function Navbar() {
 
           <div className="justify-self-center md:hidden">
             <div className="text-text justify-self-center text-xl uppercase">
-              {currentLang}
+              {locale.toUpperCase()}
             </div>
           </div>
         </motion.div>
@@ -320,7 +278,7 @@ export default function Navbar() {
                   }
                 `}
               >
-                {link.label}
+                {t(link.key)}
               </Link>
             ))}
           </div>
@@ -338,31 +296,20 @@ export default function Navbar() {
                     className="flex items-center gap-3 leading-none"
                   >
                     {(() => {
-                      const isAvailable = lang.code === availableLanguage;
-
                       return (
-                    <button
-                      disabled={!isAvailable}
-                      onClick={() => {
-                        if (!isAvailable) return;
-                        setCurrentLang(lang.code);
-                      }}
-                      className={`
-                        text-xl uppercase transition-all duration-200
-                        ${
-                          !isAvailable
-                            ? "text-text/35 cursor-not-allowed"
-                            : currentLang === lang.code
-                            ? "gradient-text scale-105 font-medium"
-                            : "text-text hover:text-text font-light cursor-pointer"
-                        }
-                      `}
-                    >
-                      {lang.code}
-                      {!isAvailable && (
-                        <span className="ml-1 align-middle text-[10px] uppercase tracking-wider text-primary">WIP</span>
-                      )}
-                    </button>
+                        <button
+                          onClick={() => setLocale(lang.code as any)}
+                          className={`
+                            text-xl uppercase transition-all duration-200
+                            ${
+                              locale === lang.code
+                                ? "gradient-text scale-105 font-medium"
+                                : "text-text hover:text-text font-light cursor-pointer"
+                            }
+                          `}
+                        >
+                          {lang.code}
+                        </button>
                       );
                     })()}
 
