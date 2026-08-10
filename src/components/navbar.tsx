@@ -10,10 +10,9 @@ import { motion } from "framer-motion";
 import { useLocale } from "./locale-provider";
 
 const links = [
-  { href: "/about", key: "about" },
-  { href: "/projects", key: "projects" },
-  { href: "/skills", key: "skills" },
-  { href: "/contact", key: "contact" }
+  { href: "/about", key: "navbar.about" },
+  { href: "/projects", key: "navbar.projects" },
+  { href: "/contact", key: "navbar.contact" },
 ];
 
 const languages = [
@@ -122,16 +121,25 @@ export default function Navbar() {
           transition={{ duration: 0.8, ease: "easeInOut" }}
         >
           {/* Desktop Links */}
-          {links.map((link) => (
-            <div key={link.href} className="justify-self-center hidden md:block">
-              <Link href={link.href} className={getLinkClassName(pathname === link.href)}>
-                {t(link.key)}
-              </Link>
-            </div>
-          ))}
+          {links.map((link, index) => {
+            const columnClass =
+              index === 0
+                ? "md:col-start-1"
+                : index === 1
+                  ? "md:col-start-2"
+                  : "md:col-start-4";
+
+            return (
+              <div key={link.href} className={`justify-self-center hidden md:block ${columnClass}`}>
+                <Link href={link.href} className={getLinkClassName(pathname === link.href)}>
+                  {t(link.key)}
+                </Link>
+              </div>
+            );
+          })}
 
           {/* Language + Theme */}
-          <div className="justify-self-center hidden md:block relative">
+          <div className="justify-self-center hidden md:block md:col-start-5 relative">
             <div className="grid grid-cols-2 items-center w-23 h-8 px-2 bg-background/50 rounded-full transition-colors duration-1000">
               <button
                 ref={langButtonRef}

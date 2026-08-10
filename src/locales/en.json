@@ -1,7 +1,8 @@
 {
-  "about": "About",
-  "projects": "Projects",
-  "skills": "Skills",
-  "contact": "Contact"
+  "navbar": {
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact"
+  }
   
 }

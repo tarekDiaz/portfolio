@@ -1,6 +1,8 @@
 {
-  "about": "Sobre mi",
-  "projects": "Projectes",
-  "skills": "Habilitats",
-  "contact": "Contacte"
+
+  "navbar": {
+    "about": "Sobre mi",
+    "projects": "Projectes",
+    "contact": "Contacte"
+  }
 }
